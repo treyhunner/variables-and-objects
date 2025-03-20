@@ -379,3 +379,6 @@ section {
 .notes .reveal .controls {
   visibility: visible;
 }
+
+.reveal table.no-border th, .reveal table.no-border td {
+  border-bottom: none; }
