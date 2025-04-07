@@ -529,44 +529,62 @@
         <!-- SECTION TIME: TODO -->
 
         <section>
-          <h1 class="fragment">TODO Identity versus equality</h1>
+          <h1 class="fragment">2 types of</h1>
+          <h1 class="fragment">&ldquo;are they the same?&rdquo;</h1>
+          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=3>first == second
+True
+>>> </span><span class="fragment" data-fragment-index=4>first is second
+True</span></code></pre>
           <aside class="notes" data-markdown>
-            - TODO
+            - TODO visuals
+            - In Python, we have two different types of "change"...
+            - But we also have **(CLICK)** two different ways to ask the question...
+            - **(CLICK)** "are they the same?"
+            - We have the **(CLICK)** double equals operator (`==`) for **(CLICK)** *equality*
+            - And we have the **(CLICK)** `is` operator for **(CLICK)** *identity*
+            - You can think of equality and identity as asking about model numbers and serial numbers.
+          </aside>
+        </section>
 
-In Python, we have two different types of "change"...
+        <section>
+          <h1 class="fragment">TODO</h1>
+          <aside class="notes" data-markdown>
+            - TODO visuals
+            - If I'm in the market to buy a washing machine, I might ask "what's the model number?"
+            - I'm hoping to look up reviews for what *should* equivalent devices.
+            - But if I need to call customer support to report an issue, I might give them the serial number for the device.
+            - The serial number uniquely identifies the device.
+            - Equality checks are a like a comparison of model numbers... they ask whether two objects represent the same thing.
+            = Identity checks are like a comparison of serial numbers... they ask whether two objects are identical... meaning they aren't even two objects... they are *the same exact object*
+            - Though really...
+          </aside>
+        </section>
 
-But we also have two different ways to ask the question...
+        <section>
+          <h1 class="fragment">TODO</h1>
+          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=3>first == second
+True
+>>> </span><span class="fragment" data-fragment-index=4>first is second
+True</span></code></pre>
+          <aside class="notes" data-markdown>
+            - identity isn't *about objects* at all... it's actually a way to ask whether two references are referring to *exactly* the same object.
+            - If we have two variables, `first`, and `second`, and we ask whether they are *equal*, we're asking whether they have the same value... this asks the *objects* whether they represent the same thing
+            - If we ask whether these variables are *identical* we're asking whether they both point to the same object... this doesn't ask any question of the object itself. This is a more low level and fundamental question and there's no way for objects to control the behavior of the `is` operator.
+          </aside>
+        </section>
 
-"are they the same?"
-
-Equality, with `==`
-
-And identity, with `is`
-
-You can think of equality and identity as asking about model numbers and serial numbers.
-
-If I am in the market to buy a washing machine, I might ask "what's the model number?"
-
-I'm hoping to look up reviews for what *should* equivalent devices.
-
-If I call customer support to report an issue, I might give them the serial number for the device.
-
-The serial number uniquely identifies the device.
-
-Equality checks are a like a comparison of model numbers... they ask whether two objects represent the same thing.
-
-Identity checks are like a comparison of serial numbers... they ask whether two objects are identical... meaning they aren't even two objects... they are *the same exact object*
-
-Though really identity isn't even about objects... it's actually a way to ask whether two references are referring to *exactly* the same object.
-
-If we have two variables, `first`, and `second`, and we ask whether they are *equal*, we're asking whether they have the same value... this asks the *objects* whether they represent the same thing
-
-If we ask whether these variables are *identical* we're asking whether they both point to the same object... this doesn't ask any question of the object itself. This is a more low level and fundamental question and there's no way for objects to control the behavior of the `is` operator.
-
-The `is` operator is *very* rarely used outside of checking whether an object is identical to `None`, `True`, or `False`.
-
-Unless you *actually* care whether two objects are the exact same object, when asking "are they the same?" you want the `==` operator.
-
+        <section>
+          <h1 class="fragment">TODO</h1>
+          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=3>first == second
+True
+>>> </span><span class="fragment" data-fragment-index=4>first is second
+True</span></code></pre>
+          <aside class="notes" data-markdown>
+        - The `is` operator is *very* rarely used outside of checking whether an object is identical to `None`, `True`, or `False`.
+        - Unless you *actually* care whether two objects are the exact same object, when asking "are they the same?" you want the `==` operator.
           </aside>
         </section>
 
@@ -1212,15 +1230,29 @@ Unless you *actually* care whether two objects are the exact same object, when a
               <img src="Plans.png" class="no-style">
             </div>
           </div>
+          <pre class="python fragment" data-fragment-index=3 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> x = y
+>>> <span class="fragment" data-fragment-index=4>x is y
+True</span></code></pre>
           <aside class="notes" data-markdown>
             - Ben Gibbard **(CLICK)** wrote a song **(CLICK)** about this situation...
             - Diff er ent names
             - For the sammmme thing
             - Pointer, reference, and binding are all different names for the same thing
             - But this phrase also describes how Python's variables work
-            - TODO show after we point two variables to the same object, those two variables ("first" and "second") will just be different names for the same thing
+            - When we assign one variable to another **(CLICK)**, we're pointing to 2 variables to the same object **(CLICK)**
+            - Which makes them **different names for the same thing**
             - TODO *cue animated gif* (about 1 minute into this video https://www.youtube.com/watch?v=CvJAv82IV_g)
-            - TODO add summary of this section: so, while pointer isn't the most common term you'll hear to describe how Python's variables work, I think that pointer *is* the helpful term
+          </aside>
+        </section>
+
+        <section>
+          <h1>TODO Mini summary here</h1>
+          <aside class="notes" data-markdown>
+            - TODO
+            - So while "pointer" is *not* the most common term you'll hear for describing how Python's variables work
+            - ... I do think it's the most *helpful* term
+            - Followed closely by "reference"
           </aside>
         </section>
 
@@ -1391,8 +1423,8 @@ Unless you *actually* care whether two objects are the exact same object, when a
             - Objects can contain references to other objects. When you change those references through an assignment, that requires mutating that larger object
             - Is this a bit confusing? Yes... if you think about it too hard
             - But most of the time, not really...
-            - But saying "this is an assignment that mutates" does sound like a gotcha
-            - Speaking of gotchas... TODO (let's talk about mutating tuples)
+            - Though saying "this is an assignment that mutates" does sound like a gotcha
+            - Speaking of gotchas... let's talk about mutability
           </aside>
         </section>
 
