@@ -329,38 +329,6 @@
           </aside>
         </section>
 
-        <!--
-        <section>
-          <h3>
-          <span class="fragment">Diff</span><span class="fragment">er</span><span class="fragment">ent</span>
-          <span class="fragment">Names</span>
-          <span class="fragment">For</span>
-          <span class="fragment">The</span>
-          <span class="fragment">Same</span>
-          <span class="fragment">Thing</span>
-          </h3>
-          <div style="display: grid; grid-auto-flow: column;">
-            <div style="text-align: center;">
-              <img src="Ben-Gibbard.jpg" class="fragment no-style" style="height: 300px;">
-            </div>
-            <div style="text-align: center;">
-              <img src="Plans.png" class="fragment no-style">
-            </div>
-          </div>
-          <aside class="notes" data-markdown>
-            - If you find yourself struggling to remember that in Python, you can point multiple variables to the same object
-          - 
-          - And when a list contains list it's really just containing a pointer to that list
-          - Inspired by the fact that Python's object model allows one object to be referred by multiple variables...
-          - Ben Gibbard **(click)** of Death Cab For Cutie **(click)** actually wrong a song about how Python's object model works
-          - TODO *cue animated gif*
-          (about 1 minute into this video https://www.youtube.com/watch?v=CvJAv82IV_g)
-          - Well... maybe
-          - I actually don't know if that's what the song is *actually* about, but that's what *I* think it's about
-          </aside>
-        </section>
-        -->
-
       </section>
       <section>
         <!-- section: change -->
@@ -889,53 +857,6 @@ Unless you *actually* care whether two objects are the exact same object, when a
           </aside>
         </section>
 
-        <section data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> <span class="fragment">x.append(x)
->>> </span><span class="fragment">x</span><span class="fragment">
-[[...]]</span><span style="opacity: 0;">
->>> x in x
-True
->>> x[0] is x
-True</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - TODO move this to the end of the talk as a sort of punchline or quiz of what we've learned?
-            - So given what we've seen so far...
-            - If we take an empty Python list, called `x`
-            - **(CLICK)** What do you think this might do?
-            - `x.append(x)`
-            - What's your guess?
-            - ...
-            - **(CLICK)** Is `x` an **empty list**?
-            - A list with **an empty list inside it**?
-            - Something else?
-            - It turns out **(CLICK)**... this makes a list that contains itself...
-          </aside>
-        </section>
-
-        <section data-background-image="ouroboros-background.png" data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> x.append(x)
->>> x
-<span class="fragment bold" data-fragment-index=3>[[...]]</span>
-<span class="fragment" data-fragment-index=1>>>> x in x
-True</span>
-<span class="fragment" data-fragment-index=2>>>> x[0] is x
-True</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - ... sort of **(CLICK)**
-            - A list can't really contain itself, but it *can* contain a **reference** to itself **(CLICK)**
-            - Python is smart enough to represent this list using 3 dots **(CLICK)** because otherwise it would need to show an **infinite number** of **square brackets**
-            - We have just made an infinitely recursive data structure
-            - This is possible because objects in Python don't contain other objects
-            - Just as variables can only point to objects, objects can *also* only point to objects
-          </aside>
-        </section>
-
         <section>
           <pre class="python"><code data-trim data-noescape>
 >>> runtimes = {'v1': [38, 47, 52], 'v2.5': [27, 12, 23]}
@@ -1035,148 +956,15 @@ True</span>
           <h1>TODO Mini summary here</h1>
           <aside class="notes" data-markdown>
             - TODO
+            - Variables don't contain objects... they only contain pointers to objects
+            - But objects also don't contain objects...
+            - Whether we're talking about indexes and attributes, objects only contain pointers to objects
+            - So when we say we've made a list-of-lists
+            - We actually mean that we've made a list where each item acts as pointer to another list
+            - And if ask whether our list contains a specific object...
+            - We're actually asking whether our list contains a reference to an equivalent object
           </aside>
         </section>
-
-        <!--
-        <section data-transition="none-in none-out">
-          <pre class="python"><code data-trim data-noescape>
->>> class TodoList:
-...     def __init__(self, <span class="fragment bold-current">tasks=[]</span>):
-...         <span class="fragment bold-current">self.tasks = tasks</span>
-... 
-...     def add_task(self, task):
-...         self.tasks.append(task)
-...
->>> <span class="fragment">mon = TodoList()
->>> </span><span class="fragment">mon.add_task("Work on Python exercise")
->>> </span><span class="fragment">mon.tasks
-['Work on Python exercise']
->>> </span><span class="fragment">tue = TodoList()
->>> </span><span class="fragment">tue.tasks
-['Work on Python exercise']</span>
-<br>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - In fact, this fact is part of the reason that mutable default arguments are an issue in Python **(CLICK)**
-            - Note that we're **(CLICK)** storing the `tasks` argument for our initializer as an attribute
-            - Let's say we **(CLICK)** make an instance of this class with the default empty `tasks` list
-            - And then **(CLICK)** mutate the `tasks` attribute for this class instance **(CLICK)**
-            - If we make a **(CLICK)** second instance of this class
-            - That second instance will have **(CLICK)** the same `tasks` list as the first
-            - Python evaluates default argument values only one time: when a function is defined
-            - Mutable default argument values can result in gotchas, particularly in class initializers that store a passed-in argument as an attribute, like this one
-            - ...
-            - But, as we saw a moment ago, this is *also* potentially an issue for mutable arguments *in general*
-            - So while mutable default arguments *are* a gotcha, the most common time that they're an issue is when they're layered on top of another potential gotcha
-          </aside>
-        </section>
-
-        <section data-transition="none-in none-out">
-          <pre class="python"><code data-trim data-noescape>
->>> <span class="fragment">class TodoList:
-...     def __init__(self, tasks=()):
-...         self.tasks = <span class="fragment bold-current">list(tasks)</span>
-... 
-...     def add_task(self, task):
-...         self.tasks.append(task)
-...
->>> </span><span class="fragment">mon = TodoList()
->>> </span><span class="fragment">mon.add_task("Work on Python exercise")
->>> </span><span class="fragment">mon.tasks
-['Work on Python exercise']
->>> </span><span class="fragment">tue = TodoList()
->>> </span><span class="fragment">tue.tasks
-[]
->>> </span><span class="fragment">wed = TodoList({"Here is", "a set", "of tasks"})</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - TODO fix transitions and such
-            - This might seem like a *really* big issue...
-            - But this issue has a pretty common workaround
-            - If your class accepts a list, you could use **(CLICK)** the `list` constructor to copy that argument
-            - Now when we make **(CLICK)** two instances of our class
-            - Modifying the `tasks` list **(CLICK)** of one
-            - Will not affect the `tasks` list **(CLICK)** of the other
-            - Also, this class now also accepts not just lists, but sets, generators, or *any* iterable
-            - ... because the `list` constructor **(CLICK)** will loop over any iterable you give to it to make a new list
-            - For many classes that are meant to operate on the data that's passed-in to them, that data is copied when a new instance is initialized
-          </aside>
-        </section>
-
-        <section data-transition="none-in none-out">
-          <pre class="python"><code data-trim data-noescape>
->>> class TodoList:
-...     def __init__(self, <span class="fragment bold">tasks=()</span>):
-...         self.tasks = list(tasks)
-... 
-...     def add_task(self, task):
-...         self.tasks.append(task)
-...
->>> mon = TodoList()
->>> mon.add_task("Work on Python exercise")
->>> mon.tasks
-['Work on Python exercise']
->>> tue = TodoList()
->>> tue.tasks
-[]
->>> wed = TodoList({"Here is", "a set", "of tasks"})
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - You may have noticed that we *also* **(CLICK)** changed our default argument value to be *immutable*
-            - it's a tuple instead of a list now
-            - We didn't necessarily need to do that...
-          </aside>
-        </section>
-
-        <section data-transition="none-in none-out">
-          <pre class="python"><code data-trim data-noescape>
->>> class TodoList:
-...     def __init__(self, <span style="font-weight: bold;">tasks=[]</span>):
-...         self.tasks = list(tasks)
-... 
-...     def add_task(self, task):
-...         self.tasks.append(task)
-...
->>> mon = TodoList()
->>> mon.add_task("Work on Python exercise")
->>> mon.tasks
-['Work on Python exercise']
->>> tue = TodoList()
->>> tue.tasks
-[]
->>> wed = TodoList({"Here is", "a set", "of tasks"})
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - We could have used a list here and everything would work just as expected
-            - Whatever iterable we're using as our default value and whatever iterable we pass in to this initializer method will be copied into a new list
-            - But mutable default values are seen as an issue by many linters *and* they *look* like a bug waiting to happen...
-          </aside>
-        </section>
-
-        <section data-transition="none-in slide-out">
-          <pre class="python"><code data-trim data-noescape>
->>> class TodoList:
-...     def __init__(self, <span style="font-weight: bold;">tasks=()</span>):
-...         self.tasks = list(tasks)
-... 
-...     def add_task(self, task):
-...         self.tasks.append(task)
-...
->>> mon = TodoList()
->>> mon.add_task("Work on Python exercise")
->>> mon.tasks
-['Work on Python exercise']
->>> tue = TodoList()
->>> tue.tasks
-[]
->>> wed = TodoList({"Here is", "a set", "of tasks"})
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - So using a tuple instead of a list might be a good idea regardless
-          </aside>
-        </section>
-        -->
 
       </section>
       <section>
@@ -1494,19 +1282,6 @@ True</span>
           </aside>
         </section>
 
-        <!--
-        <section>
-          <h1 class="fragment">Word Choice Matters</h1>
-          <aside class="notes" data-markdown>
-            - Your choice of words matters **(CLICK)**
-            - The words we use have **implied mental models** beneath them
-            - It's probably a mental model that's **vague** and **based on connotation**... but a it *is* a mental model
-            - So the language we use *can* deceive us when it hints at an incorrect mental model
-            - But sometimes exact precision isn't worth the complexity that it adds to our language
-          </aside>
-        </section>
-        -->
-
       </section>
       <section>
         <!-- section: mutating assignments -->
@@ -1680,52 +1455,6 @@ False</span></code></pre>
           </aside>
         </section>
 
-        <!--
-        <section>
-          <h1 class="fragment">Unhashable tuples</h1>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> p = (3, 4)
->>> points = {p}
->>> points
-{(3, 4)}
->>> result = (True, [])
->>> results = {result}
-Traceback (most recent call last):
-  File "&lt;python-input-5>", line 1, in &lt;module>
-    results = {result}
-              ^^^^^^^^
-TypeError: unhashable type: 'list'
->>> hash([])
-Traceback (most recent call last):
-  File "&lt;python-input-6>", line 1, in &lt;module>
-    hash([])
-    ~~~~^^^^
-TypeError: unhashable type: 'list'
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - TODO fix all this...
-
-            - Here is an immutable tuple
-            - This tuple can be used in a set because it's both immutable and hashable
-            - Here is a somewhat immutable tuple
-            - This tuple is unhashable, so it cannot be used in a set
-            - Individual tuples are only hashable if all of the items they contain are hashable
-            - Lists, and most other mutable objects, are *not* hashable
-            - Typically if the value of an object can change, meaning it could be become unequal to an object that it *was* equal to previously... then that object should not be hashable
-            - A tuple can never change *which* objects it has within, but it's possible that the objects it contains could be mutated
-            - So because tuples can contain references to mutable objects it *is* possible to make a tuple is *sort of* mutable
-
-
-            - Tuples
-            - Immutability is a fuzzy concept... some tuples aren't quite immutable
-                - Specifically, if a tuple contains object that isn't hashable, then it isn't hashable
-                - What does hashable mean? Well, the hash of an object is *sort of* a representation of the *value* of that object.
-                - Objects that are hashable must *never* change their hash value over the lifetime of that object... and equality and hashable should correspond to each other, meaning if two objects hashable objects are equal they should have the hash value.  So a hashable object can never change its sense of equality. That's why some tuples are unhashable.
-
-          </aside>
-        </section>
-        -->
-
         <script type="text/html">
         <section data-transition="slide-in none-out">
           <h2 class="fragment" data-fragment-index=1>Pointers</h2>
@@ -1874,6 +1603,52 @@ TypeError: unhashable type: 'list'
           </aside>
         </section>
 
+        <section data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> <span class="fragment">x.append(x)
+>>> </span><span class="fragment">x</span><span class="fragment">
+[[...]]</span><span style="opacity: 0;">
+>>> x in x
+True
+>>> x[0] is x
+True</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - So given what we've learned about how variables and objects work in Python...
+            - If we take an empty list, called `x`
+            - And we call `x.append(x)` **(CLICK)**, what do you think this might do?
+            - ...
+            - After this, would `x` be...
+            - **(CLICK)** an **empty list**?
+            - A list with **an empty list inside it**?
+            - Something else?
+            - As you *might* have guessed **(CLICK)**... this makes a list that contains itself...
+          </aside>
+        </section>
+
+        <section data-background-image="ouroboros-background.png" data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> x.append(x)
+>>> x
+<span class="fragment bold" data-fragment-index=3>[[...]]</span>
+<span class="fragment" data-fragment-index=1>>>> x in x
+True</span>
+<span class="fragment" data-fragment-index=2>>>> x[0] is x
+True</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - ... sort of **(CLICK)**
+            - Lists don't *actually* contain objects, so a list can't *really* contain itself
+            - But it *can* contain a **reference** to itself **(CLICK)**
+            - Python is smart enough to represent this list using 3 dots **(CLICK)** because otherwise it would need to show an **infinite number** of **square brackets**
+            - We have just made an infinitely recursive data structure
+            - This is possible because objects in Python don't contain other objects
+            - Both variables and objects can only contain *references* to objects
+          </aside>
+        </section>
+
       </section>
       <section>
         <!-- section: why -->
@@ -1912,13 +1687,257 @@ TypeError: unhashable type: 'list'
           </aside>
         </section>
 
-      <!--
+      </section>
+      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
+        <h2 style="margin-top: 0.5em;">Resources &nbsp; <!-- TODO <a href="https://trey.io/variables-and-objects">trey.io/variables-and-objects</a>--> TODO</h2>
+        <h3 style="margin-top: 1.5em;">
+          Thank you<br>
+        </h3>
+        <div style="margin-top: 2.5em;">
+          <p style="float: left; margin-right: 2em;">
+            <strong>Trey Hunner</strong><br>
+            <small>Python Team Trainer<br>
+              <strong>trey@PythonMorsels.com</strong></small>
+          </p>
+          <p style="float: left;">
+          <a href="http://truthful.technology"><img src="horizontal-training-logo.svg" class="no-style logo"></a>
+          <a href="http://pythonmorsels.com"><img src="horizontal-morsels-logo.svg" class="no-style logo"></a>
+          </p>
+          <div style="clear: both;"></div>
+        </div>
+        <aside class="notes" data-markdown>
+          - ...
+          - Thank you
+        </aside>
+      </section>
+
       </section>
       <section>
-      -->
-        <!-- section: TODO? -->
+        <!-- section: TODO cutting room floor -->
 
-        <!--
+        <section data-transition="none-in none-out">
+          <pre class="python"><code data-trim data-noescape>
+>>> class TodoList:
+...     def __init__(self, <span class="fragment bold-current">tasks=[]</span>):
+...         <span class="fragment bold-current">self.tasks = tasks</span>
+... 
+...     def add_task(self, task):
+...         self.tasks.append(task)
+...
+>>> <span class="fragment">mon = TodoList()
+>>> </span><span class="fragment">mon.add_task("Work on Python exercise")
+>>> </span><span class="fragment">mon.tasks
+['Work on Python exercise']
+>>> </span><span class="fragment">tue = TodoList()
+>>> </span><span class="fragment">tue.tasks
+['Work on Python exercise']</span>
+<br>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - In fact, this fact is part of the reason that mutable default arguments are an issue in Python **(CLICK)**
+            - Note that we're **(CLICK)** storing the `tasks` argument for our initializer as an attribute
+            - Let's say we **(CLICK)** make an instance of this class with the default empty `tasks` list
+            - And then **(CLICK)** mutate the `tasks` attribute for this class instance **(CLICK)**
+            - If we make a **(CLICK)** second instance of this class
+            - That second instance will have **(CLICK)** the same `tasks` list as the first
+            - Python evaluates default argument values only one time: when a function is defined
+            - Mutable default argument values can result in gotchas, particularly in class initializers that store a passed-in argument as an attribute, like this one
+            - ...
+            - But, as we saw a moment ago, this is *also* potentially an issue for mutable arguments *in general*
+            - So while mutable default arguments *are* a gotcha, the most common time that they're an issue is when they're layered on top of another potential gotcha
+          </aside>
+        </section>
+
+        <section data-transition="none-in none-out">
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment">class TodoList:
+...     def __init__(self, tasks=()):
+...         self.tasks = <span class="fragment bold-current">list(tasks)</span>
+... 
+...     def add_task(self, task):
+...         self.tasks.append(task)
+...
+>>> </span><span class="fragment">mon = TodoList()
+>>> </span><span class="fragment">mon.add_task("Work on Python exercise")
+>>> </span><span class="fragment">mon.tasks
+['Work on Python exercise']
+>>> </span><span class="fragment">tue = TodoList()
+>>> </span><span class="fragment">tue.tasks
+[]
+>>> </span><span class="fragment">wed = TodoList({"Here is", "a set", "of tasks"})</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - TODO fix transitions and such
+            - This might seem like a *really* big issue...
+            - But this issue has a pretty common workaround
+            - If your class accepts a list, you could use **(CLICK)** the `list` constructor to copy that argument
+            - Now when we make **(CLICK)** two instances of our class
+            - Modifying the `tasks` list **(CLICK)** of one
+            - Will not affect the `tasks` list **(CLICK)** of the other
+            - Also, this class now also accepts not just lists, but sets, generators, or *any* iterable
+            - ... because the `list` constructor **(CLICK)** will loop over any iterable you give to it to make a new list
+            - For many classes that are meant to operate on the data that's passed-in to them, that data is copied when a new instance is initialized
+          </aside>
+        </section>
+
+        <section data-transition="none-in none-out">
+          <pre class="python"><code data-trim data-noescape>
+>>> class TodoList:
+...     def __init__(self, <span class="fragment bold">tasks=()</span>):
+...         self.tasks = list(tasks)
+... 
+...     def add_task(self, task):
+...         self.tasks.append(task)
+...
+>>> mon = TodoList()
+>>> mon.add_task("Work on Python exercise")
+>>> mon.tasks
+['Work on Python exercise']
+>>> tue = TodoList()
+>>> tue.tasks
+[]
+>>> wed = TodoList({"Here is", "a set", "of tasks"})
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - You may have noticed that we *also* **(CLICK)** changed our default argument value to be *immutable*
+            - it's a tuple instead of a list now
+            - We didn't necessarily need to do that...
+          </aside>
+        </section>
+
+        <section data-transition="none-in none-out">
+          <pre class="python"><code data-trim data-noescape>
+>>> class TodoList:
+...     def __init__(self, <span style="font-weight: bold;">tasks=[]</span>):
+...         self.tasks = list(tasks)
+... 
+...     def add_task(self, task):
+...         self.tasks.append(task)
+...
+>>> mon = TodoList()
+>>> mon.add_task("Work on Python exercise")
+>>> mon.tasks
+['Work on Python exercise']
+>>> tue = TodoList()
+>>> tue.tasks
+[]
+>>> wed = TodoList({"Here is", "a set", "of tasks"})
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - We could have used a list here and everything would work just as expected
+            - Whatever iterable we're using as our default value and whatever iterable we pass in to this initializer method will be copied into a new list
+            - But mutable default values are seen as an issue by many linters *and* they *look* like a bug waiting to happen...
+          </aside>
+        </section>
+
+        <section data-transition="none-in slide-out">
+          <pre class="python"><code data-trim data-noescape>
+>>> class TodoList:
+...     def __init__(self, <span style="font-weight: bold;">tasks=()</span>):
+...         self.tasks = list(tasks)
+... 
+...     def add_task(self, task):
+...         self.tasks.append(task)
+...
+>>> mon = TodoList()
+>>> mon.add_task("Work on Python exercise")
+>>> mon.tasks
+['Work on Python exercise']
+>>> tue = TodoList()
+>>> tue.tasks
+[]
+>>> wed = TodoList({"Here is", "a set", "of tasks"})
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - So using a tuple instead of a list might be a good idea regardless
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment">Word Choice Matters</h1>
+          <aside class="notes" data-markdown>
+            - Your choice of words matters **(CLICK)**
+            - The words we use have **implied mental models** beneath them
+            - It's probably a mental model that's **vague** and **based on connotation**... but a it *is* a mental model
+            - So the language we use *can* deceive us when it hints at an incorrect mental model
+            - But sometimes exact precision isn't worth the complexity that it adds to our language
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment">Unhashable tuples</h1>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> p = (3, 4)
+>>> points = {p}
+>>> points
+{(3, 4)}
+>>> result = (True, [])
+>>> results = {result}
+Traceback (most recent call last):
+  File "&lt;python-input-5>", line 1, in &lt;module>
+    results = {result}
+              ^^^^^^^^
+TypeError: unhashable type: 'list'
+>>> hash([])
+Traceback (most recent call last):
+  File "&lt;python-input-6>", line 1, in &lt;module>
+    hash([])
+    ~~~~^^^^
+TypeError: unhashable type: 'list'
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - TODO fix all this...
+
+            - Here is an immutable tuple
+            - This tuple can be used in a set because it's both immutable and hashable
+            - Here is a somewhat immutable tuple
+            - This tuple is unhashable, so it cannot be used in a set
+            - Individual tuples are only hashable if all of the items they contain are hashable
+            - Lists, and most other mutable objects, are *not* hashable
+            - Typically if the value of an object can change, meaning it could be become unequal to an object that it *was* equal to previously... then that object should not be hashable
+            - A tuple can never change *which* objects it has within, but it's possible that the objects it contains could be mutated
+            - So because tuples can contain references to mutable objects it *is* possible to make a tuple is *sort of* mutable
+
+
+            - Tuples
+            - Immutability is a fuzzy concept... some tuples aren't quite immutable
+                - Specifically, if a tuple contains object that isn't hashable, then it isn't hashable
+                - What does hashable mean? Well, the hash of an object is *sort of* a representation of the *value* of that object.
+                - Objects that are hashable must *never* change their hash value over the lifetime of that object... and equality and hashable should correspond to each other, meaning if two objects hashable objects are equal they should have the hash value.  So a hashable object can never change its sense of equality. That's why some tuples are unhashable.
+
+          </aside>
+        </section>
+
+        <section>
+          <h3>
+          <span class="fragment">Diff</span><span class="fragment">er</span><span class="fragment">ent</span>
+          <span class="fragment">Names</span>
+          <span class="fragment">For</span>
+          <span class="fragment">The</span>
+          <span class="fragment">Same</span>
+          <span class="fragment">Thing</span>
+          </h3>
+          <div style="display: grid; grid-auto-flow: column;">
+            <div style="text-align: center;">
+              <img src="Ben-Gibbard.jpg" class="fragment no-style" style="height: 300px;">
+            </div>
+            <div style="text-align: center;">
+              <img src="Plans.png" class="fragment no-style">
+            </div>
+          </div>
+          <aside class="notes" data-markdown>
+            - If you find yourself struggling to remember that in Python, you can point multiple variables to the same object
+          - 
+          - And when a list contains list it's really just containing a pointer to that list
+          - Inspired by the fact that Python's object model allows one object to be referred by multiple variables...
+          - Ben Gibbard **(click)** of Death Cab For Cutie **(click)** actually wrong a song about how Python's object model works
+          - TODO *cue animated gif*
+          (about 1 minute into this video https://www.youtube.com/watch?v=CvJAv82IV_g)
+          - Well... maybe
+          - I actually don't know if that's what the song is *actually* about, but that's what *I* think it's about
+          </aside>
+        </section>
+
         <section data-transition="none">
           <h2>Gotchas with Variables and Values</h2>
           <aside class="notes" data-markdown>
@@ -1968,9 +1987,7 @@ TypeError: 'tuple' object does not support item assignment
             - TODO
           </aside>
         </section>
-        -->
 
-        <!--
         <section>
           <blockquote style="box-shadow: none; font-size: 1.5em;">
             “All <span class="fragment bold" data-fragment-index=1>models</span> are wrong,<br>but some <span class="fragment bold" data-fragment-index=1>models</span> are useful.”
@@ -2015,31 +2032,6 @@ TypeError: 'tuple' object does not support item assignment
             - When a more useful model comes along, we should **try it out**
           </aside>
         </section>
-        -->
-
-      </section>
-      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
-        <h2 style="margin-top: 0.5em;">Resources &nbsp; <!-- TODO <a href="https://trey.io/variables-and-objects">trey.io/variables-and-objects</a>--> TODO</h2>
-        <h3 style="margin-top: 1.5em;">
-          Thank you<br>
-        </h3>
-        <div style="margin-top: 2.5em;">
-          <p style="float: left; margin-right: 2em;">
-            <strong>Trey Hunner</strong><br>
-            <small>Python Team Trainer<br>
-              <strong>trey@PythonMorsels.com</strong></small>
-          </p>
-          <p style="float: left;">
-          <a href="http://truthful.technology"><img src="horizontal-training-logo.svg" class="no-style logo"></a>
-          <a href="http://pythonmorsels.com"><img src="horizontal-morsels-logo.svg" class="no-style logo"></a>
-          </p>
-          <div style="clear: both;"></div>
-        </div>
-        <aside class="notes" data-markdown>
-          - ...
-          - Thank you
-        </aside>
-      </section>
 
       </div>
     </div>
