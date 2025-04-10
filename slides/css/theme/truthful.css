@@ -382,3 +382,13 @@ section {
 
 .reveal table.no-border th, .reveal table.no-border td {
   border-bottom: none; }
+
+
+/* title-footer plugin customizations */
+.reveal #title-footer {
+  opacity: 0.7;
+  color: #333;
+	font-size: 3vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
