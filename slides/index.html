@@ -34,15 +34,6 @@
           </p>
           <aside class="notes" data-markdown>
             - TODO
-            - Could you pause the recording or edit this out later?
-            - ...
-            - This is a *very* early and very rough version of what will eventually be a conference talk I'll be presenting in about a month
-            - This will eventually be a 30 minute talk, but it should be a bit shorter tonight
-            - This talk will include some teaching aimed for newer Python users and some pondering and some preaching aimed at experienced Python users
-            - Some parts of this talk will eventually be cut
-            - And some new parts will need to be added
-            - Also the various pieces are a little bit less coherent than I plan for them to eventually be
-            - I say all this to let you know that I *really* want your feedback on what you liked, what you felt didn't work, what seemed missing or lacking, and anything else you can think to tell me which might be helpful
           </aside>
         </section>
 
@@ -87,8 +78,9 @@
           </blockquote>
           <aside class="notes" data-markdown>
             - Our brain's mental models **(CLICK)** help us understand the world around us and they're *usually* pretty great at doing so...
-            - Every model of the world is flawed **(CLICK)** in some way
-            - But even incorrect models can *still* be **useful**
+            - ...
+            - But every model **(CLICK)** has its flaws
+            - Though even *incorrect* models can *still* be **useful**
           </aside>
         </section>
 
@@ -529,16 +521,17 @@
         <!-- SECTION TIME: TODO -->
 
         <section>
-          <h1 class="fragment">2 types of</h1>
-          <h1 class="fragment">&ldquo;are they the same?&rdquo;</h1>
-          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=3>first == second
+          <h1 class="fragment current-visible" data-fragment-index=1>2 types of change</h1>
+          <h1 class="fragment" data-fragment-index=2>2 types of</h1>
+          <h1 class="fragment" data-fragment-index=3>&ldquo;are they the same?&rdquo;</h1>
+          <pre class="python fragment" data-fragment-index=4 style="font-size: 0.75em; width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=4>first == second  <strong class="fragment" data-fragment-index=5># Equality</strong>
 True
->>> </span><span class="fragment" data-fragment-index=4>first is second
+>>> </span><span class="fragment" data-fragment-index=6>first is second  <strong class="fragment" data-fragment-index=7># Identity</strong>
 True</span></code></pre>
           <aside class="notes" data-markdown>
-            - TODO visuals
-            - In Python, we have two different types of "change"...
+            - In Python, we have **(CLICK)** two different types of "change"...
+            - Assignment and mutation
             - But we also have **(CLICK)** two different ways to ask the question...
             - **(CLICK)** "are they the same?"
             - We have the **(CLICK)** double equals operator (`==`) for **(CLICK)** *equality*
@@ -548,43 +541,52 @@ True</span></code></pre>
         </section>
 
         <section>
-          <h1 class="fragment">TODO</h1>
+          <h3 class="fragment">TODO img: washing machine</h3>
+          <h3 class="fragment">TODO img: model number</h3>
+          <h3 class="fragment">TODO img: serial number</h3>
+          <h3 class="fragment">TODO equality: equivalent object code?</h3>
+          <h3 class="fragment">TODO identity: the exact same object code?</h3>
           <aside class="notes" data-markdown>
             - TODO visuals
-            - If I'm in the market to buy a washing machine, I might ask "what's the model number?"
-            - I'm hoping to look up reviews for what *should* equivalent devices.
-            - But if I need to call customer support to report an issue, I might give them the serial number for the device.
+            - If I'm in the market to buy **(CLICK)** a washing machine, I might ask "what's the model number?" **(CLICK)**
+            - Because I'm hoping to look up reviews for what *should* equivalent devices.
+            - But if I need to call customer support to report an issue, I might give them **(CLICK)** the serial number for the device.
             - The serial number uniquely identifies the device.
-            - Equality checks are a like a comparison of model numbers... they ask whether two objects represent the same thing.
-            = Identity checks are like a comparison of serial numbers... they ask whether two objects are identical... meaning they aren't even two objects... they are *the same exact object*
+            - Equality checks are a like a comparison of model numbers... **(CLICK)** they ask whether two objects represent the same thing.
+            = Identity checks are like a comparison of serial numbers... **(CLICK)** they ask whether two objects are identical... meaning they aren't even two objects... they are *the same exact object*
             - Though really...
           </aside>
         </section>
 
         <section>
-          <h1 class="fragment">TODO</h1>
-          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=3>first == second
+          <h3 class="fragment" data-fragment-index=5>Equality is about objects, identity is about pointers</h3>
+          <pre class="python" style="margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>first == second  <strong class="fragment" data-fragment-index=2># Are these objects equal to the other?</strong>
 True
->>> </span><span class="fragment" data-fragment-index=4>first is second
+>>> </span><span class="fragment" data-fragment-index=3>first is second  <strong class="fragment" data-fragment-index=4># Do these variables point to the same object?</strong>
 True</span></code></pre>
           <aside class="notes" data-markdown>
-            - identity isn't *about objects* at all... it's actually a way to ask whether two references are referring to *exactly* the same object.
-            - If we have two variables, `first`, and `second`, and we ask whether they are *equal*, we're asking whether they have the same value... this asks the *objects* whether they represent the same thing
-            - If we ask whether these variables are *identical* we're asking whether they both point to the same object... this doesn't ask any question of the object itself. This is a more low level and fundamental question and there's no way for objects to control the behavior of the `is` operator.
+            - identity isn't *about objects* at all... it's actually a way to ask whether two names are pointing to *exactly* the same object.
+            - If we have two variables, `first`, and `second`, and we ask whether they **(CLICK)** are *equal*, we're asking whether they have the same value... this asks **(CLICK)** the *objects* whether they represent the same thing
+            - If we ask whether these variables **(CLICK)** are *identical* we're asking whether **(CLICK)** they both point to the same object... this doesn't ask any question of the object itself. This is a more low level and fundamental question and there's no way for objects to control the behavior of the `is` operator.
+            - So **(CLICK)** equality compares the values of objects, while identity compares references to those objects to see whether they're the same reference
           </aside>
         </section>
 
         <section>
-          <h1 class="fragment">TODO</h1>
-          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=3>first == second
-True
->>> </span><span class="fragment" data-fragment-index=4>first is second
-True</span></code></pre>
+          <p class="fragment" data-fragment-index=6>Equality is the usual way to ask &ldquo;are they the same?&rdquo;</p>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=3>value is None
+False
+>>> </span><span class="fragment" data-fragment-index=4>value is True
+False
+>>> </span><span class="fragment" data-fragment-index=5>value == another_value
+False</span></code></pre>
           <aside class="notes" data-markdown>
-        - The `is` operator is *very* rarely used outside of checking whether an object is identical to `None`, `True`, or `False`.
-        - Unless you *actually* care whether two objects are the exact same object, when asking "are they the same?" you want the `==` operator.
+            - TODO put each code block in its own section in the slide
+            - The `is` operator is *very* rarely used outside of checking whether an object is identical to **(CLICK)** `None`, **(CLICK)** `True`, or `False`.
+            - Unless you *actually* care whether two objects are the exact same object, when asking "are they the same?" you probably **(CLICK)** want the `==` operator.
+            - **(CLICK)** Checking equality is much more common than checking identity
           </aside>
         </section>
 
@@ -688,7 +690,7 @@ True</span></code></pre>
           </div>
           <aside class="notes" data-markdown>
             - Let's revisit our mental model of variables as sticky notes...
-            - We were about to ask "what should happen" we put our `second` list inside another list...
+            - We were about to ask "what should happen" **(CLICK)** when we put our `second` list inside another list...
             - Should we **add another sticky note** that says **(CLICK)** which list it's in and which index it's at?
             - Also... what if we point **(CLICK)** another variable to that new outer list?
             - Would we need to add yet *another* note with another name and another index? **(CLICK)**
@@ -898,7 +900,8 @@ True</span></code></pre>
           <h1 class="fragment">Containment</h1>
           <h2 class="fragment">... is a lie</h2>
           <aside class="notes" data-markdown>
-            - In Python, "containment" **(click)** is a slightly misleading term **(click)**
+            - In Python, "containment" **(click)** is a slightly misleading term
+            - **(CLICK)**
             - Data structures don't actually contain data
             - Data structures contain references to data
             - But this...
@@ -971,16 +974,23 @@ True</span></code></pre>
         </section>
 
         <section>
-          <h1>TODO Mini summary here</h1>
+          <h2>Objects don't contain objects</h2>
+          <ul>
+            <li class="fragment">Variables point to objects</li>
+            <li class="fragment">Objects can contain pointers to objects</li>
+            <li class="fragment">A list-of-lists is a list of pointers to lists</li>
+            <li class="fragment">
+              <strong><code>x in y</code></strong> loops over <strong><code>y</code></strong> checking equality with <strong><code>x</code></strong>
+            </li>
+          </ul>
           <aside class="notes" data-markdown>
-            - TODO
-            - Variables don't contain objects... they only contain pointers to objects
+            - Variables don't contain objects... **(CLICK)** they only contain pointers to objects
             - But objects also don't contain objects...
-            - Whether we're talking about indexes and attributes, objects only contain pointers to objects
+            - Whether we're talking about indexes and attributes, **(CLICK)** objects only contain pointers to objects
             - So when we say we've made a list-of-lists
-            - We actually mean that we've made a list where each item acts as pointer to another list
+            - We actually mean **(CLICK)** that we've made a list where each item acts as pointer to another list
             - And if ask whether our list contains a specific object...
-            - We're actually asking whether our list contains a reference to an equivalent object
+            - **(CLICK)** We're actually asking whether our list contains a reference to an equivalent object
           </aside>
         </section>
 
@@ -1031,7 +1041,7 @@ True</span></code></pre>
             - Well...
             - actually **(CLICK)**
             - according to the Python documentation they're **(CLICK)** "bindings"
-            - ... "reference" **(CLICK)** and "refer" *do* show up in the docs a few times
+            - ... The terms "reference" **(CLICK)** and "refer" *do* show up in the docs a few times
             - but "pointer" **(CLICK)** is pretty much absent from the docs
           </aside>
         </section>
@@ -1050,16 +1060,15 @@ True</span></code></pre>
           </ul>
           <p class="fragment" data-fragment-index=7><span class="fragment" data-fragment-index=8>variable</span><span style="font-size: 2em; vertical-align: middle; padding: 0 .25em;">➡️</span><span class="fragment" data-fragment-index=8>object</span></p>
           <aside class="notes" data-markdown>
-            - TODO consider shortening this slide somehow
-            - According to the official documentation, **(CLICK)** "names are bound to objects"... that's a very **(CLICK)** technically correct phrase
-            - Although most Python programmers would probably be fine with the phrase **(CLICK)** "variables refer to objects"... even though there are some long-time Python users who **(CLICK)** bristle at using the word "variable"
-            - I tend to say **(CLICK)** "variables *point* to objects"... this is *definitely* a more contentious phrase than those other two **(CLICK)**
+            - So while "names are bound to objects" **(CLICK)** is the most officially recognized phrase **(CLICK)** 
+            - Saying that **(CLICK)** "variables refer to objects" probably sounds fine to most Python programmers **(CLICK)**
+            - But I tend to say **(CLICK)** "variables *point* to objects", which is *definitely* a more contentious phrase **(CLICK)**
             - I *am* using an uncommon term
             - But I also find this term helpful
             - The phrase **(CLICK)** "variables point to objects" **evokes an idea** that we're all **familiar** with **(CLICK)**
-            - **Brand new** programmers seem to understand this phrase well *and* developers coming from a language like C usually understand my meaning pretty quickly
-            - And yes, the word "pointer" does risk painting an incorrect mental model for folks with a background in C
-            - But so do many other terms...
+            - **Brand new** programmers seem to understand this phrase without much explanation
+            - It *is* true that the word "pointer" isn't the term officially used by the Python documentation and it could confuse C programmers...
+            - But so could many other terms...
           </aside>
         </section>
 
@@ -1201,14 +1210,14 @@ True</span></code></pre>
 
         <section>
           <p class="fragment">
-          &ldquo;What if we point another variable to the same list?&rdquo;
+          &ldquo;What if we <strong>point</strong> another variable</strong> to the same list?&rdquo;
           </p>
           <p class="fragment">
-          &ldquo;This list stores a reference to another list&rdquo;
+          &ldquo;This list <strong>stores a reference</strong> to another list&rdquo;
           </p>
           <aside class="notes" data-markdown>
-            - I find "pointing a variable" to be a pretty clear phrase
-            - But a list "storing references" might be clearer than a list "storing pointers"
+            - I find **(CLICK)** "pointing a variable" to be a pretty clear phrase
+            - But a list **(CLICK)** "storing references" might be clearer than a list "storing pointers"
             - Whether we use the words point, reference, or bind... we're referring to the same thing
           </aside>
         </section>
@@ -1230,9 +1239,9 @@ True</span></code></pre>
               <img src="Plans.png" class="no-style">
             </div>
           </div>
-          <pre class="python fragment" data-fragment-index=3 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+          <pre class="python fragment" data-fragment-index=11 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
 >>> x = y
->>> <span class="fragment" data-fragment-index=4>x is y
+>>> <span class="fragment" data-fragment-index=12>x is y
 True</span></code></pre>
           <aside class="notes" data-markdown>
             - Ben Gibbard **(CLICK)** wrote a song **(CLICK)** about this situation...
@@ -1247,12 +1256,13 @@ True</span></code></pre>
         </section>
 
         <section>
-          <h1>TODO Mini summary here</h1>
+          <h1>&ldquo;variables are pointers&rdquo;</h1>
+          <h2 class="fragment">&ldquo;variables contain references&rdquo;</h2>
           <aside class="notes" data-markdown>
-            - TODO
-            - So while "pointer" is *not* the most common term you'll hear for describing how Python's variables work
-            - ... I do think it's the most *helpful* term
-            - Followed closely by "reference"
+            - "pointer" is *not* the most common term you'll hear for describing how Python's variables work
+            - ... but I do think it's the most *helpful* term
+            - **(CLICK)** Followed closely by the term "reference"
+            - ... which isn't as visual but *is* pretty useful
           </aside>
         </section>
 
@@ -1260,8 +1270,14 @@ True</span></code></pre>
       <section>
         <!-- section: language matters -->
 
-        <section>
-          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+        <section data-transition="none">
+          <aside class="notes" data-markdown>
+            - Over the years, I've gradually became more careful about my word choice while teaching
+          </aside>
+        </section>
+
+        <section data-transition="none-in slide-out">
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
 >>> colors = ["purple", "green", "blue"]
           </code></pre>
           <ul style="list-style-type: none; margin-left: -2em;">
@@ -1283,15 +1299,14 @@ True</span></code></pre>
           </ul>
           <p class="fragment" style="font-size: 2em;">➡️</p>
           <aside class="notes" data-markdown>
-            - Over the years, I've gradually became more careful about my word choice while teaching
-            - **(CLICK)** I used to use phrases like "`colors` contains a list" **(CLICK)**
+            - I used to use phrases like "`colors` contains a list" **(CLICK)**
             - Or... "`colors` is a list" **(CLICK)**
             - But I found that using these phrases sometimes caused confusion **(CLICK)**, especially when I tried to teach **how variables actually work** in Python
             - Now I usually use the phrase "points to" **(CLICK)**
             - colors *points to* a list
             - This phrase doesn't hint at an incorrect mental model **(CLICK)**
-            - The alternative of "colors *refers to* a list" **(CLICK)** also works **(CLICK)**, though it sounds a bit vague
-            - And "colors *is bound* a list", **(CLICK)** while more officially correct **(CLICK)**, sounds *weird*, especially when you're first starting out
+            - The alternative of "colors *refers to* a list" **(CLICK)** also works, though it sounds a bit vague
+            - And "colors *is bound* a list", **(CLICK)** while more officially correct, sounds *weird*, especially when you're first starting out
             - And while the word "pointer" is a **technical term** that's not *usually* used in Python, it's also a term **(CLICK)** that **evokes an idea** that we're **familiar** with
           </aside>
         </section>
@@ -1311,6 +1326,7 @@ True</span></code></pre>
             - Saying `y` contains `x` **(CLICK)** is less precise than saying the object that `y` points to contains a reference to the same object that `x` points to...
             - But instead of all that, **(CLICK)** I would *prefer* to say "`y` contains `x`"
             - It's just *a lot* easier to say
+            - TODO wrap this section/idea up?
           </aside>
         </section>
 
@@ -1320,7 +1336,7 @@ True</span></code></pre>
         <!-- SECTION TIME: 3 minutes -->
 
         <section>
-          <h1 class="fragment" data-fragment-index=6>Assignments happen</h1>
+          <h1 class="fragment" data-fragment-index=7>Assignments happen</h1>
           <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
 >>> <span class="fragment" data-fragment-index=1>n = 3
 >>> </span><span class="fragment" data-fragment-index=2>from math import pi
@@ -1331,7 +1347,7 @@ True</span></code></pre>
 4
 >>> </span><span class="fragment" data-fragment-index=5>def pi(): return 3.14159
 ...
->>> </span><span class="fragment" data-fragment-index=5>class pi: pass
+>>> </span><span class="fragment" data-fragment-index=6>class pi: pass
 ...</span>
           </code></pre>
           <aside class="notes" data-markdown>
@@ -1341,22 +1357,25 @@ True</span></code></pre>
             - Import statements **(CLICK)** also perform an assignment
             - And so does each iteration **(CLICK)** of a `for` loop **(CLICK)**
             - And so do function definitions **(CLICK)** and class definitions **(CLICK)**
-            - Anything that updates what a name points **(CLICK)** to performs some sort of assignment
+            - Anything that updates what a name points to **(CLICK)** performs some sort of assignment
           </aside>
         </section>
 
         <section>
           <h3 class="fragment" data-fragment-index=2>Augmented Assignments</h3>
-          <p class="fragment" data-fragment-index=1><code>+=</code>, <code>-=</code>, <code>*=</code>, etc.</p>
+          <p class="fragment" data-fragment-index=1>
+          <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, etc.
+          </p>
           <p class="fragment" data-fragment-index=3>Are these assignments?</p>
           <p class="fragment" data-fragment-index=4>Are these mutations?</p>
           <h1 class="fragment" data-fragment-index=5>YES</h1>
           <aside class="notes" data-markdown>
             - But what about `+=` and `-=`? **(CLICK)**
-            - These are often called augmented assignments... **(CLICK)**
-            - But do these perform an assignment? **(CLICK)**
-            - Or do they mutate an object? **(CLICK)**
-            - It depends. **(CLICK)**
+            - These are often called **(CLICK)** augmented assignments...
+            - But do these **(CLICK)** perform an assignment?
+            - Or do they **(CLICK)** mutate an object?
+            - Well...  **(CLICK)**
+            - It depends.
           </aside>
         </section>
 
@@ -1403,8 +1422,8 @@ True</span></code></pre>
         <section>
           <h2 class="fragment">Assignments that mutate</h2>
             <pre class="python fragment"><code data-trim data-noescape>
->>> <span class="fragment">some_object.attribute = 4</span>
->>> <span class="fragment">numbers[0] = 8</span>
+<span class="fragment">>>> some_object.attribute = 4
+>>> </span><span class="fragment">numbers[0] = 8</span>
             </code></pre>
           <aside class="notes" data-markdown>
             - The distinction between assignments and mutations isn't always very clear... augmented assignments do perform an assignment, but they can also mutate. **(CLICK)**
@@ -1416,11 +1435,19 @@ True</span></code></pre>
         </section>
 
         <section>
-          <h1>TODO keeping it all straight</h1>
+          <h2>Assignments can mutate</h2>
+          <ul>
+            <li class="fragment">Assignments change the object a reference refers to</li>
+            <li class="fragment">Objects can contain references to other object</li>
+            <li class="fragment">Assigning to an object attribute/index mutates the object</li>
+          </ul>
           <aside class="notes" data-markdown>
-            - TODO when our assignment target is an index, a key, or an attribute, we are changing which object a pointer is pointing to...
-            - But that pointer, or, if you prefer, that object reference, lives within an object... which means we are *also* mutating that object
-            - Objects can contain references to other objects. When you change those references through an assignment, that requires mutating that larger object
+            - TODO transitions
+            - Assignments **(CLICK)** change which object a pointer is pointing to...
+            - But when our assignment target is an index, a key, or an attribute...
+            - That pointer, or, if you prefer, that object reference... lives *within* an object... which means we are *also* mutating that object that the pointer lives in
+            - Objects **(CLICK)** can contain references to other objects.
+            - When you change those references through an assignment, **(CLICK)** that requires mutating that larger object
             - Is this a bit confusing? Yes... if you think about it too hard
             - But most of the time, not really...
             - Though saying "this is an assignment that mutates" does sound like a gotcha
@@ -1449,8 +1476,8 @@ True</span></code></pre>
           <h2>Tuples can contain lists</h2>
           <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
 >>> <span class="fragment" data-fragment-index=1>result = (True, [2, 1, 3])
->>> </span><span class="fragment" data-fragment-index=2>result[1].append(4)
->>> </span><span class="fragment" data-fragment-index=3>result
+>>> </span><span class="fragment" data-fragment-index=2>result[1].append(4)</span><span class="fragment" data-fragment-index=3>
+>>> </span><span class="fragment" data-fragment-index=4>result
 (True, [2, 1, 3, 4])</span></code></pre>
           <aside class="notes" data-markdown>
             - In Python, **(click)** you can put a list inside of a tuple
@@ -1486,6 +1513,173 @@ False</span></code></pre>
             - Any immutable object that can store a reference to a mutable object can potentially have its value change
           </aside>
         </section>
+
+      </section>
+      <section>
+        <!-- section: conclusion -->
+
+        <section>
+          <h2>It's pointers all the way down 🐢</h2>
+          <ul>
+          <li class="fragment">Variables store object references</li>
+          <li class="fragment">Objects store object references</li>
+          <li class="fragment">Immutable containers can change</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - In Python, variables don't contain objects... they only *point* to objects
+            - Put another way, **(CLICK)** Variables store *references* to objects
+            - Also, objects **(CLICK)** can store references to other objects
+            - But objects *can't contain* objects
+            - And **(CLICK)** immutable objects that contain references to *mutable* objects are only *kind of* immutable
+            - So given what we've learned about how variables and objects work in Python...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> <span class="fragment">x.append(x)
+>>> </span><span class="fragment">x</span><span class="fragment">
+[[...]]</span><span style="opacity: 0;">
+>>> x in x
+True
+>>> x[0] is x
+True</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - If we take an empty list, called `x`
+            - And we call **(CLICK)** `x.append(x)`
+            - ...what do you think this might happen?
+            - ...
+            - After this **(CLICK)** would `x` be...
+            - an **empty list**?
+            - A list with **an empty list inside it**?
+            - Something else?
+            - As you *might* have guessed **(CLICK)**... this makes a list that contains itself...
+          </aside>
+        </section>
+
+        <section data-background-image="ouroboros-background.png" data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> x.append(x)
+>>> x
+<span class="fragment bold" data-fragment-index=3>[[...]]</span>
+<span class="fragment" data-fragment-index=1>>>> x in x
+True</span>
+<span class="fragment" data-fragment-index=2>>>> x[0] is x
+True</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - ... sort of **(CLICK)**
+            - Lists don't *actually* contain objects, so a list can't *really* contain itself
+            - But it *can* contain a **reference** to itself **(CLICK)**
+            - Python is smart enough to represent this list using 3 dots **(CLICK)** because otherwise it would need to show an **infinite number** of **square brackets**
+            - We have just made an infinitely recursive data structure
+            - This is possible because objects in Python don't contain other objects
+            - Both variables and objects can only contain *references* to objects
+            - And there's stopping a list from contain a reference to itself
+          </aside>
+        </section>
+
+      </section>
+      <section>
+        <!-- section: why -->
+        <!-- SECTION TIME: 2 minutes -->
+
+        <section>
+          <h3 class="fragment" data-fragment-index=1>Brandon Rhodes talk:</h3>
+          <p class="fragment" data-fragment-index=1><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a></p>
+          <br>
+          <h3 class="fragment" data-fragment-index=2>Ned Batchelder talk:</h3>
+          <p class="fragment" data-fragment-index=2><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a></p>
+          <aside class="notes" data-markdown>
+            - I'd like to thank two Python community members for their talks on this topic some years ago...
+            - **(CLICK)** Brandon Rhodes' talk "Names, Objects, and Plummeting From The Cliff" does a great job of using an extended metaphor to visually explain how memory management works with Python's names and values
+            - **(CLICK)** And Ned Batchelder's talk "Facts and Myths about Names and Values" does a great job of dispelling myths and demonstrating facts about Python's variables objects
+            - I would also note that there are many odd corners of this topic that I mention today...
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment">We didn't discuss</h1>
+          <ul>
+          <li class="fragment">CPython optimizations that affect identity</li>
+          <li class="fragment">Direct value storage of array, data frames, etc.</li>
+          <li class="fragment">Mutable default argument gotchas</li>
+          <li class="fragment">Python oddities related to variables and objects</li>
+          </ul>
+          <h2 class="fragment">More Resources: <a href="https://trey.io/nbpy2025">https://trey.io/nbpy2025</a></h2>
+          <aside class="notes" data-markdown>
+            - For example, **(CLICK)** we didn't discuss...
+            - **(CLICK)** Optimizations around numbers, strings, and tuples
+            - **(CLICK)** Arrays and direct value storage
+            - **(CLICK)** Some thoughts on gotchas related to mutable default arguments
+            - **(CLICK)** Various reference-based gotchas
+            - **(CLICK)** This URL, which is on the bottom of each slide in this talk, includes links to resources on this topics, links to Ned and Brandon's talk, and links to other resources related to this topic
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment current-visible">But... why?</h1>
+          <h2 class="fragment">Imagine an alternative...</h2>
+          <p class="fragment">Would every assignment statement make a copy?</p>
+          <p class="fragment">Would storing a reference to an object ever be possible?</p>
+          <p class="fragment" style="margin-left: 1em;">"reference assignments" and "copying assignments" <span class="fragment">😬</span></p>
+          <aside class="notes" data-markdown>
+            - Before we wrap up... I do want to address a common question...
+            - *Why* does Python work this way? **(CLICK)**
+            - Wouldn't it be easier if variables and data structures contained objects and assignments copied the objects we were assigning to
+            - Well... **(CLICK)**
+            - Imagine if every assignment made a copy of an object **(CLICK)**
+            - Copying objects all the time times time and it takes memory
+            - But also, how would we ever model parent-child relationships **(CLICK)** or any kind of relationship that involved storing a *reference* to an object instead of a copy of an object?
+            - Would we need to make a distinction **(CLICK)** between assignments that copied and assignments that made a reference...
+            - Other programming languages have done that before...
+            - And... **(CLICK)** that requires adding another layer of complexity
+            - Python's way isn't necessarily the *right* way... but *most days* I really appreciate the trade-offs that Python made around this topic
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment" data-fragment-index=2>This thing is bad</h1>
+          <h2 class="fragment" data-fragment-index=3>Compared to what alternative?</h2>
+          <h3 class="fragment" data-fragment-index=1>Everything is a trade-off</h3>
+          <aside class="notes" data-markdown>
+            - Python's separation between variables and objects can *definitely* be confusing, but it's a pretty decent approach to a hard problem
+            - Every decision **(CLICK)** has trade-offs and *everything* is relative to its possible alternatives
+            - Whether we're talking about a software feature or about politics, when we say **(CLICK)** "This thing is bad", we should *always* ask ourselves **(CLICK)** "compared to what alternative?"
+            - We *should* acknowledge problems with the status quo, but we also need to think deeply and honestly about real world outcomes
+          </aside>
+        </section>
+
+      </section>
+      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
+        <h2 style="margin-top: 0.5em;">Resources &nbsp; <a href="https://trey.io/nbpy2025">https://trey.io/nbpy2025</a></h2>
+        <h3 style="margin-top: 1.5em;">
+          Thank you<br>
+        </h3>
+        <div style="margin-top: 2.5em;">
+          <p style="float: left; margin-right: 2em;">
+            <strong>Trey Hunner</strong><br>
+            <small>Python Team Trainer<br>
+              <strong>trey@PythonMorsels.com</strong></small>
+          </p>
+          <p style="float: left;">
+          <a href="http://truthful.technology"><img src="horizontal-training-logo.svg" class="no-style logo"></a>
+          <a href="http://pythonmorsels.com"><img src="horizontal-morsels-logo.svg" class="no-style logo"></a>
+          </p>
+          <div style="clear: both;"></div>
+        </div>
+        <aside class="notes" data-markdown>
+          - ...
+          - Thank you
+        </aside>
+      </section>
+
+      </section>
+      <section>
+        <!-- section: cutting room floor -->
 
         <script type="text/html">
         <section data-transition="slide-in none-out">
@@ -1588,164 +1782,10 @@ False</span></code></pre>
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - TODO fix this broken diagram
+            - fix this broken diagram
           </aside>
         </section>
         </script>
-
-      </section>
-      <section>
-        <!-- section: conclusion -->
-
-        <section>
-          <p class="fragment">Variables store object references</p>
-          <p class="fragment">Objects store object references</p>
-          <p class="fragment">TODO equality versus identity...</p>
-          <p class="fragment">
-          Related resources:<br>
-          <a href="https://nedbatchelder.com/text/names.html">Facts and myths about Python names and values</a><br>
-          <a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a><br>
-          </p>
-          <aside class="notes" data-markdown>
-            - So variables in Python do *not* contain objects
-            - Variables only store *references* to objects
-            - Also, objects can store references to other objects
-            - But just like variables, objects can't *really* contain other objects
-            - Objects can only contain references to objects
-            - So the term "containment" is a little bit confusing, but words are hard and that happens to be the term we all use
-            - The word "change" can also be quite confusing, especially when it's unclear whether we're talking about an assignment or a mutation
-            - Also, immutable objects that contain references to *mutable* objects are only *kind of* immutable
-
-            - That's pretty much everything we've discussed
-            - If you'd like to dive deeper into this topic, visit this URL for more related resources on...
-            - Various reference-based gotchas
-            - Some thoughts on gotchas related to mutable default arguments
-            - And a *very weird* Python oddity that lives at the intersection of augmented assignments and immutability
-            - I'd also like to specifically thank two Python community members for their talks on this topic some years ago...
-              - Brandon Rhodes' talk "Names, Objects, and Plummeting From The Cliff" does a great job of using an extended metaphor to visually explain how memory management works with Python's names and values
-              - And Ned Batchelder's talk "Python names and values" does a great job of dispelling myths and demonstrating facts about Python's objects and variables
-
-            - TODO move these bullet points on containment to the end of the section on containment
-            - The terms "contain" and "containment" are about references, not about objects
-            - Although, really containment is about equality, not identity
-            - Identity asks whether two references point to the same object
-            - But equality compares the "value" of two or more objects
-            - What exactly the "value" of an objects? That's up to objects being compared.
-            - The "in" operator typically checks for equality, meaning "does this data structure contain an object that is equal to this one"
-          </aside>
-        </section>
-
-        <section data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> <span class="fragment">x.append(x)
->>> </span><span class="fragment">x</span><span class="fragment">
-[[...]]</span><span style="opacity: 0;">
->>> x in x
-True
->>> x[0] is x
-True</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - So given what we've learned about how variables and objects work in Python...
-            - If we take an empty list, called `x`
-            - And we call `x.append(x)` **(CLICK)**, what do you think this might do?
-            - ...
-            - After this, would `x` be...
-            - **(CLICK)** an **empty list**?
-            - A list with **an empty list inside it**?
-            - Something else?
-            - As you *might* have guessed **(CLICK)**... this makes a list that contains itself...
-          </aside>
-        </section>
-
-        <section data-background-image="ouroboros-background.png" data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> x.append(x)
->>> x
-<span class="fragment bold" data-fragment-index=3>[[...]]</span>
-<span class="fragment" data-fragment-index=1>>>> x in x
-True</span>
-<span class="fragment" data-fragment-index=2>>>> x[0] is x
-True</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - ... sort of **(CLICK)**
-            - Lists don't *actually* contain objects, so a list can't *really* contain itself
-            - But it *can* contain a **reference** to itself **(CLICK)**
-            - Python is smart enough to represent this list using 3 dots **(CLICK)** because otherwise it would need to show an **infinite number** of **square brackets**
-            - We have just made an infinitely recursive data structure
-            - This is possible because objects in Python don't contain other objects
-            - Both variables and objects can only contain *references* to objects
-          </aside>
-        </section>
-
-      </section>
-      <section>
-        <!-- section: why -->
-        <!-- SECTION TIME: 2 minutes -->
-
-        <section>
-          <h1 class="fragment current-visible">But... why?</h1>
-          <h2 class="fragment">Imagine an alternative...</h2>
-          <p class="fragment">Would every assignment statement make a copy?</p>
-          <p class="fragment">Would storing a reference to an object ever be possible?</p>
-          <p class="fragment" style="margin-left: 1em;">"reference assignments" and "copying assignments" <span class="fragment">😬</span></p>
-          <aside class="notes" data-markdown>
-            - Before we wrap up... I do want to address a common question...
-            - *Why* does Python work this way? **(CLICK)**
-            - Wouldn't it be easier if variables and data structures contained objects and assignments copied the objects we were assigning to
-            - Well... **(CLICK)**
-            - Imagine if every assignment made a copy of an object **(CLICK)**
-            - Copying objects all the time times time and it takes memory
-            - But also, how would we ever model parent-child relationships **(CLICK)** or any kind of relationship that involved storing a *reference* to an object instead of a copy of an object?
-            - Would we need to make a distinction **(CLICK)** between assignments that copied and assignments that made a reference...
-            - Other programming languages have done that before...
-            - And... **(CLICK)** that requires adding another layer of complexity
-            - Python's way isn't necessarily the *right* way... but *most days* I really appreciate the trade-offs that Python made around this topic
-          </aside>
-        </section>
-
-        <section>
-          <h1 class="fragment" data-fragment-index=2>This thing is bad</h1>
-          <h2 class="fragment" data-fragment-index=3>Compared to what alternative?</h2>
-          <h3 class="fragment" data-fragment-index=1>Everything is a trade-off</h3>
-          <aside class="notes" data-markdown>
-            - Python's separation between variables and objects can *definitely* be confusing, but it's a pretty decent approach to a hard problem
-            - Every decision **(CLICK)** has trade-offs and *everything* is relative to its possible alternatives
-            - Whether we're talking about a software feature or about politics, when we say **(CLICK)** "This thing is bad", we should *always* ask ourselves **(CLICK)** "compared to what alternative?"
-            - TODO final sentence to leave them with
-          </aside>
-        </section>
-
-      </section>
-      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
-        <h2 style="margin-top: 0.5em;">Resources &nbsp; <!-- TODO <a href="https://trey.io/variables-and-objects">trey.io/variables-and-objects</a>--> TODO</h2>
-        <h3 style="margin-top: 1.5em;">
-          Thank you<br>
-        </h3>
-        <div style="margin-top: 2.5em;">
-          <p style="float: left; margin-right: 2em;">
-            <strong>Trey Hunner</strong><br>
-            <small>Python Team Trainer<br>
-              <strong>trey@PythonMorsels.com</strong></small>
-          </p>
-          <p style="float: left;">
-          <a href="http://truthful.technology"><img src="horizontal-training-logo.svg" class="no-style logo"></a>
-          <a href="http://pythonmorsels.com"><img src="horizontal-morsels-logo.svg" class="no-style logo"></a>
-          </p>
-          <div style="clear: both;"></div>
-        </div>
-        <aside class="notes" data-markdown>
-          - ...
-          - Thank you
-        </aside>
-      </section>
-
-      </section>
-      <section>
-        <!-- section: TODO cutting room floor -->
 
         <section data-transition="none-in none-out">
           <pre class="python"><code data-trim data-noescape>
@@ -1799,7 +1839,7 @@ True</span>
 >>> </span><span class="fragment">wed = TodoList({"Here is", "a set", "of tasks"})</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - TODO fix transitions and such
+            - fix transitions and such
             - This might seem like a *really* big issue...
             - But this issue has a pretty common workaround
             - If your class accepts a list, you could use **(CLICK)** the `list` constructor to copy that argument
@@ -1918,7 +1958,7 @@ Traceback (most recent call last):
 TypeError: unhashable type: 'list'
           </code></pre>
           <aside class="notes" data-markdown>
-            - TODO fix all this...
+            - fix all this...
 
             - Here is an immutable tuple
             - This tuple can be used in a set because it's both immutable and hashable
@@ -1963,7 +2003,7 @@ TypeError: unhashable type: 'list'
           - And when a list contains list it's really just containing a pointer to that list
           - Inspired by the fact that Python's object model allows one object to be referred by multiple variables...
           - Ben Gibbard **(click)** of Death Cab For Cutie **(click)** actually wrong a song about how Python's object model works
-          - TODO *cue animated gif*
+          - *cue animated gif*
           (about 1 minute into this video https://www.youtube.com/watch?v=CvJAv82IV_g)
           - Well... maybe
           - I actually don't know if that's what the song is *actually* about, but that's what *I* think it's about
@@ -2011,12 +2051,10 @@ TypeError: 'tuple' object does not support item assignment
 (True, [2, 1, 3, 4, 7, 11, 18])
           </code></pre>
           <aside class="notes" data-markdown>
-            - TODO
             - So what would this in-place addition do?
             - We're trying to mutate a list that's contained within a tuple by using the `+=` operator
             - Would this mutate the list?
             - Or would it give us error?
-            - TODO
           </aside>
         </section>
 
