@@ -49,11 +49,8 @@
           <aside class="notes" data-markdown>
             - One of these faces is **white** and one is **black**
             - One has a dark background and one has a light background
-            - And both faces are the same size
-            - Or are they?
-            - **TODO** *(show a ruler demonstrating the same size)*
-            - ... yes, they are the same size
-            - but they're also the same color
+            - ... at least it looks that way
+            - These faces are actually the same color
           </aside>
         </section>
 
@@ -77,7 +74,7 @@
             <nobr>&mdash; George E. P. Box</nobr>
           </blockquote>
           <aside class="notes" data-markdown>
-            - Our brain's mental models **(CLICK)** help us understand the world around us and they're *usually* pretty great at doing so...
+            - Our brain's *mental* models **(CLICK)** help us understand the world around us and they're *usually* pretty great at doing so...
             - ...
             - But every model **(CLICK)** has its flaws
             - Though even *incorrect* models can *still* be **useful**
@@ -100,15 +97,14 @@
           </code></pre>
           <aside class="notes" data-markdown>
             - Let's **test your mental model** of Python's **variables**...
-            - Here's the scenario we'll be working with...
-            - We've assigned a variable, `first`, to an empty list **(CLICK)**
+            - If we assign a variable, `first`, to an empty list **(CLICK)**
             - Then we assign the variable `second` to `first` **(CLICK)**
-            - After that, we append `9` to `second` **(CLICK)**
-            - Now `second` has `1` element within it **(CLICK)**
-            - The question that I *don't* want you to answer right now... but which we'll be considering...
+            - And after that, we append `9` to `second` **(CLICK)**
+            - `second` now has `1` element within it **(CLICK)**
+            - The question we're going to consider...
             - Is... **(CLICK)** "how many items are in `first`"?
             - ...
-            - While we seek an answer to this question, let's **compare a few different mental models** of Python's variables to see how each one might explain this scenario
+            - Let's **compare a few different mental models** to see how each one might answer this question
           </aside>
         </section>
 
@@ -204,53 +200,7 @@
             - it's all just *one* list!
             - This is the mental model that you'll find used in many books on Python and in many introductory Python courses
             - And this mental model works **pretty well**!
-            - But it *also* has its limits
-            - As an example, imagine that...
-          </aside>
-        </section>
-
-        <section data-transition="none-in slide-out">
-          <h2>Sticky Notes</h2>
-          <div style="display: grid; grid-auto-flow: column;">
-            <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
->>> first = []
->>> second = first
->>> second.append(9)
->>> second
-[9]
->>> first
-[9]
->>> <span class="fragment" data-fragment-index=1>rows = [second]
->>> </span></code></pre>
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="overflow: visible; width: 400px;">
-                <!-- Empty list object -->
-                <rect x="20" y="20" width="160" height="80" fill="white" stroke="black" stroke-width="2" rx="5" ry="5"/>
-                <text x="100" y="70" font-size="24" text-anchor="middle" fill="black">[<tspan>9</tspan>]</text>
-
-                <!-- First sticky note -->
-                <g transform="rotate(-15 30 30)">
-                <rect x="10" y="0" width="60" height="60" fill="#FFFF88" stroke="#E6E600" stroke-width="1"/>
-                <path d="M10 0 L70 0 L70 10 Q60 5 50 10 Q40 15 30 10 Q20 5 10 10 Z" fill="#FFFF66"/>
-                <text x="40" y="35" font-size="12" text-anchor="middle" fill="black">first</text>
-                </g>
-
-                <!-- Second sticky note -->
-                <g transform="rotate(15 170 30)">
-                <rect x="130" y="0" width="60" height="60" fill="#FF9999" stroke="#FF6666" stroke-width="1"/>
-                <path d="M130 0 L190 0 L190 10 Q180 5 170 10 Q160 15 150 10 Q140 5 130 10 Z" fill="#FF8888"/>
-                <text x="160" y="35" font-size="12" text-anchor="middle" fill="black">second</text>
-                </g>
-              </svg>
-
-            </div>
-          </div>
-          <aside class="notes" data-markdown>
-            - ...we put our list **(CLICK)** inside another list
-            - What should our model look like now?
-            - Well... what actually *happens* when we put one list inside another list?
-            - We'll talk about that *later*
-            - First, I'd like to introduce a *third* mental model...
+            - But, as we'll see later, it *does* have limits
           </aside>
         </section>
 
@@ -309,6 +259,7 @@
             </div>
           </div>
           <aside class="notes" data-markdown>
+            - Let's try one last mental model
             - In this third model, we'll think of variables as living in **(CLICK)** variable land and objects as living in **(CLICK)** object land
             - When we assign a variable **(CLICK)** we draw an arrow  **(CLICK)** from the variable to the object
             - Then when we assign **(CLICK)** another variable to the first one, we draw another arrow **(CLICK)** from the second variable to the same object
@@ -316,15 +267,68 @@
             - The second list changes **(CLICK)** and so does the first **(CLICK)** because *they're the same list*
             - I call this mental model "pointers" **(CLICK)** because it looks like variables *point* to objects
             - ...
-            - If you're thinking **(CLICK)** the word "pointer" might be a problem, stay with me.
-            - I will get to that thought later
+            - Now, some of you may be **(CLICK)** looking at that word "pointer" and thinking "the word pointer means something specific" and ...
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment" data-fragment-index=3><span class="fragment fade-out" data-fragment-index=4>well actually</span></h2>
+          <p>
+          &ldquo;... but they're not pointers&rdquo;
+          </p>
+          <p class="fragment" data-fragment-index=2>
+          &ldquo;They're object references&rdquo;
+          </p>
+          <p class="fragment" data-fragment-index=4>
+          &ldquo;They're name bindings&rdquo;
+          </p>
+          <aside class="notes" data-markdown>
+            - "Python's variables are not pointers"
+            - ...
+            - They're **(CLICK)** "object references"
+            - Well...
+            - actually **(CLICK)**
+            - according to the Python documentation they're **(CLICK)** "bindings"
+            - But I'm going to call them pointers
+            - With the caveat that...
+          </aside>
+        </section>
+
+        <section>
+          <h3>
+            &ldquo;But they're not like pointers in C&rdquo;
+          </h3>
+          <table class="no-border">
+            <tbody>
+              <tr>
+                <td class="fragment" data-fragment-index=1>binding</td>
+                <td class="fragment" data-fragment-index=1>🪢</td>
+              </tr>
+
+              <tr>
+                <td class="fragment" data-fragment-index=2>reference</td>
+                <td class="fragment" data-fragment-index=2>📖</td>
+              </tr>
+
+              <tr>
+                <td class="fragment" data-fragment-index=3>pointer</td>
+                <td class="fragment" data-fragment-index=3>👉</td>
+              </tr>
+            </tbody>
+          </table>
+          <aside class="notes" data-markdown>
+            - "they're not like pointers in C"
+            - You can't dereference them and there's no pointer arithmetic in Python
+            - I will *not* use the word "binding"
+            - Though I will sometimes use the term "reference"
+            - But I'll mostly say "pointer" and "pointing" because that's a very visual idea that *all* of us are familiar with
           </aside>
         </section>
 
       </section>
       <section>
         <!-- section: change -->
-        <!-- SECTION TIME: 4 minutes -->
+        <!-- SECTION TIME: 3 minutes -->
 
         <section data-transition="slide-in none-out">
           <h1>
@@ -370,57 +374,14 @@
 >>> </span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - New Python users often tell me that they've **(CLICK)** assigned two variables (`first` and `second`) to the same value and then they'll say **(CLICK)** "when I change `first`, it **doesn't *always* change `second`**"
-            - When I ask what they mean, they'll show me something like this...
-            - "here I changed first" **(CLICK)** "and second changed" **(CLICK)**
-            - But "*here* when I change first" **(CLICK)**... "second doesn't change" **(CLICK)**
+            - Sometimes, Python learners will tell me **(CLICK)** I've assigned two variables (`first` and `second`) to the same object
+            - And **(CLICK)** when I change `first`, `second` doesn't *always* change
+            - When I "change first" this way **(CLICK)** second changes **(CLICK)**
+            - But "when I change first *this* way" **(CLICK)**... "second *doesn't* change" **(CLICK)**
             - Why?
             - The word "change" **(CLICK)** is the problem here.
-            - "change" is accidentally playing two different roles
-          </aside>
-        </section>
-
-        <section>
-          <h2 class="fragment" data-fragment-index=1>&ldquo;bianually&rdquo;</h2>
-          <p class="fragment" data-fragment-index=2>twice a year or once every two years</p>
-          <h2 class="fragment" data-fragment-index=3>&ldquo;4 ounces&rdquo;</h2>
-          <p class="fragment" data-fragment-index=4>a half cup or a quarter pound</p>
-          <h2 class="fragment" data-fragment-index=5>&ldquo;change&rdquo;</h2>
-          <p class="fragment" data-fragment-index=6>assigning a variable or mutating a value</p>
-          <aside class="notes" data-markdown>
-            - It's like the word biannually **(CLICK)**: do we mean **(CLICK)** twice a year or once every two years?
-            - Or ounces **(CLICK)**... are we talking **(CLICK)** volume or weight: half a cup or a quarter pound?
-            - The word change **(CLICK)** has a similar problem
-            - There are *two different* **(CLICK)** types of "change" in Python
+            - There are *two different* types of "change" in Python
             - **Assignments** change variables and **mutations change objects**
-          </aside>
-        </section>
-
-        <section>
-          <p class="fragment" data-fragment-index=5>&ldquo;when I reassign <code>first</code>, it doesn't affect <code>second</code>&rdquo;</p>
-          <p class="fragment" data-fragment-index=3>&ldquo;when I mutate the list, both <code>first</code> and <code>second</code> change&rdquo;</p>
-          <p class="fragment strike" data-fragment-index=1>&ldquo;when I change <code>first</code>, it doesn't always change <code>second</code>&rdquo;</p>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> first = [2, 1, 3, 4]
->>> second = first
->>> <span class="fragment" data-fragment-index=3>first.append(7)
->>> </span><span class="fragment" data-fragment-index=4>second
-[2, 1, 3, 4, 7]
->>> </span><span class="fragment" data-fragment-index=5>first = [100, 200, 300]
->>> </span><span class="fragment" data-fragment-index=6>second
-[2, 1, 3, 4, 7]
->>></span>
-          </code></pre>
-          <h2 class="fragment" data-fragment-index=2>&ldquo;Explicit is better than implicit&rdquo;</h2>
-          <aside class="notes" data-markdown>
-            - So instead of using the word "change" **(CLICK)** I encourage folks learning with me to be more explicit **(CLICK)**
-            - When we **(CLICK)** mutate the object that `first` points to, if `second` **points to the same object**, accessing `second` **(CLICK)** will show the same *changed* object
-            - But if we **(CLICK)** reassign first, we changed the object that the `first` variable points to
-            - ... But that *doesn't* change the `second` variable at all... **(CLICK)**
-            - `second` still points to the same object as before
-            - `first` just points to a different object now
-            - The word change can be **ambiguous** in Python... and ambiguity can reinforce **fuzzy and incorrect mental models**
-            - Just to drive home these two types of change, let's try to use that third mental model again...
           </aside>
         </section>
 
@@ -490,13 +451,12 @@
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - So... we've assigned `second` to `first` which means both variables now point to **the same** 4-item list
-            - When we **append** to `first` **(CLICK)**, the list changes **(CLICK)**
-            - When we look at `second`, **(CLICK)** we'll see that it changed because it **points to the same list**
-            - But if we **reassign** `first`, **(CLICK)** we're **pointing that variable** to a *new* list **(CLICK)**
-            - Which means `second` is unchanged **(CLICK)**
-            - The `second` variable still points to the **original list**, which hasn't been touched
-            - This is why the word "change" is ambiguous: mutations change objects and assignments change **which object** a *variable* points to
+            - Let's use our pointers mental model to help us differentiate those two types of "change" ...
+            - When we append to `first`, **(CLICK)** we're mutating the *object* **(CLICK)** that `first` points to
+            - Since `second` **points to the same object**, accessing `second` **(CLICK)** will show the same *changed* object
+            - But if we **(CLICK)** reassign first, that changes *which* object **(CLICK)** the variable `first` points to
+            - ... But that *doesn't* change the `second` variable at all... **(CLICK)**
+            - `second` still points to the same object as before
           </aside>
         </section>
 
@@ -510,18 +470,16 @@
           <aside class="notes" data-markdown>
             - So... **(click)** variables in Python do not *contain* objects, they *point* to them
             - Because of this indirection between variables and objects, **(click)** there are 2 distinct types of "change"
-            - A **(CLICK)** mutation changes an object
-            - While an **(CLICK)** assignment changes a variable... specifically which object that variable is pointing to
+            - This is why the word "change" is ambiguous: **(CLICK)** mutations change objects and **(CLICK)** assignments change **which object** a *variable* points to
           </aside>
         </section>
 
       </section>
       <section>
         <!-- section: identity -->
-        <!-- SECTION TIME: TODO -->
+        <!-- SECTION TIME: 2 minutes -->
 
         <section>
-          <h1 class="fragment current-visible" data-fragment-index=1>2 types of change</h1>
           <h1 class="fragment" data-fragment-index=2>2 types of</h1>
           <h1 class="fragment" data-fragment-index=3>&ldquo;are they the same?&rdquo;</h1>
           <pre class="python fragment" data-fragment-index=4 style="font-size: 0.75em; width: 60%; margin: 1em auto;"><code data-trim data-noescape>
@@ -530,8 +488,7 @@ True
 >>> </span><span class="fragment" data-fragment-index=6>first is second  <strong class="fragment" data-fragment-index=7># Identity</strong>
 True</span></code></pre>
           <aside class="notes" data-markdown>
-            - In Python, we have **(CLICK)** two different types of "change"...
-            - Assignment and mutation
+            - In Python, we have two different types of "change"...
             - But we also have **(CLICK)** two different ways to ask the question...
             - **(CLICK)** "are they the same?"
             - We have the **(CLICK)** double equals operator (`==`) for **(CLICK)** *equality*
@@ -541,52 +498,92 @@ True</span></code></pre>
         </section>
 
         <section>
-          <h3 class="fragment">TODO img: washing machine</h3>
-          <h3 class="fragment">TODO img: model number</h3>
-          <h3 class="fragment">TODO img: serial number</h3>
-          <h3 class="fragment">TODO equality: equivalent object code?</h3>
-          <h3 class="fragment">TODO identity: the exact same object code?</h3>
+          <div style="display: grid; grid-auto-flow: column;">
+            <img src="washing machine.png" class="no-style">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div style="position: relative; display: inline-block; max-width: 100%; vertical-align: middle;">
+                <img
+                  src="washing machine tag.jpg"
+                  class="fragment no-style"
+                  style="display: block; width: 600px; max-width: 100%; height: auto;"
+                  data-fragment-index=1
+                >
+                <div
+                  class="fragment"
+                  data-fragment-index=2
+                  style="
+                    position: absolute;
+                    background-color: rgba(0, 255, 0, 0.3);
+                    box-sizing: border-box;
+                    pointer-events: none;
+                    top: 49%;
+                    left: 8%;
+                    width: 27%;
+                    height: 7%;
+                  "
+                >
+                </div>
+                <div
+                  class="fragment"
+                  data-fragment-index=3
+                  style="
+                    position: absolute;
+                    background-color: rgba(0, 0, 255, 0.3);
+                    box-sizing: border-box;
+                    pointer-events: none;
+                    top: 25%;
+                    left: 7%;
+                    width: 35%;
+                    height: 12%;
+                  "
+                >
+                </div>
+              </div>
+              <p class="fragment" data-fragment-index=5 style="margin-bottom: 0;"><strong style="color: #7771a1;">Identity</strong>: the exact same object</p>
+              <p class="fragment" data-fragment-index=4 style="margin-bottom: 0;"><strong style="color: #72ae61;">Equality</strong>: an equivalent object</p>
+            </div>
+          </div>
           <aside class="notes" data-markdown>
-            - TODO visuals
-            - If I'm in the market to buy **(CLICK)** a washing machine, I might ask "what's the model number?" **(CLICK)**
-            - Because I'm hoping to look up reviews for what *should* equivalent devices.
-            - But if I need to call customer support to report an issue, I might give them **(CLICK)** the serial number for the device.
-            - The serial number uniquely identifies the device.
+            - If I'm in the market to buy a washing machine, **(CLICK)** I might ask "what's the model number?" **(CLICK)**
+            - Because I'm hoping to look up reviews for what *should be* equivalent devices.
+            - But if I need to call customer support to report an issue, I might give them **(CLICK)** the serial number.
+            - The serial number uniquely identifies the machine.
             - Equality checks are a like a comparison of model numbers... **(CLICK)** they ask whether two objects represent the same thing.
-            = Identity checks are like a comparison of serial numbers... **(CLICK)** they ask whether two objects are identical... meaning they aren't even two objects... they are *the same exact object*
+            - Identity checks are like a comparison of serial numbers... **(CLICK)** they ask whether two objects are identical... meaning they aren't even two objects... they are *the same exact object*
             - Though really...
+            - identity isn't *about objects* at all... it's actually a way to ask whether two *names* point to the same place
           </aside>
         </section>
 
         <section>
-          <h3 class="fragment" data-fragment-index=5>Equality is about objects, identity is about pointers</h3>
+          <h3 class="fragment" data-fragment-index=5>Equality is about objects</h3>
+          <h3 class="fragment" data-fragment-index=6>Identity is about pointers</h3>
           <pre class="python" style="margin: 1em auto;"><code data-trim data-noescape>
 >>> <span class="fragment" data-fragment-index=1>first == second  <strong class="fragment" data-fragment-index=2># Are these objects equal to the other?</strong>
 True
 >>> </span><span class="fragment" data-fragment-index=3>first is second  <strong class="fragment" data-fragment-index=4># Do these variables point to the same object?</strong>
 True</span></code></pre>
           <aside class="notes" data-markdown>
-            - identity isn't *about objects* at all... it's actually a way to ask whether two names are pointing to *exactly* the same object.
             - If we have two variables, `first`, and `second`, and we ask whether they **(CLICK)** are *equal*, we're asking whether they have the same value... this asks **(CLICK)** the *objects* whether they represent the same thing
-            - If we ask whether these variables **(CLICK)** are *identical* we're asking whether **(CLICK)** they both point to the same object... this doesn't ask any question of the object itself. This is a more low level and fundamental question and there's no way for objects to control the behavior of the `is` operator.
-            - So **(CLICK)** equality compares the values of objects, while identity compares references to those objects to see whether they're the same reference
+            - If we ask whether these variables **(CLICK)** are *identical* we're asking whether **(CLICK)** they both point to the same object
+            - unlike equality, identity doesn't ask any question of the object itself.
+            - So **(CLICK)** equality compares the values of objects, while **(CLICK)** identity compares references to those objects to see whether they're the same reference
           </aside>
         </section>
 
         <section>
-          <p class="fragment" data-fragment-index=6>Equality is the usual way to ask &ldquo;are they the same?&rdquo;</p>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=3>value is None
-False
->>> </span><span class="fragment" data-fragment-index=4>value is True
-False
->>> </span><span class="fragment" data-fragment-index=5>value == another_value
-False</span></code></pre>
+          <h3 class="fragment" data-fragment-index=3 style="margin-top: -1em;"><strong>Equality</strong>:<br>the usual way to ask<br>&ldquo;are they the same?&rdquo;</h3>
+          <pre class="python fragment" data-fragment-index=1 style="font-size: 30px; line-height: 40px; width: 50%; margin: 1em auto;"><code data-trim data-noescape>
+value is None
+          </code></pre>
+          <pre class="python fragment" data-fragment-index=2 style="font-size: 30px; line-height: 40px; width: 50%; margin: 1em auto;"><code data-trim data-noescape>
+value == another_value
+          </code></pre>
           <aside class="notes" data-markdown>
-            - TODO put each code block in its own section in the slide
-            - The `is` operator is *very* rarely used outside of checking whether an object is identical to **(CLICK)** `None`, **(CLICK)** `True`, or `False`.
-            - Unless you *actually* care whether two objects are the exact same object, when asking "are they the same?" you probably **(CLICK)** want the `==` operator.
+            - The `is` operator is *very* rarely used outside of comparisons to **(CLICK)** `None`
+            - When we ask "are they the same?" we usually **(CLICK)** want the double-equals operator.
             - **(CLICK)** Checking equality is much more common than checking identity
+            - TODO put time here for the sake of a pause
           </aside>
         </section>
 
@@ -635,6 +632,8 @@ False</span></code></pre>
             - ... which, as we discussed, can be a tricky word
             - But I also used... the word "contains" **(CLICK)**
             - The word "contains" can *also* cause confusion
+            - Data structures don't actually *contain* objects
+            - Let's take a look at what's going on here by revisiting 2 of our mental models from before...
           </aside>
         </section>
 
@@ -689,8 +688,8 @@ False</span></code></pre>
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - Let's revisit our mental model of variables as sticky notes...
-            - We were about to ask "what should happen" **(CLICK)** when we put our `second` list inside another list...
+            - First we'll take another look at our sticky note mental model
+            - What should happen **(CLICK)** if we put our `second` list inside another list?...
             - Should we **add another sticky note** that says **(CLICK)** which list it's in and which index it's at?
             - Also... what if we point **(CLICK)** another variable to that new outer list?
             - Would we need to add yet *another* note with another name and another index? **(CLICK)**
@@ -878,25 +877,6 @@ False</span></code></pre>
         </section>
 
         <section>
-          <pre class="python"><code data-trim data-noescape>
->>> runtimes = {'v1': [38, 47, 52], 'v2.5': [27, 12, 23]}
->>> <span class="fragment">v1_runtimes = runtimes['v1']
->>> </span><span class="fragment">v1_runtimes.pop()
-52
->>> <span class="fragment">runtimes
-{'v1': [38, 47], 'v2.5': [27, 12, 23]}
->>> </span><span class="fragment">v1_runtimes = runtimes['v1'].copy()
->>> </span><span class="fragment">v1_runtimes = list(runtimes['v1'])</span></code></pre>
-          <aside class="notes" data-markdown>
-            - So we may talk about lists-of-lists or dictionaries-of-lists...
-            - But this dictionary doesn't *actually* contain lists... it contains references to lists
-            - This is an important thing to acknowledge *if* those values might be used **(CLICK)** anywhere else in our program
-            - Because if we change the values in our dictionary or **(CLICK)** if those values change somewhere else, we *might* be unhappy **(CLICK)**
-            - We could avoid this problem by copying those objects using **(CLICK)** the `list` class's `copy` method or by calling **(CLICK)** the `list` constructor to make a new list out of an old one
-          </aside>
-        </section>
-
-        <section>
           <h1 class="fragment">Containment</h1>
           <h2 class="fragment">... is a lie</h2>
           <aside class="notes" data-markdown>
@@ -947,8 +927,8 @@ False</span></code></pre>
           <pre class="python"><code data-trim data-noescape>
 >>> <span>class TodoList:
 ...     def __init__(self, tasks):
-...         self.tasks = <span class="fragment bold-current">list(tasks)</span>
-... 
+...        #self.tasks = tasks
+...         self.tasks = <span class="fragment bold-current">list(tasks)</span>  # shallowly copy the list
 ...     def add_task(self, task):
 ...         self.tasks.append(task)
 ...
@@ -959,7 +939,7 @@ False</span></code></pre>
 >>> </span><span class="fragment">mon.tasks
 ['Reflect on last week', 'Work on talk']
 >>> </span><span class="fragment">tue.tasks
-[]
+['Reflect on last week']
 >>> </span><span class="fragment">wed = TodoList({"Here is", "a set", "of tasks"})</span>
           </code></pre>
           <aside class="notes" data-markdown>
@@ -996,78 +976,408 @@ False</span></code></pre>
 
       </section>
       <section>
-        <!-- section: pointers -->
-        <!-- SECTION TIME: 5 minutes -->
+        <!-- section: mutating assignments -->
+        <!-- SECTION TIME: 3 minutes -->
 
         <section>
-          <ul style="list-style-type: none; margin-left: -2em;">
-            <li class="fragment" data-fragment-index=1>
-              <span class="fragment" data-fragment-index=2>❌</span>
-              &ldquo;variables are like buckets&rdquo;</li>
-            <li class="fragment" data-fragment-index=3>
-              <span class="fragment" data-fragment-index=4>⚠️</span>
-              &ldquo;variables are like tags&rdquo;</li>
-            <li class="fragment" data-fragment-index=5>
-              <span class="fragment" data-fragment-index=6>✅</span>
-              &ldquo;variables are like pointers&rdquo;</li>
-          </ul>
+          <h1 class="fragment" data-fragment-index=7>Assignments happen</h1>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>n = 3
+>>> </span><span class="fragment" data-fragment-index=2>from math import pi
+>>> </span><span class="fragment" data-fragment-index=3>for n in range(5):
+...     ...
+...
+>>> </span><span class="fragment" data-fragment-index=4>n
+4
+>>> </span><span class="fragment" data-fragment-index=5>def pi(): return 3.14159
+...
+>>> </span><span class="fragment" data-fragment-index=6>class pi: pass
+...</span>
+          </code></pre>
           <aside class="notes" data-markdown>
-            - So, the mental model of **(CLICK)** variables as buckets that contain objects **(CLICK)** doesn't work in Python
-            - Seeing variables as **(CLICK)** name tags that are attached to objects **(CLICK)** sort of works
-            - But that mental model makes it seem like names are *attached* to the objects and that they live in the same place that objects live
-            - That's why I prefer **(CLICK)** the mental model of variables as pointers
-            - This mental model is slightly more complex but it **(CLICK)** works pretty well
-            - ...
-            - Now... I would like to address something that I'm pretty sure at least some of you have been thinking...
-            - I am guessing that *some* of you learned about pointers in C
-            - And you might be thinking...
+            - TODO cut or shorten this slide?
+            - So assignments change which object a variable points to
+            - And this **(CLICK)** is what an assignment looks like
+            - But this isn't the *only* way an assignment might look
+            - Import statements **(CLICK)** also perform an assignment
+            - And so does each iteration **(CLICK)** of a `for` loop **(CLICK)**
+            - And so do function definitions **(CLICK)** and class definitions **(CLICK)**
+            - Anything that updates what a name points to **(CLICK)** performs some sort of assignment
           </aside>
         </section>
 
         <section>
-          <h2 class="fragment" data-fragment-index=3><span class="fragment fade-out" data-fragment-index=4>well actually</span></h2>
+          <h3 class="fragment" data-fragment-index=2>Augmented Assignments</h3>
           <p class="fragment" data-fragment-index=1>
-          &ldquo;... but they're not <span class="fragment bold" data-fragment-index=6>pointers</span>&rdquo;
+          <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, etc.
           </p>
-          <p class="fragment" data-fragment-index=2>
-          &ldquo;They're object <span class="fragment bold-current" data-fragment-index=5>references</span>&rdquo;
-          </p>
-          <p class="fragment" data-fragment-index=4>
-          &ldquo;They're name bindings&rdquo;
-          </p>
+          <p class="fragment" data-fragment-index=3>Are these assignments?</p>
+          <p class="fragment" data-fragment-index=4>Are these mutations?</p>
+          <h1 class="fragment" data-fragment-index=5>YES</h1>
           <aside class="notes" data-markdown>
-            - Python's variable are **(CLICK)** *not* pointers
-            - They're **(CLICK)** "object references"
-            - Well...
-            - actually **(CLICK)**
-            - according to the Python documentation they're **(CLICK)** "bindings"
-            - ... The terms "reference" **(CLICK)** and "refer" *do* show up in the docs a few times
-            - but "pointer" **(CLICK)** is pretty much absent from the docs
+            - But what about `+=` and `-=`? **(CLICK)**
+            - These are often called **(CLICK)** augmented assignments...
+            - But do these **(CLICK)** perform an assignment?
+            - Or do they **(CLICK)** mutate an object?
+            - Well...  **(CLICK)**
+            - It depends.
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment" data-fragment-index=7>In-place addition</h2>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>a = [2, 1, 3]
+>>> </span><span class="fragment" data-fragment-index=2>b = a
+>>> </span><span class="fragment" data-fragment-index=3>b += [4, 7, 11]
+>>> </span><span class="fragment" data-fragment-index=4>b
+[2, 1, 3, 4, 7, 11]
+>>> <span class="fragment" data-fragment-index=5>a</span><span class="fragment" data-fragment-index=6>
+[2, 1, 3, 4, 7, 11]</span></code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we have two variables, `a` **(click)** and `b` **(click)** that both point to the same list
+            - If we use `+=` **(click)** to add more elements to `b` **(click)**
+            - ... what happens to `a`? **(click)**
+            - Did `a` change or is it still the same?
+            - When we look at the variable `a`, we'll see that it *changed* **(click)**
+            - Augmented assignments actually perform a *mutation*
+            - So using `+=` on a list doesn't make a new list... it *mutates* the existing list
+            - That's why `+=` is often called an in-place addition **(click)**
+            - In-place operations are *designed* to mutate
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>name = "North Bay Python"
+>>> </span><span class="fragment" data-fragment-index=2>name += " 2025"  <span class="fragment" data-fragment-index=4># name = name + "2025"</span>
+>>> </span><span class="fragment" data-fragment-index=3>name
+'North Bay Python 2025'</span></code></pre>
+          <aside class="notes" data-markdown>
+            - But wait... doesn't `+=` work on strings? **(click)**
+            - Strings is Python are immutable...
+            - Which means you can't *change* a string object
+            - But strings work with `+=`... **(click)**
+            - If `+=` is an *in-place* addition, how does it work on strings? **(click)**
+            - Well, augmented assignments *can* perform a mutation, but they don't *have* to... it's up to the object that they're operating on
+            - If an object doesn't specially handle `+=` then **(click)** Python falls back to using the `+` operator and a plain old assignment
+            - The distinction between assignments and mutations isn't always very clear... augmented assignments do perform an assignment, but they can also mutate.
+            - But this assignment or mutation fuzziness comes up in other ways too **(CLICK)**
+          </aside>
+        </section>
+
+        <section>
+          <h2>Assignments that mutate</h2>
+            <pre class="python"><code data-trim data-noescape>
+<span class="fragment">>>> some_object.attribute = 4
+>>> </span><span class="fragment">numbers[0] = 8</span>
+            </code></pre>
+          <aside class="notes" data-markdown>
+            - Assigning to an attribute *is* an assignment... **(CLICK)** but it mutates the object that the attribute lives on
+            - And assigning to a list index mutates the list **(CLICK)**
+            - These *are* assignment statements, but these *also* mutate an object... modifying where an *attribute* or an *index* points to mutates the object that the attribute or the index lives within.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Assignments can mutate</h2>
+          <ul>
+            <li class="fragment">Assignments change the object a reference refers to</li>
+            <li class="fragment">Objects can contain references to other object</li>
+            <li class="fragment">Assigning to an object attribute/index mutates the object</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - Assignments **(CLICK)** change which object a pointer is pointing to...
+            - But when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
+            - And since the *containing* objects **(CLICK)** can contain references to other objects.
+            - When we change those references, through an assignment, **(CLICK)** that requires mutating the containing object
+            - Speaking of mutating objects... let's talk about tuples
+          </aside>
+        </section>
+
+      </section>
+      <section>
+        <!-- section: mutable tuples -->
+        <!-- SECTION TIME: 2 minutes -->
+
+        <section>
+          <h1 class="fragment data-fragment-index=3">Changing tuples</h1>
+          <h2 data-fragment-index=1>Tuples cannot be mutated<span class="fragment" data-fragment-index=2>*</span></h2>
+          <p class="fragment" data-fragment-index=2>* For some definitions of "mutate"</p>
+          <aside class="notes" data-markdown>
+            - Once you've made a tuple, you can't change it
+            - ... **(click)**
+            - Or can you?
+            - **(click)** You *can't* mutate a tuple
+            - But you *can* change the value of a tuple
+          </aside>
+        </section>
+
+        <section>
+          <h2>Tuples can contain lists</h2>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>result = (True, [2, 1, 3])
+>>> </span><span class="fragment" data-fragment-index=2>result[1].append(4)</span><span class="fragment" data-fragment-index=3>
+>>> </span><span class="fragment" data-fragment-index=4>result
+(True, [2, 1, 3, 4])</span></code></pre>
+          <aside class="notes" data-markdown>
+            - If we **(CLICK)** can put a list inside of a tuple
+            - What would happen if we try to *change* that list **(click)**, by appending a new item to it?
+            - Python allows this... **(CLICK)**
+            - If you can get a reference to a mutable object, you can mutate it
+            - But... **(CLICK)** this also seems to change our tuple
+            - And yet, tuples are supposed to be immutable...
+            - Are they?
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment" data-fragment-index=9>Immutability is shallow</h2>
+          <pre class="python" style="width: 60%;"><code data-trim data-noescape>
+>>> result = (True, [2, 1, 3])
+>>> result2 = (True, [2, 1, 3])
+>>> <span class="fragment" data-fragment-index=3>result == result2
+True
+>>> </span><span class="fragment" data-fragment-index=5>result[1].append(4)
+>>> </span><span class="fragment" data-fragment-index=6>result
+(True, [2, 1, 3, 4])
+>>> </span><span class="fragment" data-fragment-index=7>result == result2
+False</span></code></pre>
+          <aside class="notes" data-markdown>
+            - If we make 2 equal tuples **(CLICK)**
+            - And we mutate an object **(CLICK)** that one of those tuples contains
+            - That *will* change the value **(CLICK)** of the tuple
+            - Meaning, the tuples **(CLICK)** aren't equal anymore
+            - Tuples *are* immutable... **(CLICK)**
+            - But any immutable object that can store a reference to a mutable object can potentially have its value change
+            - In other words, immutability is a shallow concept...
+            - We can't directly change a tuple, but we *can* change objects that tuples refer to... and since objects affect the *value* of the tuple...
+            - That means that tuples that contain mutable objects aren't entirely immutable
+          </aside>
+        </section>
+
+      </section>
+      <section>
+        <!-- section: conclusion -->
+
+        <section>
+          <h2>It's pointers all the way down 🐢</h2>
+          <ul>
+          <li class="fragment">Variables store object references</li>
+          <li class="fragment">Objects store object references</li>
+          <li class="fragment">Immutable containers can change</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - In Python, variables don't contain objects... they only *point* to objects
+            - Put another way, **(CLICK)** Variables store *references* to objects
+            - Also, objects **(CLICK)** can store references to other objects
+            - But objects *can't contain* objects
+            - And **(CLICK)** immutable objects that contain references to *mutable* objects are only *kind of* immutable
+            - So given what we've learned about how variables and objects work in Python...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> <span class="fragment">x.append(x)
+>>> </span><span class="fragment">x</span><span class="fragment">
+[[...]]</span><span style="opacity: 0;">
+>>> x in x
+True
+>>> x[0] is x
+True</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - If we take an empty list, called `x`
+            - And we call **(CLICK)** `x.append(x)`
+            - What would **(CLICK)** `x` be...
+            - This won't end up being a list containing an empty list...
+            - Instead, we'll get something that looks like **(CLICK)** a list that contains itself...
+          </aside>
+        </section>
+
+        <section data-background-image="ouroboros-background.png" data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> x.append(x)
+>>> x
+[[...]]
+<span class="fragment" data-fragment-index=1>>>> x[0] is x
+True</span>
+<span class="fragment" data-fragment-index=2>>>> x in x
+True</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - ... sort of
+            - But as we know, data structures don't *contain* objects, they contain references to objects
+            - So this list contains a **reference** to itself **(CLICK)**
+            - We have just made an infinitely recursive data structure **(CLICK)**
+            - This is possible because objects in Python don't contain other objects
+            - Both variables and objects can only contain *references* to objects
+            - So there's nothing stopping a list from contain a reference to itself
+          </aside>
+        </section>
+
+      </section>
+      <section>
+        <!-- section: why -->
+        <!-- SECTION TIME: 2 minutes -->
+
+        <section>
+          <h1 style="margin-top: -0.2em;" class="fragment" data-fragment-index=1>We didn't discuss</h1>
+          <ul>
+          <li class="fragment" data-fragment-index=2>Variable scope in Python</li>
+          <li class="fragment" data-fragment-index=3>Hashability and its relation to immutability</li>
+          <li class="fragment" data-fragment-index=4>CPython optimizations that affect identity</li>
+          <li class="fragment" data-fragment-index=5>Direct value storage of array, data frames, etc.</li>
+          <li class="fragment" data-fragment-index=6>Mutable default argument gotchas</li>
+          <li class="fragment" data-fragment-index=7>Python oddities related to variables and objects</li>
+          </ul>
+          <h2 style="margin-top: 0.2em;" class="fragment" data-fragment-index=8><a href="https://trey.io/nbpy2025">https://trey.io/nbpy2025</a></h2>
+          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=9><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a> - Brandon Rhodes</p>
+          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=9><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a> - Ned Batchelder</p>
+
+          <aside class="notes" data-markdown>
+            - There are *many* odd corners of this topic that we didn't cover today.
+            - For example, **(CLICK)** we didn't discuss...
+            - **(CLICK)** Variable scope within Python
+            - **(CLICK)** Hashability
+            - **(CLICK)** Optimizations around numbers, strings, and tuples
+            - **(CLICK)** Arrays and direct value storage
+            - **(CLICK)** Mutable default arguments
+            - **(CLICK)** And various reference-based gotchas
+            - ...
+            - **(CLICK)** This URL, which is on the bottom of each slide in this talk, includes links to resources on some of these topics as well as **(CLICK)** 2 great talks by other Python community members
+            - ...
+            - Before we wrap up... I do want to address a common question...
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment fade-out" data-fragment-index=1>But... why?</h1>
+          <h2 class="fragment" data-fragment-index=1>Imagine an alternative...</h2>
+          <p class="fragment" data-fragment-index=2>Would every assignment statement make a copy?</p>
+          <p class="fragment" data-fragment-index=3>Would storing a reference to an object ever be possible?</p>
+          <p class="fragment" data-fragment-index=4 style="margin-left: 1em;">"reference assignments" and "copying assignments" <span class="fragment" data-fragment-index=5>😬</span></p>
+          <aside class="notes" data-markdown>
+            - *Why* does Python work this way?
+            - Wouldn't it be easier if variables and data structures contained objects and assignments copied the objects we were assigning to
+            - Well... **(CLICK)**
+            - Imagine if every assignment made a copy of an object **(CLICK)**
+            - Copying objects all the time takes time and it takes memory
+            - But also, how would we ever model parent-child relationships **(CLICK)** or any kind of relationship that involved storing a *reference* to an object instead of a copy of an object?
+            - Would we need to make a distinction **(CLICK)** between assignments that copied and assignments that made a reference...
+            - Other programming languages have done that before...
+            - And... **(CLICK)** that requires adding another layer of complexity to the language
+            - ...
+            - Python's way isn't necessarily the *right* way... but *most days* I really appreciate the trade-offs that Python made around this topic
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment" data-fragment-index=2>This thing is bad</h1>
+          <h2 class="fragment" data-fragment-index=3>Compared to what alternative?</h2>
+          <h3 class="fragment" data-fragment-index=1>Everything is a trade-off</h3>
+          <aside class="notes" data-markdown>
+            - Python's separation between variables and objects can *definitely* be confusing, but it's a pretty decent approach to a hard problem
+            - Every decision **(CLICK)** has trade-offs and *everything* is relative to its possible alternatives
+            - Whether we're talking about a software feature or about politics, when we say **(CLICK)** "This thing is bad", we should *always* ask ourselves **(CLICK)** "compared to what?"
+            - We *should* acknowledge problems with the status quo, but we also need to think deeply and honestly about real world outcomes
+          </aside>
+        </section>
+
+      </section>
+      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
+        <h2 style="margin-top: 0.5em;">Resources &nbsp; <a href="https://trey.io/nbpy2025">https://trey.io/nbpy2025</a></h2>
+        <h3 style="margin-top: 1.5em;">
+          Thank you<br>
+        </h3>
+        <div style="margin-top: 2.5em;">
+          <p style="float: left; margin-right: 2em;">
+            <strong>Trey Hunner</strong><br>
+            <small>Python Team Trainer<br>
+              <strong>trey@PythonMorsels.com</strong></small>
+          </p>
+          <p style="float: left;">
+          <a href="http://truthful.technology"><img src="horizontal-training-logo.svg" class="no-style logo"></a>
+          <a href="http://pythonmorsels.com"><img src="horizontal-morsels-logo.svg" class="no-style logo"></a>
+          </p>
+          <div style="clear: both;"></div>
+        </div>
+        <aside class="notes" data-markdown>
+          - ...
+          - Thank you
+        </aside>
+      </section>
+
+      </section>
+      <section>
+        <!-- section: cutting room floor -->
+
+        <section data-transition="none-in slide-out">
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> colors = ["purple", "green", "blue"]
+>>> options = [range(3), colors]
+          </code></pre>
+          <ul style="list-style-type: none; margin-left: -2em;">
+            <li class="fragment" data-fragment-index=2>
+              ❌
+              &ldquo;<code>colors</code> <strong>contains</strong> a list of strings&rdquo;</li>
+            <li class="fragment" data-fragment-index=3>
+              ✅
+              &ldquo;<code>colors</code> <strong>points to</strong> a list of strings&rdquo;</li>
+            <li class="fragment" data-fragment-index=4>
+              ⚠️
+              &ldquo;<code>colors</code> <strong>is</strong> a list of strings&rdquo;</li>
+            <li class="fragment" data-fragment-index=5>
+              😅
+              &ldquo;<code>options</code> <strong>points to</strong> a list that<br>contains a reference to the same object<br>that <code>colors</code> points to&rdquo;</li>
+            <li class="fragment" data-fragment-index=6>
+              🤷
+              &ldquo;<code>options</code> <strong>contains</strong> <code>colors</code>&rdquo;</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - When teaching, I try to avoid describing code like this by saying "`colors` contains a list" **(CLICK)**
+            - Instead, I *try* to say "`colors` *points to* a list" **(CLICK)**
+            - But I often catch myself saying "`colors` *is* a list" **(CLICK)**
+            - Which is a pretty common phrase, but it *does* risk implying an incorrect mental model
+            - It *is* important to consider the words you use.
+            - But there's always a trade off between accuracy and simplicity
+            - Instead of saying **(CLICK)** "the `options` variable points to a list that contains a reference to the same object that `colors` points to", I would much rather say **(CLICK)** "`options` contains `colors`"
+            - The language we use...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <h1>Words matter</h1>
+          <h1 class="fragment">Words are hard</h1>
+          <aside class="notes" data-markdown>
+            - *can* affect our brain's mental models
+            - But also... **(CLICK)** words are hard
           </aside>
         </section>
 
         <section>
           <ul style="list-style-type: none;">
             <li class="fragment" style="margin-bottom: 1em;" data-fragment-index=1>
-              <span class="fragment" style="margin-right: 1em;" data-fragment-index=2>💼</span> &ldquo;Names are bound to objects&rdquo;
+              <span style="margin-right: 1em;">💼</span> &ldquo;Names are bound to objects&rdquo;
             </li>
             <li class="fragment" style="margin-bottom: 1em;" data-fragment-index=3>
-              <span class="fragment" style="margin-right: 1em;" data-fragment-index=4>🤔</span> &ldquo;Variables refer to objects&rdquo;
+              <span style="margin-right: 1em;">🤔</span> &ldquo;Variables refer to objects&rdquo;
             </li>
             <li class="fragment" style="margin-bottom: 1em;" data-fragment-index=5>
-              <span class="fragment" style="margin-right: 1em;" data-fragment-index=6>😬</span> &ldquo;Variables point to objects&rdquo;
+              <span style="margin-right: 1em;">😬</span> &ldquo;Variables point to objects&rdquo;
             </li>
           </ul>
-          <p class="fragment" data-fragment-index=7><span class="fragment" data-fragment-index=8>variable</span><span style="font-size: 2em; vertical-align: middle; padding: 0 .25em;">➡️</span><span class="fragment" data-fragment-index=8>object</span></p>
+          <p class="fragment" data-fragment-index=7>variable<span style="font-size: 2em; vertical-align: middle; padding: 0 .25em;">➡️</span>object</p>
           <aside class="notes" data-markdown>
-            - So while "names are bound to objects" **(CLICK)** is the most officially recognized phrase **(CLICK)** 
-            - Saying that **(CLICK)** "variables refer to objects" probably sounds fine to most Python programmers **(CLICK)**
-            - But I tend to say **(CLICK)** "variables *point* to objects", which is *definitely* a more contentious phrase **(CLICK)**
-            - I *am* using an uncommon term
-            - But I also find this term helpful
-            - The phrase **(CLICK)** "variables point to objects" **evokes an idea** that we're all **familiar** with **(CLICK)**
-            - **Brand new** programmers seem to understand this phrase without much explanation
-            - It *is* true that the word "pointer" isn't the term officially used by the Python documentation and it could confuse C programmers...
+            - TODO shorten the speaker notes here
+            - So the documentation says **(CLICK)** "names are bound to objects"
+            - Many Python programmers say that "variables store object references" or that **(CLICK)** "variables refer to objects"
+            - But I tend to say that **(CLICK)** "variables *point* to objects"
+            - This is an uncommon term, but it **(CLICK)** evokes a very *visual* idea that even **brand new** programmers seem to understand with little to no explanation
+            - It *is* true that the word "pointer" could confuse programmers from other languages...
             - But so could many other terms...
           </aside>
         </section>
@@ -1169,42 +1479,26 @@ False</span></code></pre>
           <aside class="notes" data-markdown>
             - Now... am I practicing "whatabout-ism" **(CLICK)** by pointing at other naming problems to try to defend my use of the word "pointer"?
             - Maybe **(CLICK)**
-            - But I do want to emphasize something...
+            - ...
+            - But I have taught many programmers with a strong background in C...
           </aside>
         </section>
 
         <section>
-          <h3 class="fragment" data-fragment-index=1>
-            &ldquo;But they're not like pointers in C&rdquo;
-          </h3>
-          <table class="no-border">
-            <tbody>
-              <tr>
-                <td class="fragment" data-fragment-index=2>reference</td>
-                <td class="fragment" data-fragment-index=2>📖</td>
-              </tr>
-
-              <tr>
-                <td class="fragment" data-fragment-index=3>binding</td>
-                <td class="fragment" data-fragment-index=3>🪢</td>
-              </tr>
-
-              <tr>
-                <td class="fragment" data-fragment-index=4>pointer</td>
-                <td class="fragment" data-fragment-index=4>👉</td>
-              </tr>
-
-            </tbody>
-          </table>
-
+          <h1 class="fragment fade-out" data-fragment-index=6>Language matters</h1>
+          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> x = [2, 1, 3]
+>>> <span class="fragment" data-fragment-index=2>x.append(4)
+>>> </span><span class="fragment" data-fragment-index=3>x = [7, 11, 18]
+>>> </span><span class="fragment" data-fragment-index=4>y = [x, [29, 47, 76]]</span>  <span class="fragment" data-fragment-index=5># y contains x</span>
+          </code></pre>
+          <h1 class="fragment" data-fragment-index=6>Language is hard</h1>
           <aside class="notes" data-markdown>
-            - I have taught Python to many programmers with a strong background in C
-            - And pretty much all confusion around my use of the term pointer disappears when I say
-            - "But not like pointers in C" **(CLICK)**
-            - Reference **(CLICK)** and binding **(CLICK)** don't paint as clear a picture as the word "pointer" **(CLICK)**
-            - Pointer, point, and pointing are all very visual phrases that have a clear action behind them
-            - Even though the word "pointer" has a slightly different meaning in *other* programming languages, I find it to be the most helpful term
-            - Well, usually...
+            - As we talked earlier, saying **(CLICK)** we "changed" `x` doesn't convey whether we **(CLICK)** mutated an object or we **(CLICK)** changed *which* object the variable `x` points to
+            - We've also touched on the fact that way we use the word "contains" in English implies something different than its meaning within Python **(CLICK)**
+            - Saying `y` contains `x` **(CLICK)** is less precise than saying the object that `y` points to contains a reference to the same object that `x` points to...
+            - But instead of all that, **(CLICK)** I would *prefer* to say "`y` contains `x`"
+            - It's just *a lot* easier to say
           </aside>
         </section>
 
@@ -1216,9 +1510,52 @@ False</span></code></pre>
           &ldquo;This list <strong>stores a reference</strong> to another list&rdquo;
           </p>
           <aside class="notes" data-markdown>
-            - I find **(CLICK)** "pointing a variable" to be a pretty clear phrase
-            - But a list **(CLICK)** "storing references" might be clearer than a list "storing pointers"
-            - Whether we use the words point, reference, or bind... we're referring to the same thing
+            - So I *usually* use the **(CLICK)** "pointer" to describe Python's variables
+            - Though when it comes to objects, I usually talk about **(CLICK)** "storing references" because that sounds a bit clearer than "storing pointers"
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment" data-fragment-index=1>&ldquo;bianually&rdquo;</h2>
+          <p class="fragment" data-fragment-index=2>twice a year or once every two years</p>
+          <h2 class="fragment" data-fragment-index=3>&ldquo;4 ounces&rdquo;</h2>
+          <p class="fragment" data-fragment-index=4>a half cup or a quarter pound</p>
+          <h2 class="fragment" data-fragment-index=5>&ldquo;change&rdquo;</h2>
+          <p class="fragment" data-fragment-index=6>assigning a variable or mutating an object</p>
+          <aside class="notes" data-markdown>
+            - It's like the word biannually **(CLICK)**: do we mean **(CLICK)** twice a year or once every two years?
+            - Or ounces **(CLICK)**... are we talking **(CLICK)** volume or weight: half a cup or a quarter pound?
+            - The word change **(CLICK)** has a similar problem
+            - There are *two different* **(CLICK)** types of "change" in Python
+            - **Assignments** change variables and **mutations change objects**
+          </aside>
+        </section>
+
+        <section>
+          <p class="fragment" data-fragment-index=5>&ldquo;when I reassign <code>first</code>, it doesn't affect <code>second</code>&rdquo;</p>
+          <p class="fragment" data-fragment-index=3>&ldquo;when I mutate the list, both <code>first</code> and <code>second</code> change&rdquo;</p>
+          <p class="fragment strike" data-fragment-index=1>&ldquo;when I change <code>first</code>, it doesn't always change <code>second</code>&rdquo;</p>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> first = [2, 1, 3, 4]
+>>> second = first
+>>> <span class="fragment" data-fragment-index=3>first.append(7)
+>>> </span><span class="fragment" data-fragment-index=4>second
+[2, 1, 3, 4, 7]
+>>> </span><span class="fragment" data-fragment-index=5>first = [100, 200, 300]
+>>> </span><span class="fragment" data-fragment-index=6>second
+[2, 1, 3, 4, 7]
+>>></span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's distinguish between those two types of "change" **(CLICK)** ...
+            - When we **(CLICK)** mutate the object that `first` points to, if `second` **points to the same object**, accessing `second` **(CLICK)** will show the same *changed* object
+            - But if we **(CLICK)** reassign first, we changed *which* object the `first` variable points to
+            - ... But that *doesn't* change the `second` variable at all... **(CLICK)**
+            - `second` still points to the same object as before
+            - The word change can be **ambiguous** in Python... and ambiguity can reinforce **fuzzy and incorrect mental models**
+            - There are *two different* types of "change" in Python
+            - **Assignments** change variables and **mutations change objects**
+            - Our pointers mental model can help clarify this too...
           </aside>
         </section>
 
@@ -1251,437 +1588,73 @@ True</span></code></pre>
             - But this phrase also describes how Python's variables work
             - When we assign one variable to another **(CLICK)**, we're pointing to 2 variables to the same object **(CLICK)**
             - Which makes them **different names for the same thing**
-            - TODO *cue animated gif* (about 1 minute into this video https://www.youtube.com/watch?v=CvJAv82IV_g)
           </aside>
         </section>
 
         <section>
-          <h1>&ldquo;variables are pointers&rdquo;</h1>
-          <h2 class="fragment">&ldquo;variables contain references&rdquo;</h2>
+          <pre class="python"><code data-trim data-noescape>
+>>> runtimes = {'v1': [38, 47, 52], 'v2.5': [27, 12, 23]}
+>>> <span class="fragment">v1_runtimes = runtimes['v1']
+>>> </span><span class="fragment">v1_runtimes.pop()
+52
+>>> <span class="fragment">runtimes
+{'v1': [38, 47], 'v2.5': [27, 12, 23]}
+>>> </span><span class="fragment">v1_runtimes = runtimes['v1'].copy()
+>>> </span><span class="fragment">v1_runtimes = list(runtimes['v1'])</span></code></pre>
           <aside class="notes" data-markdown>
-            - "pointer" is *not* the most common term you'll hear for describing how Python's variables work
-            - ... but I do think it's the most *helpful* term
-            - **(CLICK)** Followed closely by the term "reference"
-            - ... which isn't as visual but *is* pretty useful
-          </aside>
-        </section>
-
-      </section>
-      <section>
-        <!-- section: language matters -->
-
-        <section data-transition="none">
-          <aside class="notes" data-markdown>
-            - Over the years, I've gradually became more careful about my word choice while teaching
+            - So we may talk about lists-of-lists or dictionaries-of-lists...
+            - But this dictionary doesn't *actually* contain lists... it contains references to lists
+            - This is an important thing to acknowledge *if* those values might be used **(CLICK)** anywhere else in our program
+            - Because if we change the values in our dictionary or **(CLICK)** if those values change somewhere else, we *might* be unhappy **(CLICK)**
+            - We could avoid this problem by copying those objects using **(CLICK)** the `list` class's `copy` method or by calling **(CLICK)** the `list` constructor to make a new list out of an old one
           </aside>
         </section>
 
         <section data-transition="none-in slide-out">
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> colors = ["purple", "green", "blue"]
-          </code></pre>
-          <ul style="list-style-type: none; margin-left: -2em;">
-            <li class="fragment" data-fragment-index=2>
-              <span class="fragment" data-fragment-index=4>❌</span>
-              &ldquo;<code>colors</code> <strong>contains</strong> a list of strings&rdquo;</li>
-            <li class="fragment" data-fragment-index=3>
-              <span class="fragment" data-fragment-index=4>⚠️</span>
-              &ldquo;<code>colors</code> <strong>is</strong> a list of strings&rdquo;</li>
-            <li class="fragment" data-fragment-index=5>
-              <span class="fragment" data-fragment-index=6>✅</span>
-              &ldquo;<code>colors</code> <strong>points to</strong> a list of strings&rdquo;</li>
-            <li class="fragment" data-fragment-index=7>
-              <span style="visibility: hidden;">✅</span>
-              &ldquo;<code>colors</code> <strong>refers to</strong> a list of strings&rdquo;</li>
-            <li class="fragment" data-fragment-index=9>
-              <span style="visibility: hidden;">✅</span>
-              &ldquo;<code>colors</code> <strong>is bound to</strong> a list of strings&rdquo;</li>
-          </ul>
-          <p class="fragment" style="font-size: 2em;">➡️</p>
+          <h2>Sticky Notes</h2>
+          <div style="display: grid; grid-auto-flow: column;">
+            <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
+>>> first = []
+>>> second = first
+>>> second.append(9)
+>>> second
+[9]
+>>> first
+[9]
+>>> <span class="fragment" data-fragment-index=1>rows = [second]
+>>> </span></code></pre>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="overflow: visible; width: 400px;">
+                <!-- Empty list object -->
+                <rect x="20" y="20" width="160" height="80" fill="white" stroke="black" stroke-width="2" rx="5" ry="5"/>
+                <text x="100" y="70" font-size="24" text-anchor="middle" fill="black">[<tspan>9</tspan>]</text>
+
+                <!-- First sticky note -->
+                <g transform="rotate(-15 30 30)">
+                <rect x="10" y="0" width="60" height="60" fill="#FFFF88" stroke="#E6E600" stroke-width="1"/>
+                <path d="M10 0 L70 0 L70 10 Q60 5 50 10 Q40 15 30 10 Q20 5 10 10 Z" fill="#FFFF66"/>
+                <text x="40" y="35" font-size="12" text-anchor="middle" fill="black">first</text>
+                </g>
+
+                <!-- Second sticky note -->
+                <g transform="rotate(15 170 30)">
+                <rect x="130" y="0" width="60" height="60" fill="#FF9999" stroke="#FF6666" stroke-width="1"/>
+                <path d="M130 0 L190 0 L190 10 Q180 5 170 10 Q160 15 150 10 Q140 5 130 10 Z" fill="#FF8888"/>
+                <text x="160" y="35" font-size="12" text-anchor="middle" fill="black">second</text>
+                </g>
+              </svg>
+
+            </div>
+          </div>
           <aside class="notes" data-markdown>
-            - I used to use phrases like "`colors` contains a list" **(CLICK)**
-            - Or... "`colors` is a list" **(CLICK)**
-            - But I found that using these phrases sometimes caused confusion **(CLICK)**, especially when I tried to teach **how variables actually work** in Python
-            - Now I usually use the phrase "points to" **(CLICK)**
-            - colors *points to* a list
-            - This phrase doesn't hint at an incorrect mental model **(CLICK)**
-            - The alternative of "colors *refers to* a list" **(CLICK)** also works, though it sounds a bit vague
-            - And "colors *is bound* a list", **(CLICK)** while more officially correct, sounds *weird*, especially when you're first starting out
-            - And while the word "pointer" is a **technical term** that's not *usually* used in Python, it's also a term **(CLICK)** that **evokes an idea** that we're **familiar** with
+            - ...we put our list **(CLICK)** inside another list
+            - What should our model look like now?
+            - Well... what actually *happens* when we put one list inside another list?
+            - We'll talk about that *later*
+            - First, I'd like to introduce a *third* mental model...
           </aside>
         </section>
 
-        <section>
-          <h1 class="fragment fade-out" data-fragment-index=6>Language matters</h1>
-          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> x = [2, 1, 3]
->>> <span class="fragment" data-fragment-index=2>x.append(4)
->>> </span><span class="fragment" data-fragment-index=3>x = [7, 11, 18]
->>> </span><span class="fragment" data-fragment-index=4>y = [x, [29, 47, 76]]</span>  <span class="fragment" data-fragment-index=5># y contains x</span>
-          </code></pre>
-          <h1 class="fragment" data-fragment-index=6>Language is hard</h1>
-          <aside class="notes" data-markdown>
-            - As we talked earlier, saying **(CLICK)** we "changed" `x` doesn't convey whether we **(CLICK)** mutated an object or we **(CLICK)** changed *which* object the variable `x` points to
-            - We've also touched on the fact that way we use the word "contains" in English implies something different than its meaning within Python **(CLICK)**
-            - Saying `y` contains `x` **(CLICK)** is less precise than saying the object that `y` points to contains a reference to the same object that `x` points to...
-            - But instead of all that, **(CLICK)** I would *prefer* to say "`y` contains `x`"
-            - It's just *a lot* easier to say
-            - TODO wrap this section/idea up?
-          </aside>
-        </section>
-
-      </section>
-      <section>
-        <!-- section: mutating assignments -->
-        <!-- SECTION TIME: 3 minutes -->
-
-        <section>
-          <h1 class="fragment" data-fragment-index=7>Assignments happen</h1>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>n = 3
->>> </span><span class="fragment" data-fragment-index=2>from math import pi
->>> </span><span class="fragment" data-fragment-index=3>for n in range(5):
-...     ...
-...
->>> </span><span class="fragment" data-fragment-index=4>n
-4
->>> </span><span class="fragment" data-fragment-index=5>def pi(): return 3.14159
-...
->>> </span><span class="fragment" data-fragment-index=6>class pi: pass
-...</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - So assignments change which object a variable points to
-            - This **(CLICK)** is what an assignment looks like
-            - But this isn't the *only* way an assignment might look
-            - Import statements **(CLICK)** also perform an assignment
-            - And so does each iteration **(CLICK)** of a `for` loop **(CLICK)**
-            - And so do function definitions **(CLICK)** and class definitions **(CLICK)**
-            - Anything that updates what a name points to **(CLICK)** performs some sort of assignment
-          </aside>
-        </section>
-
-        <section>
-          <h3 class="fragment" data-fragment-index=2>Augmented Assignments</h3>
-          <p class="fragment" data-fragment-index=1>
-          <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, etc.
-          </p>
-          <p class="fragment" data-fragment-index=3>Are these assignments?</p>
-          <p class="fragment" data-fragment-index=4>Are these mutations?</p>
-          <h1 class="fragment" data-fragment-index=5>YES</h1>
-          <aside class="notes" data-markdown>
-            - But what about `+=` and `-=`? **(CLICK)**
-            - These are often called **(CLICK)** augmented assignments...
-            - But do these **(CLICK)** perform an assignment?
-            - Or do they **(CLICK)** mutate an object?
-            - Well...  **(CLICK)**
-            - It depends.
-          </aside>
-        </section>
-
-        <section>
-          <h2 class="fragment" data-fragment-index=7>In-place addition</h2>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>a = [2, 1, 3]
->>> </span><span class="fragment" data-fragment-index=2>b = a
->>> </span><span class="fragment" data-fragment-index=3>b += [4, 7, 11]
->>> </span><span class="fragment" data-fragment-index=4>b
-[2, 1, 3, 4, 7, 11]
->>> <span class="fragment" data-fragment-index=5>a</span><span class="fragment" data-fragment-index=6>
-[2, 1, 3, 4, 7, 11]</span></code></pre>
-          <aside class="notes" data-markdown>
-            - Let's say we have a variable `a` **(click)** and variable `b` **(click)** which both point to the same list
-            - If we use the `+=` operator **(click)** to add more elements to `b` **(click)**
-            - ... what will happen to `a`? **(click)**
-            - Does `a` change or is it still the same?
-            - When we look at `a`, we'll see that it *changed* **(click)**
-            - Augmented assignments actually perform a mutation
-            - So when we use the `+=` operator on a list, we're not making a new list... we're *mutating* our existing list
-            - That's why using `+=` is often called an in-place addition **(click)**
-            - An in-place operation is one that's *meant* to mutate the object
-          </aside>
-        </section>
-
-        <section>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>name = "North Bay Python"
->>> </span><span class="fragment" data-fragment-index=2>name += " 2025"  <span class="fragment" data-fragment-index=4># name = name + "2025"</span>
->>> </span><span class="fragment" data-fragment-index=3>name
-'North Bay Python</span></code></pre>
-          <aside class="notes" data-markdown>
-            - But wait... doesn't `+=` work on immutable objects, like strings? **(click)**
-            - Strings are immutable...
-            - Which means they *can't* be changed
-            - But they work with `+=`... **(click)**
-            - If `+=` is an in-place addition, how does it work on strings? **(click)**
-            - Well, augmented assignments *can* perform a mutation, but they don't *have* to... it's up to the object that they're operating on
-            - If an object doesn't specially handle `+=` then Python **(click)** falls back to using `+` and a regular assignment
-          </aside>
-        </section>
-
-        <section>
-          <h2 class="fragment">Assignments that mutate</h2>
-            <pre class="python fragment"><code data-trim data-noescape>
-<span class="fragment">>>> some_object.attribute = 4
->>> </span><span class="fragment">numbers[0] = 8</span>
-            </code></pre>
-          <aside class="notes" data-markdown>
-            - The distinction between assignments and mutations isn't always very clear... augmented assignments do perform an assignment, but they can also mutate. **(CLICK)**
-            - But this assignment-mutation duality comes up in other ways too **(CLICK)**
-            - Assigning to an attribute *is* an assignment **(CLICK)**, but it mutates the object that the attribute lives on
-            - And assigning to a list index mutates the list **(CLICK)**
-            - These *are* assignment statements, but these *do* mutate an object... modifying where an attribute points to mutates the object that the attribute lives on.
-          </aside>
-        </section>
-
-        <section>
-          <h2>Assignments can mutate</h2>
-          <ul>
-            <li class="fragment">Assignments change the object a reference refers to</li>
-            <li class="fragment">Objects can contain references to other object</li>
-            <li class="fragment">Assigning to an object attribute/index mutates the object</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - TODO transitions
-            - Assignments **(CLICK)** change which object a pointer is pointing to...
-            - But when our assignment target is an index, a key, or an attribute...
-            - That pointer, or, if you prefer, that object reference... lives *within* an object... which means we are *also* mutating that object that the pointer lives in
-            - Objects **(CLICK)** can contain references to other objects.
-            - When you change those references through an assignment, **(CLICK)** that requires mutating that larger object
-            - Is this a bit confusing? Yes... if you think about it too hard
-            - But most of the time, not really...
-            - Though saying "this is an assignment that mutates" does sound like a gotcha
-            - Speaking of gotchas... let's talk about mutability
-          </aside>
-        </section>
-
-      </section>
-      <section>
-        <!-- section: mutable tuples -->
-        <!-- SECTION TIME: 2 minutes -->
-
-        <section>
-          <h1 class="fragment data-fragment-index=3">Mutating tuples</h1>
-          <h2 data-fragment-index=1>Tuples cannot be mutated<span class="fragment" data-fragment-index=2>*</span></h2>
-          <p class="fragment" data-fragment-index=2>* For some definitions of "mutate"</p>
-          <aside class="notes" data-markdown>
-            - Tuples are immutable
-            - ... **(click)**
-            - Sort of
-            - **(click)** It is sometimes possible to change the value of a tuple... depending on what we mean by "change" and what we mean by "value"
-          </aside>
-        </section>
-
-        <section>
-          <h2>Tuples can contain lists</h2>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>result = (True, [2, 1, 3])
->>> </span><span class="fragment" data-fragment-index=2>result[1].append(4)</span><span class="fragment" data-fragment-index=3>
->>> </span><span class="fragment" data-fragment-index=4>result
-(True, [2, 1, 3, 4])</span></code></pre>
-          <aside class="notes" data-markdown>
-            - In Python, **(click)** you can put a list inside of a tuple
-            - What would happen if we try to *change* that list **(click)**, by appending a new item to it?
-            - Is that allowed?
-            - It is **(click)**
-            - But aren't tuples immutable...
-            - And yet, **(click)** it seems like our tuple has changed
-            - Has it?
-          </aside>
-        </section>
-
-        <section>
-          <h2 class="fragment" data-fragment-index=9>Immutability is fuzzy</h2>
-          <pre class="python" style="width: 60%;"><code data-trim data-noescape>
->>> <span class="fragment" class="fragment" data-fragment-index=1>result = (True, [2, 1, 3])
->>> </span><span class="fragment" data-fragment-index=2>result2 = (True, [2, 1, 3])
->>> </span><span class="fragment" data-fragment-index=3>result == result2</span><span class="fragment" data-fragment-index=4>
-True
->>> </span><span class="fragment" data-fragment-index=5>result[1].append(4)
->>> </span><span class="fragment" data-fragment-index=6>result
-(True, [2, 1, 3, 4])
->>> </span><span class="fragment" data-fragment-index=7>result == result2</span><span class="fragment" data-fragment-index=8>
-False</span></code></pre>
-          <aside class="notes" data-markdown>
-            - If we make **(click)** 2 tuples **(click)** that each contain lists and the items in these tuples are all equal...
-            - Those tuples **(click)** will also be equal **(click)**
-            - If we change the list **(click)** that's inside one of these tuples
-            - We'll change the value of the tuple **(click)**
-            - Meaning, if we compare **(click)** these 2 tuples again, they won't be equal anymore **(click)**
-            - How and *why* is this possible?
-            - Tuples *are* immutable... **(click)** sort of
-            - Any immutable object that can store a reference to a mutable object can potentially have its value change
-          </aside>
-        </section>
-
-      </section>
-      <section>
-        <!-- section: conclusion -->
-
-        <section>
-          <h2>It's pointers all the way down 🐢</h2>
-          <ul>
-          <li class="fragment">Variables store object references</li>
-          <li class="fragment">Objects store object references</li>
-          <li class="fragment">Immutable containers can change</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - In Python, variables don't contain objects... they only *point* to objects
-            - Put another way, **(CLICK)** Variables store *references* to objects
-            - Also, objects **(CLICK)** can store references to other objects
-            - But objects *can't contain* objects
-            - And **(CLICK)** immutable objects that contain references to *mutable* objects are only *kind of* immutable
-            - So given what we've learned about how variables and objects work in Python...
-          </aside>
-        </section>
-
-        <section data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> <span class="fragment">x.append(x)
->>> </span><span class="fragment">x</span><span class="fragment">
-[[...]]</span><span style="opacity: 0;">
->>> x in x
-True
->>> x[0] is x
-True</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - If we take an empty list, called `x`
-            - And we call **(CLICK)** `x.append(x)`
-            - ...what do you think this might happen?
-            - ...
-            - After this **(CLICK)** would `x` be...
-            - an **empty list**?
-            - A list with **an empty list inside it**?
-            - Something else?
-            - As you *might* have guessed **(CLICK)**... this makes a list that contains itself...
-          </aside>
-        </section>
-
-        <section data-background-image="ouroboros-background.png" data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> x.append(x)
->>> x
-<span class="fragment bold" data-fragment-index=3>[[...]]</span>
-<span class="fragment" data-fragment-index=1>>>> x in x
-True</span>
-<span class="fragment" data-fragment-index=2>>>> x[0] is x
-True</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - ... sort of **(CLICK)**
-            - Lists don't *actually* contain objects, so a list can't *really* contain itself
-            - But it *can* contain a **reference** to itself **(CLICK)**
-            - Python is smart enough to represent this list using 3 dots **(CLICK)** because otherwise it would need to show an **infinite number** of **square brackets**
-            - We have just made an infinitely recursive data structure
-            - This is possible because objects in Python don't contain other objects
-            - Both variables and objects can only contain *references* to objects
-            - And there's stopping a list from contain a reference to itself
-          </aside>
-        </section>
-
-      </section>
-      <section>
-        <!-- section: why -->
-        <!-- SECTION TIME: 2 minutes -->
-
-        <section>
-          <h3 class="fragment" data-fragment-index=1>Brandon Rhodes talk:</h3>
-          <p class="fragment" data-fragment-index=1><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a></p>
-          <br>
-          <h3 class="fragment" data-fragment-index=2>Ned Batchelder talk:</h3>
-          <p class="fragment" data-fragment-index=2><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a></p>
-          <aside class="notes" data-markdown>
-            - I'd like to thank two Python community members for their talks on this topic some years ago...
-            - **(CLICK)** Brandon Rhodes' talk "Names, Objects, and Plummeting From The Cliff" does a great job of using an extended metaphor to visually explain how memory management works with Python's names and values
-            - **(CLICK)** And Ned Batchelder's talk "Facts and Myths about Names and Values" does a great job of dispelling myths and demonstrating facts about Python's variables objects
-            - I would also note that there are many odd corners of this topic that I mention today...
-          </aside>
-        </section>
-
-        <section>
-          <h1 class="fragment">We didn't discuss</h1>
-          <ul>
-          <li class="fragment">CPython optimizations that affect identity</li>
-          <li class="fragment">Direct value storage of array, data frames, etc.</li>
-          <li class="fragment">Mutable default argument gotchas</li>
-          <li class="fragment">Python oddities related to variables and objects</li>
-          </ul>
-          <h2 class="fragment">More Resources: <a href="https://trey.io/nbpy2025">https://trey.io/nbpy2025</a></h2>
-          <aside class="notes" data-markdown>
-            - For example, **(CLICK)** we didn't discuss...
-            - **(CLICK)** Optimizations around numbers, strings, and tuples
-            - **(CLICK)** Arrays and direct value storage
-            - **(CLICK)** Some thoughts on gotchas related to mutable default arguments
-            - **(CLICK)** Various reference-based gotchas
-            - **(CLICK)** This URL, which is on the bottom of each slide in this talk, includes links to resources on this topics, links to Ned and Brandon's talk, and links to other resources related to this topic
-          </aside>
-        </section>
-
-        <section>
-          <h1 class="fragment current-visible">But... why?</h1>
-          <h2 class="fragment">Imagine an alternative...</h2>
-          <p class="fragment">Would every assignment statement make a copy?</p>
-          <p class="fragment">Would storing a reference to an object ever be possible?</p>
-          <p class="fragment" style="margin-left: 1em;">"reference assignments" and "copying assignments" <span class="fragment">😬</span></p>
-          <aside class="notes" data-markdown>
-            - Before we wrap up... I do want to address a common question...
-            - *Why* does Python work this way? **(CLICK)**
-            - Wouldn't it be easier if variables and data structures contained objects and assignments copied the objects we were assigning to
-            - Well... **(CLICK)**
-            - Imagine if every assignment made a copy of an object **(CLICK)**
-            - Copying objects all the time times time and it takes memory
-            - But also, how would we ever model parent-child relationships **(CLICK)** or any kind of relationship that involved storing a *reference* to an object instead of a copy of an object?
-            - Would we need to make a distinction **(CLICK)** between assignments that copied and assignments that made a reference...
-            - Other programming languages have done that before...
-            - And... **(CLICK)** that requires adding another layer of complexity
-            - Python's way isn't necessarily the *right* way... but *most days* I really appreciate the trade-offs that Python made around this topic
-          </aside>
-        </section>
-
-        <section>
-          <h1 class="fragment" data-fragment-index=2>This thing is bad</h1>
-          <h2 class="fragment" data-fragment-index=3>Compared to what alternative?</h2>
-          <h3 class="fragment" data-fragment-index=1>Everything is a trade-off</h3>
-          <aside class="notes" data-markdown>
-            - Python's separation between variables and objects can *definitely* be confusing, but it's a pretty decent approach to a hard problem
-            - Every decision **(CLICK)** has trade-offs and *everything* is relative to its possible alternatives
-            - Whether we're talking about a software feature or about politics, when we say **(CLICK)** "This thing is bad", we should *always* ask ourselves **(CLICK)** "compared to what alternative?"
-            - We *should* acknowledge problems with the status quo, but we also need to think deeply and honestly about real world outcomes
-          </aside>
-        </section>
-
-      </section>
-      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
-        <h2 style="margin-top: 0.5em;">Resources &nbsp; <a href="https://trey.io/nbpy2025">https://trey.io/nbpy2025</a></h2>
-        <h3 style="margin-top: 1.5em;">
-          Thank you<br>
-        </h3>
-        <div style="margin-top: 2.5em;">
-          <p style="float: left; margin-right: 2em;">
-            <strong>Trey Hunner</strong><br>
-            <small>Python Team Trainer<br>
-              <strong>trey@PythonMorsels.com</strong></small>
-          </p>
-          <p style="float: left;">
-          <a href="http://truthful.technology"><img src="horizontal-training-logo.svg" class="no-style logo"></a>
-          <a href="http://pythonmorsels.com"><img src="horizontal-morsels-logo.svg" class="no-style logo"></a>
-          </p>
-          <div style="clear: both;"></div>
-        </div>
-        <aside class="notes" data-markdown>
-          - ...
-          - Thank you
-        </aside>
-      </section>
-
-      </section>
-      <section>
-        <!-- section: cutting room floor -->
-
-        <script type="text/html">
         <section data-transition="slide-in none-out">
           <h2 class="fragment" data-fragment-index=1>Pointers</h2>
           <div style="display: grid; grid-auto-flow: column;">
@@ -1785,7 +1758,6 @@ True</span>
             - fix this broken diagram
           </aside>
         </section>
-        </script>
 
         <section data-transition="none-in none-out">
           <pre class="python"><code data-trim data-noescape>
