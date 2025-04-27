@@ -29,9 +29,10 @@
 
         <section data-background="#ffffff" data-background-transition="zoom" data-transition="zoom" data-transition-speed="fast">
           <h1>Variables and Objects</h1>
-          <p>
+          <h2>It's pointers all the way down</h2>
+          <h3>
           <small><a href="https://treyhunner.com/" rel="author">Trey Hunner</a></small>
-          </p>
+          </h3>
           <aside class="notes" data-markdown>
             - TODO
           </aside>
@@ -319,9 +320,9 @@
           <aside class="notes" data-markdown>
             - "they're not like pointers in C"
             - You can't dereference them and there's no pointer arithmetic in Python
-            - I will *not* use the word "binding"
-            - Though I will sometimes use the term "reference"
-            - But I'll mostly say "pointer" and "pointing" because that's a very visual idea that *all* of us are familiar with
+            - I will *not* use the word "binding" **(CLICK)**
+            - Though I will sometimes use **(CLICK)** the term "reference"
+            - But I'll mostly say "pointer" **(CLICK)** because that's a very visual idea that *all* of us are familiar with
           </aside>
         </section>
 
@@ -470,7 +471,7 @@
           <aside class="notes" data-markdown>
             - So... **(click)** variables in Python do not *contain* objects, they *point* to them
             - Because of this indirection between variables and objects, **(click)** there are 2 distinct types of "change"
-            - This is why the word "change" is ambiguous: **(CLICK)** mutations change objects and **(CLICK)** assignments change **which object** a *variable* points to
+            - This is why the word "change" *can* be ambiguous: **(CLICK)** mutations change objects and **(CLICK)** assignments change **which object** a *variable* points to
           </aside>
         </section>
 
@@ -583,7 +584,7 @@ value == another_value
             - The `is` operator is *very* rarely used outside of comparisons to **(CLICK)** `None`
             - When we ask "are they the same?" we usually **(CLICK)** want the double-equals operator.
             - **(CLICK)** Checking equality is much more common than checking identity
-            - TODO put time here for the sake of a pause
+            - **08 minutes and 30 seconds in**
           </aside>
         </section>
 
@@ -632,7 +633,8 @@ value == another_value
             - ... which, as we discussed, can be a tricky word
             - But I also used... the word "contains" **(CLICK)**
             - The word "contains" can *also* cause confusion
-            - Data structures don't actually *contain* objects
+            - Data structures in Python don't actually *contain* objects
+            - Data structures only contain *pointers* to objects
             - Let's take a look at what's going on here by revisiting 2 of our mental models from before...
           </aside>
         </section>
@@ -696,7 +698,7 @@ value == another_value
             - This *does* work, but it seems a bit complicated
             - This sticky note mental model works *well* for explaining how **variables** in Python work...
             - But it doesn't work well for explaining how **objects** work
-            - Let's take a look at how our pointers mental model works in this scenario...
+            - Let's take a look at how our pointers mental model handles this...
           </aside>
         </section>
 
@@ -777,10 +779,10 @@ value == another_value
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - When we assign the `first` variable **(CLICK)** to an empty list, we draw an arrow **(CLICK)** from the variable to the object
-            - Then when we assign **(CLICK)** another variable to the first one, we draw another arrow **(CLICK)** from the second variable to the same object
-            - So if we **(CLICK)** modify the second list **(CLICK)**...
-            - The second list changes **(CLICK)** and so does the first **(CLICK)** because *they're the same list*
+            - When we assigned the `first` variable **(CLICK)** to an empty list, we drew an arrow **(CLICK)** from the variable to the object
+            - Then when we assigned **(CLICK)** another variable to the first one, we drew another arrow **(CLICK)** from the second variable to the same object
+            - So when we **(CLICK)** modified the second list **(CLICK)**...
+            - The second list changed **(CLICK)** and so did the first **(CLICK)** because *they're the same list*
             - But wait... our diagram before didn't look quite like this...
             - This time, our list has an **arrow pointing to an integer**... why is that?
             - Well, **variables don't contain objects**, but objects *also* don't contain objects
@@ -889,7 +891,7 @@ value == another_value
         </section>
 
         <section data-transition="slide-in none-out">
-          <pre class="python fragment" data-fragment-index=1><code data-trim data-noescape>
+          <pre class="python"><code data-trim data-noescape>
 >>> <span class="fragment" data-fragment-index=2>class TodoList:
 ...     def __init__(self, tasks):
 ...         self.tasks = tasks
@@ -909,12 +911,14 @@ value == another_value
           </code></pre>
           <aside class="notes" data-markdown>
             - ...isn't just about data structures... this is about pretty much *every object in Python* **(CLICK)**
-            - Let's say we make *our own* objects using a class **(CLICK)**
+            - Let's say we make *our own* objects using a class
             - This class accepts a list and stores that list as an attribute on our class instances
+            - Calling the `add_task` method on an instance of this `TodoList` class will add a new task to the end of the `tasks` attribute for that class instance
+            - ...
             - If we pass **(CLICK)** the same list **(CLICK)** into this class twice... **(CLICK)**
             - We'll end up with two class instances that have the same attribute
             - But what if we mutate the `tasks` list **(CLICK)** for one of those two objects? **(CLICK)**
-            - Will that affect **(CLICK)** the *other* instance?
+            - Will that affect **(CLICK)** the *other* object?
             - ...
             - It will! **(CLICK)**
             - Attributes, like variables, don't *contain* objects... they *point* to objects
@@ -943,12 +947,12 @@ value == another_value
 >>> </span><span class="fragment">wed = TodoList({"Here is", "a set", "of tasks"})</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - For this class, we could use **(CLICK)** the `list` constructor to copy the passed-in list
+            - In this class, we could use **(CLICK)** the `list` constructor to copy the passed-in list
             - Now when we make **(CLICK)** two instances of our class by passing in the *same* list twice...
             - Modifying the `tasks` list **(CLICK)** of one instance **(CLICK)**
             - Will *not* affect the `tasks` list **(CLICK)** of the other
             - Also, this class now also accepts not just lists, but sets, generators, or *any* iterable
-            - ... because the `list` constructor **(CLICK)** will loop over any iterable you give to it to make a new list
+            - ... because the `list` constructor **(CLICK)** will loop over any iterable you give to it to make a new list that contains *all the items* from the given iterable
             - So for many classes that are meant to change the data that's passed-in to them, that data is often copied when a new instance is initialized
           </aside>
         </section>
@@ -966,11 +970,12 @@ value == another_value
           <aside class="notes" data-markdown>
             - Variables don't contain objects... **(CLICK)** they only contain pointers to objects
             - But objects also don't contain objects...
-            - Whether we're talking about indexes and attributes, **(CLICK)** objects only contain pointers to objects
+            - Whether we're talking about indexes or attributes, **(CLICK)** objects only contain pointers to objects
             - So when we say we've made a list-of-lists
             - We actually mean **(CLICK)** that we've made a list where each item acts as pointer to another list
-            - And if ask whether our list contains a specific object...
-            - **(CLICK)** We're actually asking whether our list contains a reference to an equivalent object
+            - And in fact, **(CLICK)** when ask whether our list contains a specific object using Python's `in` operator...
+            - We're actually asking whether our list contains a reference to an equivalent object
+            - **15 minutes**
           </aside>
         </section>
 
@@ -995,7 +1000,6 @@ value == another_value
 ...</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - TODO cut or shorten this slide?
             - So assignments change which object a variable points to
             - And this **(CLICK)** is what an assignment looks like
             - But this isn't the *only* way an assignment might look
@@ -1076,6 +1080,7 @@ value == another_value
             - Assigning to an attribute *is* an assignment... **(CLICK)** but it mutates the object that the attribute lives on
             - And assigning to a list index mutates the list **(CLICK)**
             - These *are* assignment statements, but these *also* mutate an object... modifying where an *attribute* or an *index* points to mutates the object that the attribute or the index lives within.
+            - And if you squint hard enough, every assignment is actually also a mutation of some sort of namespace... it may not be a namespace that we can access through attribute lookups on an object... but all variables are stored somewhere
           </aside>
         </section>
 
@@ -1088,10 +1093,12 @@ value == another_value
           </ul>
           <aside class="notes" data-markdown>
             - Assignments **(CLICK)** change which object a pointer is pointing to...
-            - But when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
-            - And since the *containing* objects **(CLICK)** can contain references to other objects.
-            - When we change those references, through an assignment, **(CLICK)** that requires mutating the containing object
+            - But objects can contain references to other objects **(CLICK)**
+            - And when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
+            - So when we use an assignment statement to change where that attribute is pointing, **(CLICK)** that *mutates* the containing object
+            - ...
             - Speaking of mutating objects... let's talk about tuples
+            - **18 minutes and 30 seconds in**
           </aside>
         </section>
 
@@ -1121,7 +1128,7 @@ value == another_value
 >>> </span><span class="fragment" data-fragment-index=4>result
 (True, [2, 1, 3, 4])</span></code></pre>
           <aside class="notes" data-markdown>
-            - If we **(CLICK)** can put a list inside of a tuple
+            - If we **(CLICK)** put a list inside of a tuple
             - What would happen if we try to *change* that list **(click)**, by appending a new item to it?
             - Python allows this... **(CLICK)**
             - If you can get a reference to a mutable object, you can mutate it
@@ -1151,8 +1158,8 @@ False</span></code></pre>
             - Tuples *are* immutable... **(CLICK)**
             - But any immutable object that can store a reference to a mutable object can potentially have its value change
             - In other words, immutability is a shallow concept...
-            - We can't directly change a tuple, but we *can* change objects that tuples refer to... and since objects affect the *value* of the tuple...
-            - That means that tuples that contain mutable objects aren't entirely immutable
+            - We can't directly change a tuple, but we *can* change objects that tuples refer to... and since the objects a tuple contains affect the *value* of the tuple...
+            - That means that tuples that contain mutable objects *can* have their values change
           </aside>
         </section>
 
@@ -1209,8 +1216,9 @@ True</span>
 True</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - ... sort of
-            - But as we know, data structures don't *contain* objects, they contain references to objects
+            - Because that's apparently possible in Python
+            - A list can contain itself.. sort of
+            - ...as we know, data structures don't *contain* objects, they contain references to objects
             - So this list contains a **reference** to itself **(CLICK)**
             - We have just made an infinitely recursive data structure **(CLICK)**
             - This is possible because objects in Python don't contain other objects
@@ -1315,50 +1323,6 @@ True</span>
       <section>
         <!-- section: cutting room floor -->
 
-        <section>
-          <h1 class="fragment">Unhashable tuples</h1>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> p = (3, 4)
->>> points = {p}
->>> points
-{(3, 4)}
->>> result = (True, [])
->>> results = {result}
-Traceback (most recent call last):
-  File "&lt;python-input-5>", line 1, in &lt;module>
-    results = {result}
-              ^^^^^^^^
-TypeError: unhashable type: 'list'
->>> hash([])
-Traceback (most recent call last):
-  File "&lt;python-input-6>", line 1, in &lt;module>
-    hash([])
-    ~~~~^^^^
-TypeError: unhashable type: 'list'
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - fix all this...
-
-            - Here is an immutable tuple
-            - This tuple can be used in a set because it's both immutable and hashable
-            - Here is a somewhat immutable tuple
-            - This tuple is unhashable, so it cannot be used in a set
-            - Individual tuples are only hashable if all of the items they contain are hashable
-            - Lists, and most other mutable objects, are *not* hashable
-            - Typically if the value of an object can change, meaning it could be become unequal to an object that it *was* equal to previously... then that object should not be hashable
-            - A tuple can never change *which* objects it has within, but it's possible that the objects it contains could be mutated
-            - So because tuples can contain references to mutable objects it *is* possible to make a tuple is *sort of* mutable
-
-
-            - Tuples
-            - Immutability is a fuzzy concept... some tuples aren't quite immutable
-                - Specifically, if a tuple contains object that isn't hashable, then it isn't hashable
-                - What does hashable mean? Well, the hash of an object is *sort of* a representation of the *value* of that object.
-                - Objects that are hashable must *never* change their hash value over the lifetime of that object... and equality and hashable should correspond to each other, meaning if two objects hashable objects are equal they should have the hash value.  So a hashable object can never change its sense of equality. That's why some tuples are unhashable.
-
-          </aside>
-        </section>
-
         <section data-transition="none">
           <h2>Gotchas with Variables and Values</h2>
           <aside class="notes" data-markdown>
@@ -1404,18 +1368,6 @@ TypeError: 'tuple' object does not support item assignment
             - We're trying to mutate a list that's contained within a tuple by using the `+=` operator
             - Would this mutate the list?
             - Or would it give us error?
-          </aside>
-        </section>
-
-        <section>
-          <blockquote style="box-shadow: none; font-size: 1.5em;">
-            “All <span class="fragment bold" data-fragment-index=1>models</span> are wrong,<br>but some <span class="fragment bold" data-fragment-index=1>models</span> are useful.”
-            <nobr>&mdash; George E. P. Box</nobr>
-          </blockquote>
-          <aside class="notes" data-markdown>
-            - Mental models are *wonderful* for **anchoring** *your understanding* of **some small piece** of the world within a **metaphor**.
-            - But a mental model is **just that**... a *model* **(CLICK)**
-            - All models have their **boundaries**
           </aside>
         </section>
 
