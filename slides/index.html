@@ -59,50 +59,6 @@
 
       </section>
       <section>
-        <!-- section: mental models intro -->
-        <!-- SECTION TIME: 1 minute -->
-
-        <section data-background-color="#fff" data-transition="none">
-          <a href="https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html" target="_blank"><img src="marie-white-black.png" style="width: 1000px; margin: 0; border: 0; box-shadow: none; margin-bottom: 1px;"></a>
-          <p>&copy; 2024 Akiyoshi Kitaoka, used with permission</p>
-          <p><small><a href="https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html" target="_blank">https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html</a></small></p>
-          <aside class="notes" data-markdown>
-            - One of these faces is **white** and one is **black**
-            - One has a dark background and one has a light background
-            - ... at least it looks that way
-            - These faces are actually the same color
-          </aside>
-        </section>
-
-        <section data-background-color="#fff" data-transition="none">
-          <video width="1200" data-autoplay style="width: 1000px; margin: 0; margin-top: 0.5px; margin-right: 1px;" disablePictureInPicture>
-            <source src="marie-white-black.webm" type="video/mp4">
-          </video>
-          <p class="fragment" style="background-color: #7c7c7c; font-family: monospace; color: #fff">#7c7c7c</p>
-          <p><small><a href="https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html" target="_blank">https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html</a></small></p>
-          <aside class="notes" data-markdown>
-            - These faces are both **(CLICK)** a shade of gray that's *right* **in-between** white and black
-            - This optical illusion happens because our brain is trying to **correct** for what it perceives as a difference in the **quality of light** around these two faces
-            - Our brain is constantly **modeling** the world...
-          </aside>
-        </section>
-
-        <section>
-          <h1 class="fragment">Mental Models</h1>
-          <blockquote style="box-shadow: none; font-size: 1.5em;" class="fragment">
-            “All models are wrong,<br>but some models are useful.”
-            <nobr>&mdash; George E. P. Box</nobr>
-          </blockquote>
-          <aside class="notes" data-markdown>
-            - Our brain's *mental* models **(CLICK)** help us understand the world around us and they're *usually* pretty great at doing so...
-            - ...
-            - But every model **(CLICK)** has its flaws
-            - Though even *incorrect* models can *still* be **useful**
-          </aside>
-        </section>
-
-      </section>
-      <section>
         <!-- section: Python mental models -->
         <!-- SECTION TIME: 3 minutes -->
 
@@ -124,7 +80,7 @@
             - The question we're going to consider...
             - Is... **(CLICK)** "how many items are in `first`"?
             - ...
-            - Let's **compare a few different mental models** to see how each one might answer this question
+            - Let's **compare 2 different mental models** to see how each one might answer this question
           </aside>
         </section>
 
@@ -174,53 +130,6 @@
             - Variables in Python are *not* like **buckets that contain objects**
             - And assignment statements don't copy anything
             - Let's try another model...
-          </aside>
-        </section>
-
-        <section data-transition="slide-in none-out">
-          <h2 class="fragment" data-fragment-index=1>Sticky Notes</h2>
-          <div style="display: grid; grid-auto-flow: column;">
-            <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
->>> <span class="fragment" data-fragment-index=2>first = []
->>> </span><span class="fragment" data-fragment-index=4>second = first
->>> <span class="fragment" data-fragment-index=6>second.append(9)
->>> </span><span class="fragment" data-fragment-index=7>second
-[9]
->>> </span><span class="fragment" data-fragment-index=8>first
-[9]
->>> </span>
-            </code></pre>
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="overflow: visible; width: 400px;" class="fragment" data-fragment-index=3>
-                <!-- Empty list object -->
-                <rect x="20" y="20" width="160" height="80" fill="white" stroke="black" stroke-width="2" rx="5" ry="5"/>
-                <text x="100" y="70" font-size="24" text-anchor="middle" fill="black">[<tspan class="fragment" data-fragment-index=6>9</tspan>]</text>
-
-                <!-- First sticky note -->
-                <g transform="rotate(-15 30 30)">
-                <rect x="10" y="0" width="60" height="60" fill="#FFFF88" stroke="#E6E600" stroke-width="1"/>
-                <path d="M10 0 L70 0 L70 10 Q60 5 50 10 Q40 15 30 10 Q20 5 10 10 Z" fill="#FFFF66"/>
-                <text x="40" y="35" font-size="12" text-anchor="middle" fill="black">first</text>
-                </g>
-
-                <!-- Second sticky note -->
-                <g transform="rotate(15 170 30)" class="fragment" data-fragment-index=5>
-                <rect x="130" y="0" width="60" height="60" fill="#FF9999" stroke="#FF6666" stroke-width="1"/>
-                <path d="M130 0 L190 0 L190 10 Q180 5 170 10 Q160 15 150 10 Q140 5 130 10 Z" fill="#FF8888"/>
-                <text x="160" y="35" font-size="12" text-anchor="middle" fill="black">second</text>
-                </g>
-              </svg>
-            </div>
-          </div>
-          <aside class="notes" data-markdown>
-            - Let's mentally model variables as **(CLICK)** sticky notes on objects
-            - When we assign a variable to an empty list **(CLICK)**, we attach that variable name to the object **(CLICK)**
-            - Then when we assign **(CLICK)** another variable to the first one, we simply **(CLICK)** attach **another name** to the *same* object
-            - So when we change **(CLICK)** that second list, the second one changes **(CLICK)** but the first one changes also **(CLICK)**... because there **is no** first and second list
-            - it's all just *one* list!
-            - This is the mental model that you'll find used in many books on Python and in many introductory Python courses
-            - And this mental model works **pretty well**!
-            - But, as we'll see later, it *does* have limits
           </aside>
         </section>
 
@@ -279,38 +188,14 @@
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - Let's try one last mental model
-            - In this third model, we'll think of variables as living in **(CLICK)** variable land and objects as living in **(CLICK)** object land
+            - In model, we'll think of variables as living in **(CLICK)** variable land and objects as living in **(CLICK)** object land
             - When we assign a variable **(CLICK)** we draw an arrow  **(CLICK)** from the variable to the object
             - Then when we assign **(CLICK)** another variable to the first one, we draw another arrow **(CLICK)** from the second variable to the same object
             - So if we **(CLICK)** modify the second list **(CLICK)**...
             - The second list changes **(CLICK)** and so does the first **(CLICK)** because *they're the same list*
             - I call this mental model "pointers" **(CLICK)** because it looks like variables *point* to objects
             - ...
-            - Now, some of you may be **(CLICK)** looking at that word "pointer" and thinking "the word pointer means something specific" and ...
-          </aside>
-        </section>
-
-        <section>
-          <h2 class="fragment" data-fragment-index=3><span class="fragment fade-out" data-fragment-index=4>well actually</span></h2>
-          <p>
-          &ldquo;... but they're not pointers&rdquo;
-          </p>
-          <p class="fragment" data-fragment-index=2>
-          &ldquo;They're object references&rdquo;
-          </p>
-          <p class="fragment" data-fragment-index=4>
-          &ldquo;They're name bindings&rdquo;
-          </p>
-          <aside class="notes" data-markdown>
-            - "Python's variables are not pointers"
-            - ...
-            - They're **(CLICK)** "object references"
-            - Well...
-            - actually **(CLICK)**
-            - according to the Python documentation they're **(CLICK)** "bindings"
-            - But I'm going to call them pointers
-            - With the caveat that...
+            - But, unlike in some programming languages...
           </aside>
         </section>
 
@@ -337,11 +222,11 @@
             </tbody>
           </table>
           <aside class="notes" data-markdown>
-            - "they're not like pointers in C"
-            - You can't dereference them and there's no pointer arithmetic in Python
-            - I will *not* use the word "binding" **(CLICK)**
-            - Though I will sometimes use **(CLICK)** the term "reference"
-            - But I'll mostly say "pointer" **(CLICK)** because that's a very visual idea that *all* of us are familiar with
+            - There's no dereferencing pointers or pointer arithmetic
+            - Python's pointers aren't *nearly* as scary as C pointers
+            - according to the Python documentation Python's variables are **(CLICK)** "bindings"
+            - Though you may also here them called **(CLICK)** "references" or "object references"
+            - I usually use the word "pointer" **(CLICK)** because it helps visualize what's happening
           </aside>
         </section>
 
@@ -351,32 +236,10 @@
         <!-- SECTION TIME: 3 minutes -->
 
         <section data-transition="slide-in none-out">
-          <h1>
-            <span class="fragment fade-out" data-fragment-index=6
-            ><span class="fragment" data-fragment-index=1>Ch-</span
-            ><span class="fragment" data-fragment-index=2>ch-</span
-            ><span class="fragment" data-fragment-index=3>ch-</span
-            ></span><span class="fragment" data-fragment-index=4>chang</span
-            ><span class="fragment" data-fragment-index=5>e<span
-              class="fragment fade-out" data-fragment-index=6>s</span></span>
-          </h1>
-          <div class="fragment fade-out" data-fragment-index=6 style="margin: 0 auto; width: 800px; display: grid; grid-template-columns: repeat(12, 1fr); grid-gap: 10px;">
-            <img src="david-bowie/david-bowie.jpg" class="fragment no-style" data-fragment-index=1 style="grid-column: span 4">
-            <img src="david-bowie/man-of-words.jpg" class="fragment no-style" data-fragment-index=2 style="grid-column: span 4">
-            <img src="david-bowie/hunky-dory-outtake.jpg" class="fragment no-style" data-fragment-index=3 style="grid-column: span 4">
-            <img src="david-bowie/pin-ups.jpg" class="fragment no-style" data-fragment-index=4 style="grid-column: 3 / span 4">
-            <img src="david-bowie/heroes.jpg" class="fragment no-style" data-fragment-index=5 style="grid-column: span 4">
-          </div>
+          <h1>&ldquo;Change&rdquo;</h1>
           <aside class="notes" data-markdown>
-            - But before we talk about the word "pointer"...
-            - **(CLICK)** *(ch)*
-            - **(CLICK)** *(ch)*
-            - **(CLICK)** *(ch)*
-            - **(CLICK)** *(chang)*
-            - **(CLICK)** *(es)*
-            - ...
             - Let's talk about the word "change"...
-            - In Python, **(CLICK)** this word can be a problem
+            - In Python, this word can be a problem
           </aside>
         </section>
 
@@ -564,14 +427,11 @@ True</span></code></pre>
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - If I'm in the market to buy a washing machine, **(CLICK)** I might ask "what's the model number?" **(CLICK)**
-            - Because I'm hoping to look up reviews for what *should be* equivalent devices.
-            - But if I need to call customer support to report an issue, I might give them **(CLICK)** the serial number.
-            - The serial number uniquely identifies the machine.
-            - Equality checks are a like a comparison of model numbers... **(CLICK)** they ask whether two objects represent the same thing.
-            - Identity checks are like a comparison of serial numbers... **(CLICK)** they ask whether two objects are identical... meaning they aren't even two objects... they are *the same exact object*
-            - Though really...
-            - identity isn't *about objects* at all... it's actually a way to ask whether two *names* point to the same place
+            - Equality and identity are like **(CLICK)** model numbers and serial numbers
+            - Model numbers **(CLICK)** help you find equivalent devices
+            - Serial numbers **(CLICK)** uniquely identify a specific device
+            - Equality **(CLICK)** asks whether two objects represent the same thing
+            - Identity **(CLICK)** asks whether they are the exact same object
           </aside>
         </section>
 
@@ -654,70 +514,7 @@ value == another_value
             - The word "contains" can *also* cause confusion
             - Data structures in Python don't actually *contain* objects
             - Data structures only contain *pointers* to objects
-            - Let's take a look at what's going on here by revisiting 2 of our mental models from before...
-          </aside>
-        </section>
-
-        <section>
-          <h2>Sticky Notes</h2>
-          <div style="display: grid; grid-auto-flow: column;">
-            <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
->>> first = []
->>> second = first
->>> second.append(9)
->>> second
-[9]
->>> first
-[9]
->>> <span class="fragment" data-fragment-index=1>rows = [second]
->>> </span><span class="fragment" data-fragment-index=3>lists = rows</span></code></pre>
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="overflow: visible; width: 400px;">
-                <!-- Empty list object -->
-                <rect x="20" y="20" width="160" height="80" fill="white" stroke="black" stroke-width="2" rx="5" ry="5"/>
-                <text x="100" y="70" font-size="24" text-anchor="middle" fill="black">[<tspan>9</tspan>]</text>
-
-                <!-- First sticky note -->
-                <g transform="rotate(-15 30 30)">
-                <rect x="10" y="0" width="60" height="60" fill="#FFFF88" stroke="#E6E600" stroke-width="1"/>
-                <path d="M10 0 L70 0 L70 10 Q60 5 50 10 Q40 15 30 10 Q20 5 10 10 Z" fill="#FFFF66"/>
-                <text x="40" y="35" font-size="12" text-anchor="middle" fill="black">first</text>
-                </g>
-
-                <!-- Second sticky note -->
-                <g transform="rotate(15 170 30)">
-                <rect x="130" y="0" width="60" height="60" fill="#FF9999" stroke="#FF6666" stroke-width="1"/>
-                <path d="M130 0 L190 0 L190 10 Q180 5 170 10 Q160 15 150 10 Q140 5 130 10 Z" fill="#FF8888"/>
-                <text x="160" y="35" font-size="12" text-anchor="middle" fill="black">second</text>
-                </g>
-
-                <!-- Third sticky note -->
-                <g transform="rotate(-15 30 90)" class="fragment" data-fragment-index=2>
-                <rect x="10" y="60" width="60" height="60" fill="#88FF88" stroke="#66E666" stroke-width="1"/>
-                <path d="M10 60 L70 60 L70 70 Q60 65 50 70 Q40 75 30 70 Q20 65 10 70 Z" fill="#88FF66"/>
-                <text x="40" y="95" font-size="12" text-anchor="middle" fill="black">rows[0]</text>
-                </g>
-
-                <!-- Fourth sticky note -->
-                <g transform="rotate(5 170 80)" class="fragment" data-fragment-index=4>
-                <rect x="150" y="60" width="60" height="60" fill="#9966FF" stroke="#6666FF" stroke-width="1"/>
-                <path d="M150 60 L210 60 L210 70 Q200 65 190 70 Q180 75 170 70 Q160 65 150 70 Z" fill="#8888FF"/>
-                <text x="180" y="95" font-size="12" text-anchor="middle" fill="black">lists[0]</text>
-                </g>
-              </svg>
-
-            </div>
-          </div>
-          <aside class="notes" data-markdown>
-            - First we'll take another look at our sticky note mental model
-            - What should happen **(CLICK)** if we put our `second` list inside another list?...
-            - Should we **add another sticky note** that says **(CLICK)** which list it's in and which index it's at?
-            - Also... what if we point **(CLICK)** another variable to that new outer list?
-            - Would we need to add yet *another* note with another name and another index? **(CLICK)**
-            - This *does* work, but it seems a bit complicated
-            - This sticky note mental model works *well* for explaining how **variables** in Python work...
-            - But it doesn't work well for explaining how **objects** work
-            - Let's take a look at how our pointers mental model handles this...
+            - Let's take a look at what's going on here by revisiting our pointers mental models...
           </aside>
         </section>
 
@@ -891,9 +688,6 @@ value == another_value
             - Variables **can point** to objects and objects *can point* to **other objects**.
             - But nothing **ever** points to variables.
             - Variables are just a name that refers to an object
-            - ...
-            - This "pointers" mental model *is* a bit more **complex** than the sticky note model, but it **stretches** a bit further
-            - The **indirection** between variables and objects **is tricky**, but it also makes it easier to understand how **data structures** work.
           </aside>
         </section>
 
@@ -1115,70 +909,7 @@ value == another_value
             - But objects can contain references to other objects **(CLICK)**
             - And when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
             - So when we use an assignment statement to change where that attribute is pointing, **(CLICK)** that *mutates* the containing object
-            - ...
-            - Speaking of mutating objects... let's talk about tuples
             - **18 minutes and 30 seconds in**
-          </aside>
-        </section>
-
-      </section>
-      <section>
-        <!-- section: mutable tuples -->
-        <!-- SECTION TIME: 2 minutes -->
-
-        <section>
-          <h1 class="fragment data-fragment-index=3">Changing tuples</h1>
-          <h2 data-fragment-index=1>Tuples cannot be mutated<span class="fragment" data-fragment-index=2>*</span></h2>
-          <p class="fragment" data-fragment-index=2>* For some definitions of "mutate"</p>
-          <aside class="notes" data-markdown>
-            - Once you've made a tuple, you can't change it
-            - ... **(click)**
-            - Or can you?
-            - **(click)** You *can't* mutate a tuple
-            - But you *can* change the value of a tuple
-          </aside>
-        </section>
-
-        <section>
-          <h2>Tuples can contain lists</h2>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>result = (True, [2, 1, 3])
->>> </span><span class="fragment" data-fragment-index=2>result[1].append(4)</span><span class="fragment" data-fragment-index=3>
->>> </span><span class="fragment" data-fragment-index=4>result
-(True, [2, 1, 3, 4])</span></code></pre>
-          <aside class="notes" data-markdown>
-            - If we **(CLICK)** put a list inside of a tuple
-            - What would happen if we try to *change* that list **(click)**, by appending a new item to it?
-            - Python allows this... **(CLICK)**
-            - If you can get a reference to a mutable object, you can mutate it
-            - But... **(CLICK)** this also seems to change our tuple
-            - And yet, tuples are supposed to be immutable...
-            - Are they?
-          </aside>
-        </section>
-
-        <section>
-          <h2 class="fragment" data-fragment-index=9>Immutability is shallow</h2>
-          <pre class="python" style="width: 60%;"><code data-trim data-noescape>
->>> result = (True, [2, 1, 3])
->>> result2 = (True, [2, 1, 3])
->>> <span class="fragment" data-fragment-index=3>result == result2
-True
->>> </span><span class="fragment" data-fragment-index=5>result[1].append(4)
->>> </span><span class="fragment" data-fragment-index=6>result
-(True, [2, 1, 3, 4])
->>> </span><span class="fragment" data-fragment-index=7>result == result2
-False</span></code></pre>
-          <aside class="notes" data-markdown>
-            - If we make 2 equal tuples **(CLICK)**
-            - And we mutate an object **(CLICK)** that one of those tuples contains
-            - That *will* change the value **(CLICK)** of the tuple
-            - Meaning, the tuples **(CLICK)** aren't equal anymore
-            - Tuples *are* immutable... **(CLICK)**
-            - But any immutable object that can store a reference to a mutable object can potentially have its value change
-            - In other words, immutability is a shallow concept...
-            - We can't directly change a tuple, but we *can* change objects that tuples refer to... and since the objects a tuple contains affect the *value* of the tuple...
-            - That means that tuples that contain mutable objects *can* have their values change
           </aside>
         </section>
 
@@ -1259,7 +990,8 @@ True</span>
           <li class="fragment" data-fragment-index=4>CPython optimizations that affect identity</li>
           <li class="fragment" data-fragment-index=5>Direct value storage of array, data frames, etc.</li>
           <li class="fragment" data-fragment-index=6>Mutable default argument gotchas</li>
-          <li class="fragment" data-fragment-index=7>Python oddities related to variables and objects</li>
+          <li class="fragment" data-fragment-index=7>Tuples containing mutable objects</li>
+          <li class="fragment" data-fragment-index=7>Why it all works this way</li>
           </ul>
           <h2 style="margin-top: 0.2em;" class="fragment" data-fragment-index=8><a href="https://trey.io/nbpy2025">https://trey.io/nbpy2025</a></h2>
           <p style="font-size: 0.9em;" class="fragment" data-fragment-index=9><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a> - Brandon Rhodes</p>
@@ -1273,7 +1005,7 @@ True</span>
             - **(CLICK)** Optimizations around numbers, strings, and tuples
             - **(CLICK)** Arrays and direct value storage
             - **(CLICK)** Mutable default arguments
-            - **(CLICK)** And various reference-based gotchas
+            - **(CLICK)** And the fact that tuples can contain mutable objects
             - ...
             - **(CLICK)** This URL, which is on the bottom of each slide in this talk, includes links to resources on some of these topics as well as **(CLICK)** 2 great talks by other Python community members
             - ...
@@ -1342,6 +1074,106 @@ True</span>
       <section>
         <!-- section: cutting room floor -->
 
+        <!-- section: mental models intro -->
+        <!-- SECTION TIME: 1 minute -->
+
+        <section data-background-color="#fff" data-transition="none">
+          <a href="https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html" target="_blank"><img src="marie-white-black.png" style="width: 1000px; margin: 0; border: 0; box-shadow: none; margin-bottom: 1px;"></a>
+          <p>&copy; 2024 Akiyoshi Kitaoka, used with permission</p>
+          <p><small><a href="https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html" target="_blank">https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html</a></small></p>
+          <aside class="notes" data-markdown>
+            - One of these faces is **white** and one is **black**
+            - One has a dark background and one has a light background
+            - ... at least it looks that way
+            - These faces are actually the same color
+          </aside>
+        </section>
+
+        <section data-background-color="#fff" data-transition="none">
+          <video width="1200" data-autoplay style="width: 1000px; margin: 0; margin-top: 0.5px; margin-right: 1px;" disablePictureInPicture>
+            <source src="marie-white-black.webm" type="video/mp4">
+          </video>
+          <p class="fragment" style="background-color: #7c7c7c; font-family: monospace; color: #fff">#7c7c7c</p>
+          <p><small><a href="https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html" target="_blank">https://www.psy.ritsumei.ac.jp/akitaoka/saishin72e.html</a></small></p>
+          <aside class="notes" data-markdown>
+            - These faces are both **(CLICK)** a shade of gray that's *right* **in-between** white and black
+            - This optical illusion happens because our brain is trying to **correct** for what it perceives as a difference in the **quality of light** around these two faces
+            - Our brain is constantly **modeling** the world...
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment">Mental Models</h1>
+          <blockquote style="box-shadow: none; font-size: 1.5em;" class="fragment">
+            "All models are wrong,<br>but some models are useful."
+            <nobr>&mdash; George E. P. Box</nobr>
+          </blockquote>
+          <aside class="notes" data-markdown>
+            - Our brain's *mental* models **(CLICK)** help us understand the world around us and they're *usually* pretty great at doing so...
+            - ...
+            - But every model **(CLICK)** has its flaws
+            - Though even *incorrect* models can *still* be **useful**
+          </aside>
+        </section>
+
+        <!-- section: mutable tuples -->
+        <!-- SECTION TIME: 2 minutes -->
+        <section>
+          <h1 class="fragment data-fragment-index=3">Changing tuples</h1>
+          <h2 data-fragment-index=1>Tuples cannot be mutated<span class="fragment" data-fragment-index=2>*</span></h2>
+          <p class="fragment" data-fragment-index=2>* For some definitions of "mutate"</p>
+          <aside class="notes" data-markdown>
+            - Once you've made a tuple, you can't change it
+            - ... **(click)**
+            - Or can you?
+            - **(click)** You *can't* mutate a tuple
+            - But you *can* change the value of a tuple
+          </aside>
+        </section>
+
+        <section>
+          <h2>Tuples can contain lists</h2>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>result = (True, [2, 1, 3])
+>>> </span><span class="fragment" data-fragment-index=2>result[1].append(4)</span><span class="fragment" data-fragment-index=3>
+>>> </span><span class="fragment" data-fragment-index=4>result
+(True, [2, 1, 3, 4])</span></code></pre>
+          <aside class="notes" data-markdown>
+            - If we **(CLICK)** put a list inside of a tuple
+            - What would happen if we try to *change* that list **(click)**, by appending a new item to it?
+            - Python allows this... **(CLICK)**
+            - If you can get a reference to a mutable object, you can mutate it
+            - But... **(CLICK)** this also seems to change our tuple
+            - And yet, tuples are supposed to be immutable...
+            - Are they?
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment" data-fragment-index=9>Immutability is shallow</h2>
+          <pre class="python" style="width: 60%;"><code data-trim data-noescape>
+>>> result = (True, [2, 1, 3])
+>>> result2 = (True, [2, 1, 3])
+>>> <span class="fragment" data-fragment-index=3>result == result2
+True
+>>> </span><span class="fragment" data-fragment-index=5>result[1].append(4)
+>>> </span><span class="fragment" data-fragment-index=6>result
+(True, [2, 1, 3, 4])
+>>> </span><span class="fragment" data-fragment-index=7>result == result2
+False</span></code></pre>
+          <aside class="notes" data-markdown>
+            - If we make 2 equal tuples **(CLICK)**
+            - And we mutate an object **(CLICK)** that one of those tuples contains
+            - That *will* change the value **(CLICK)** of the tuple
+            - Meaning, the tuples **(CLICK)** aren't equal anymore
+            - Tuples *are* immutable... **(CLICK)**
+            - But any immutable object that can store a reference to a mutable object can potentially have its value change
+            - In other words, immutability is a shallow concept...
+            - We can't directly change a tuple, but we *can* change objects that tuples refer to... and since the objects a tuple contains affect the *value* of the tuple...
+            - That means that tuples that contain mutable objects *can* have their values change
+          </aside>
+        </section>
+
         <section data-transition="none">
           <h2>Gotchas with Variables and Values</h2>
           <aside class="notes" data-markdown>
@@ -1387,6 +1219,134 @@ TypeError: 'tuple' object does not support item assignment
             - We're trying to mutate a list that's contained within a tuple by using the `+=` operator
             - Would this mutate the list?
             - Or would it give us error?
+          </aside>
+        </section>
+
+        <section data-transition="slide-in none-out">
+          <h2 class="fragment" data-fragment-index=1>Sticky Notes</h2>
+          <div style="display: grid; grid-auto-flow: column;">
+            <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
+>>> <span class="fragment" data-fragment-index=2>first = []
+>>> </span><span class="fragment" data-fragment-index=4>second = first
+>>> <span class="fragment" data-fragment-index=6>second.append(9)
+>>> </span><span class="fragment" data-fragment-index=7>second
+[9]
+>>> </span><span class="fragment" data-fragment-index=8>first
+[9]
+>>> </span>
+            </code></pre>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="overflow: visible; width: 400px;" class="fragment" data-fragment-index=3>
+                <!-- Empty list object -->
+                <rect x="20" y="20" width="160" height="80" fill="white" stroke="black" stroke-width="2" rx="5" ry="5"/>
+                <text x="100" y="70" font-size="24" text-anchor="middle" fill="black">[<tspan class="fragment" data-fragment-index=6>9</tspan>]</text>
+
+                <!-- First sticky note -->
+                <g transform="rotate(-15 30 30)">
+                <rect x="10" y="0" width="60" height="60" fill="#FFFF88" stroke="#E6E600" stroke-width="1"/>
+                <path d="M10 0 L70 0 L70 10 Q60 5 50 10 Q40 15 30 10 Q20 5 10 10 Z" fill="#FFFF66"/>
+                <text x="40" y="35" font-size="12" text-anchor="middle" fill="black">first</text>
+                </g>
+
+                <!-- Second sticky note -->
+                <g transform="rotate(15 170 30)" class="fragment" data-fragment-index=5>
+                <rect x="130" y="0" width="60" height="60" fill="#FF9999" stroke="#FF6666" stroke-width="1"/>
+                <path d="M130 0 L190 0 L190 10 Q180 5 170 10 Q160 15 150 10 Q140 5 130 10 Z" fill="#FF8888"/>
+                <text x="160" y="35" font-size="12" text-anchor="middle" fill="black">second</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <aside class="notes" data-markdown>
+           - Let's mentally model variables as **(CLICK)** sticky notes on objects
+            - When we assign a variable to an empty list **(CLICK)**, we attach that variable name to the object **(CLICK)**
+            - Then when we assign **(CLICK)** another variable to the first one, we simply **(CLICK)** attach **another name** to the *same* object
+            - So when we change **(CLICK)** that second list, the second one changes **(CLICK)** but the first one changes also **(CLICK)**... because there **is no** first and second list
+            - it's all just *one* list!
+            - This is the mental model that you'll find used in many books on Python and in many introductory Python courses
+            - And this mental model works **pretty well**!
+            - But, as we'll see later, it *does* have limits
+          </aside>
+        </section>
+
+
+        <section>
+          <h2>Sticky Notes</h2>
+          <div style="display: grid; grid-auto-flow: column;">
+            <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
+>>> first = []
+>>> second = first
+>>> second.append(9)
+>>> second
+[9]
+>>> first
+[9]
+>>> <span class="fragment" data-fragment-index=1>rows = [second]
+>>> </span><span class="fragment" data-fragment-index=3>lists = rows</span></code></pre>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="overflow: visible; width: 400px;">
+                <!-- Empty list object -->
+                <rect x="20" y="20" width="160" height="80" fill="white" stroke="black" stroke-width="2" rx="5" ry="5"/>
+                <text x="100" y="70" font-size="24" text-anchor="middle" fill="black">[<tspan>9</tspan>]</text>
+
+          <div style="display: grid; grid-auto-flow: column;">
+            <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
+>>> first = []
+>>> second = first
+>>> second.append(9)
+>>> second
+[9]
+>>> first
+[9]
+>>> <span class="fragment" data-fragment-index=1>rows = [second]
+>>> </span><span class="fragment" data-fragment-index=3>lists = rows</span></code></pre>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" style="overflow: visible; width: 400px;">
+                <!-- Empty list object -->
+                <rect x="20" y="20" width="160" height="80" fill="white" stroke="black" stroke-width="2" rx="5" ry="5"/>
+                <text x="100" y="70" font-size="24" text-anchor="middle" fill="black">[<tspan>9</tspan>]</text>
+
+                <!-- First sticky note -->
+                <g transform="rotate(-15 30 30)">
+                <rect x="10" y="0" width="60" height="60" fill="#FFFF88" stroke="#E6E600" stroke-width="1"/>
+                <path d="M10 0 L70 0 L70 10 Q60 5 50 10 Q40 15 30 10 Q20 5 10 10 Z" fill="#FFFF66"/>
+                <text x="40" y="35" font-size="12" text-anchor="middle" fill="black">first</text>
+                </g>
+
+                <!-- Second sticky note -->
+                <g transform="rotate(15 170 30)">
+                <rect x="130" y="0" width="60" height="60" fill="#FF9999" stroke="#FF6666" stroke-width="1"/>
+                <path d="M130 0 L190 0 L190 10 Q180 5 170 10 Q160 15 150 10 Q140 5 130 10 Z" fill="#FF8888"/>
+                <text x="160" y="35" font-size="12" text-anchor="middle" fill="black">second</text>
+                </g>
+
+                <!-- Third sticky note -->
+                <g transform="rotate(-15 30 90)" class="fragment" data-fragment-index=2>
+                <rect x="10" y="60" width="60" height="60" fill="#88FF88" stroke="#66E666" stroke-width="1"/>
+                <path d="M10 60 L70 60 L70 70 Q60 65 50 70 Q40 75 30 70 Q20 65 10 70 Z" fill="#88FF66"/>
+                <text x="40" y="95" font-size="12" text-anchor="middle" fill="black">rows[0]</text>
+                </g>
+
+                <!-- Fourth sticky note -->
+                <g transform="rotate(5 170 80)" class="fragment" data-fragment-index=4>
+                <rect x="150" y="60" width="60" height="60" fill="#9966FF" stroke="#6666FF" stroke-width="1"/>
+                <path d="M150 60 L210 60 L210 70 Q200 65 190 70 Q180 75 170 70 Q160 65 150 70 Z" fill="#8888FF"/>
+                <text x="180" y="95" font-size="12" text-anchor="middle" fill="black">lists[0]</text>
+                </g>
+              </svg>
+
+            </div>
+          </div>
+          <aside class="notes" data-markdown>
+            - First we'll take another look at our sticky note mental model
+            - What should happen **(CLICK)** if we put our `second` list inside another list?...
+            - Should we **add another sticky note** that says **(CLICK)** which list it's in and which index it's at?
+            - Also... what if we point **(CLICK)** another variable to that new outer list?
+            - Would we need to add yet *another* note with another name and another index? **(CLICK)**
+            - This *does* work, but it seems a bit complicated
+            - This sticky note mental model works *well* for explaining how **variables** in Python work...
+            - But it doesn't work well for explaining how **objects** work
+            - Let's take a look at how our pointers mental model handles this...
           </aside>
         </section>
 
