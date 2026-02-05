@@ -368,9 +368,29 @@
         </section>
 
         <section>
-          TODO show the two types of code (mutation and assignment) code from earlier
+          <div style="display: grid; grid-auto-flow: column;">
+            <div>
+              <pre class="python"><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
+>>> first = [2, 3]
+>>> second = first
+>>> <span class="fragment">first.append(5)
+>>> </span><span class="fragment">second
+[2, 3, 5]</span>
+              </code></pre>
+            </div>
+            <div>
+              <pre class="python"><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
+>>> first = [2, 3]
+>>> second = first
+>>> <span class="fragment">first = [2, 3, 5]
+>>> </span><span class="fragment">second
+[2, 3]</span>
+              </code></pre>
+            </div>
+          </div>
+          <h3 class="fragment">&ldquo;change&rdquo;</h3>
           <aside class="notes" data-markdown>
-            - TODO earlier I said "if we change first by appending, second changes, but if we change first by assigning, second doesn't change"
+            - Earlier I said "if we change `first` **(CLICK)** by appending, second changes **(CLICK)**, but if we change `first` **(CLICK)** by assigning, second doesn't change" **(CLICK)**
             - The word "change" **(CLICK)** is a problem here
             - There are *two different* types of "change" in Python
             - **Assignments** change variables and **mutations change objects**
@@ -463,6 +483,31 @@
             - So... **(click)** variables in Python do not *contain* objects, they *point* to them
             - Because of this indirection between variables and objects, **(click)** there are 2 distinct types of "change"
             - This is why the word "change" *can* be ambiguous: **(CLICK)** mutations change objects and **(CLICK)** assignments change **which object** a *variable* points to
+          </aside>
+        </section>
+
+        <section>
+          <h3 class="fragment" data-fragment-index=1>&ldquo;We changed <code>x</code>&rdquo;</h3>
+          <div style="display: grid; grid-auto-flow: column;">
+            <div class="fragment" data-fragment-index=2>
+              <p>Changed the <strong>variable</strong>?</p>
+              <pre class="python"><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
+>>> x = [2, 3]
+>>> x = [2, 3, 5]
+              </code></pre>
+            </div>
+            <div class="fragment" data-fragment-index=3>
+              <p>Changed the <strong>object</strong>?</p>
+              <pre class="python"><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
+>>> x = [2, 3]
+>>> x.append(5)
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes" data-markdown>
+            - So... the phrase "we changed `x`" **(CLICK)**
+            - ... is a bit ambiguous
+            - Do we mean that we changed the variable `x` **(CLICK)** or the object that `x` points to? **(CLICK)**
           </aside>
         </section>
 
@@ -612,17 +657,29 @@ value == another_value
         </section>
 
         <section>
-          <h2>Function arguments are also assignments</h2>
-            <pre class="python"><code data-trim data-noescape>
-<span class="fragment">>>> some_object.attribute = 4
->>> </span><span class="fragment">numbers[0] = 8</span>
-            </code></pre>
+          <h3 class="fragment" data-fragment-index=7>Function arguments are also assignments</h3>
+          <pre class="python"><code data-trim data-noescape>
+def square_all(<span class="fragment bold-current" data-fragment-index=3>numbers</span>):
+    for i, n in enumerate(numbers):
+        <span class="fragment bold-current" data-fragment-index=5>numbers[i] = n ** 2</span>
+    return numbers
+          </code></pre>
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment bold-current" data-fragment-index=4>numbers = [2, 1, 3, 4, 7]</span>
+>>> <span class="fragment" data-fragment-index=2>square_all(numbers)
+[4, 1, 9, 16, 49]
+>>> </span><span class="fragment" data-fragment-index=6>numbers
+[4, 1, 9, 16, 49]</span>
+          </code></pre>
           <aside class="notes" data-markdown>
             - Passing arguments to a function is also a form of assignment
             - So when we called the `square_all` function with a list of numbers **(CLICK)**
-            - The local `numbers` variable within the `square_all` function was assigned to the list object that we passed in to that function
-            - When we then *mutated* that `numbers` list by updating value within it as we looped...
-            - We were mutating the original `numbers` list
+            - The local `numbers` variable **(CLICK)** within the `square_all` function was assigned to the list object **(CLICK)** that we passed in to that function
+            - When we then **(CLICK)** *mutated* that `numbers` list by updating each of its indexes as we looped...
+            - We were *mutating* the original `numbers` list
+            - That's why our `numbers` list *outside* **(CLICK)** the function changed.
+            - Function arguments are just variables **(CLICK)** and all variables point to objects
+            - Variable assignments don't copy objects and neither do function calls
           </aside>
         </section>
 
@@ -631,6 +688,7 @@ value == another_value
 def square_all(numbers):
     for i, n in enumerate(numbers):
         numbers[i] = n ** 2  <span class="fragment" data-fragment-index=1 style="font-weight: bold;"># DON'T DO THIS</span>
+    return numbers
           </code></pre>
           <pre class="python fragment" data-fragment-index=2><code data-trim data-noescape>
 def square_all(numbers):
@@ -657,22 +715,23 @@ def square_all(numbers):
         </section>
 
         <section>
-          <h2 class="fragment">Assignments that mutate</h2>
+          <h2 class="fragment" data-fragment-index=2>Assignments that mutate</h2>
           <pre class="python"><code data-trim data-noescape>
 def square_all(numbers):
     for i, n in enumerate(numbers):
-        <span class="fragment bold">numbers[i] = n ** 2</span>
+        <span class="fragment bold" data-fragment-index=1>numbers[i] = n ** 2</span>
+    return numbers
           </code></pre>
-          <pre class="python fragment"><code data-trim data-noescape>
+          <pre class="python fragment" data-fragment-index=3><code data-trim data-noescape>
 >>> some_list[0] = 8
->>> <span class="fragment">some_object.attribute = 4</span>
+>>> <span class="fragment" data-fragment-index=4>some_object.attribute = 4</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - But wait... this assignment statement **mutates** the list...
+            - But wait... **(CLICK)** this assignment statement **mutates** the list...
             - So is it an assignment or a mutation?
             - Well... it's both. **(CLICK)**
-            - Assigning to a list index mutates the list
-            - And assigning to an attribute mutates the object that the attribute lives on
+            - Assigning to **(CLICK)** a list index mutates the list
+            - And assigning to **(CLICK)** an attribute mutates the object that the attribute lives on
             - In fact, if you *squint* hard enough, every assignment is *also* a mutation of some sort of namespace... it may not be a namespace that we can access through attribute lookups on an object... but all variables are stored somewhere
           </aside>
         </section>
@@ -767,7 +826,18 @@ def square_all(numbers):
           <aside class="notes" data-markdown>
             - We have been talking mostly about **(CLICK)** variables and how they work
             - We haven't really discussed how **(CLICK)** objects work
-            - Let's start inspecting objects, by playing with Python's data structures
+            - Let's talk about how data structures work
+          </aside>
+        </section>
+
+        <section>
+          <h2>Data structures <span class="fragment" data-fragment-index=1>don't contain data<span class="fragment" data-fragment-index=2>*</span></span></h2>
+          <p class="fragment" data-fragment-index=2><small>*for some definitions of &ldquo;data&rdquo;</small></p>
+          <h2 class="fragment" data-fragment-index=3>Data structures don't contain <em>objects</em></h2>
+          <aside class="notes" data-markdown>
+            - In Python, data structures **(CLICK)** don't contain data
+            - Well... **(CLICK)** depending on what we mean by data
+            - What I really mean is **(CLICK)** that data structures don't contain *objects*
           </aside>
         </section>
 
