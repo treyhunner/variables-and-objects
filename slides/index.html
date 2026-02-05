@@ -59,30 +59,153 @@
 
       </section>
       <section>
-        <!-- section: Python mental models -->
-        <!-- SECTION TIME: 3 minutes -->
+        <!-- section: intro problems -->
+        <!-- SECTION TIME: 2 minutes -->
 
         <section>
-          <pre class="python"><code data-trim data-noescape style="font-size: 25px; line-height: 30px;">
->>> <span class="fragment" data-fragment-index=1>first = []
->>> </span><span class="fragment" data-fragment-index=3>second = first
->>> <span class="fragment" data-fragment-index=5>second.append(9)
->>> </span><span class="fragment" data-fragment-index=6>second
-[9]
->>> </span><span class="fragment" data-fragment-index=7>first</span>
-          </code></pre>
+          <h1>Mental Models</h1>
+          <h1 class="fragment">Gotchas</h1>
           <aside class="notes" data-markdown>
-            - Let's **test your mental model** of Python's **variables**...
-            - If we assign a variable, `first`, to an empty list **(CLICK)**
-            - Then we assign the variable `second` to `first` **(CLICK)**
-            - And after that, we append `9` to `second` **(CLICK)**
-            - `second` now has `1` element within it **(CLICK)**
-            - The question we're going to consider...
-            - Is... **(CLICK)** "how many items are in `first`"?
-            - ...
-            - Let's **compare 2 different mental models** to see how each one might answer this question
+            - TODO A mental model is ...
+            - When your mental model of Python differs from how Python actually works, you're likely to run into gotchas
+            - We're going to start with a few potential Python gotchas that will *hopefully* make sense by the end of this talk
           </aside>
         </section>
+
+        <section>
+          <pre class="python"><code data-trim data-noescape>
+>>> def square_all(numbers):
+...     for i, n in enumerate(numbers):
+...         numbers[i] = n ** 2
+...     return numbers
+...
+>>> <span class="fragment">numbers = [2, 1, 3, 4, 7]
+>>> </span><span class="fragment">square_all(numbers)
+</span><span class="fragment">[4, 1, 9, 16, 49]
+>>> </span><span class="fragment">numbers
+</span><span class="fragment">[4, 1, 9, 16, 49]</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we write a function to square all numbers in a list
+            - If we make a list of numbers **(CLICK)**
+            - And we call the `square_all` function with this list **(CLICK)**
+            - It will return **(CLICK)** the squares of all the given numbers
+            - That's what we expect...
+            - But... the original list **(CLICK)**
+            - Was *also* **(CLICK)** modified.
+            - Which might upset a caller of this function
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment">colors = ["purple", "blue", "green"]
+>>> </span><span class="fragment">groups = dict.fromkeys(colors, [])
+>>> </span><span class="fragment">groups
+{'purple': [], 'blue': [], 'green': []}
+>>> </span><span class="fragment">groups["purple"].append("duck")
+>>> </span><span class="fragment">groups["purple"]
+['duck']
+>>> </span><span class="fragment">groups
+{'purple': ['duck'], 'blue': ['duck'], 'green': ['duck']}</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we have a list of colors **(CLICK)** that we'd like to be keys in a dictionary **(CLICK)**
+            - So we use the dictionary `fromkeys` class method **(CLICK)** to create a dictionary of lists **(CLICK)**
+            - If we add the string `duck` to one of these lists **(CLICK)**
+            - That list will now have **(CLICK)** one item in it
+            - But... **(CLICK)** so will every other list in this dictionary
+            - We tried to change *one* list but all of them changed
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment">matrix = [[0] * 3] * 3
+>>> </span><span class="fragment">matrix
+[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+>>> </span><span class="fragment">matrix[1][1] = 1
+>>> </span><span class="fragment">matrix
+[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
+            - We multiple a list with a `0` by 3 and put that in a list that we also multiply 3 and we end up **(CLICK)** with a list of 3 lists each containing 3 0's
+            - If we assign the number 1 **(CLICK)** to index 1 of the of the list that's at index 1, we'll change the middle element of the middle list
+            - Well... **(CLICK)** sort of
+            - We actually end up changing all 3 of those inner lists
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment">class TodoList:
+...     def __init__(self, tasks=[]):
+...         self.tasks = tasks
+...
+>>> </span><span class="fragment">mon = TodoList()
+>>> tue = TodoList()
+>>> </span><span class="fragment">mon.tasks.append("Work on talk")
+>>> </span><span class="fragment">tue.tasks</span><span class="fragment">
+['Work on talk']</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we make `TodoList` class with an initializer method that accepts an optional `tasks` list **(CLICK)**
+            - The given `tasks` list is stored as a `tasks` attribute on each new `TodoList` object
+            - If we create two new `TodoList` objects **(CLICK)**
+            - And we append a new task to the `tasks` attribute **(CLICK)** of the first object
+            - The second object's `tasks` attribute **(CLICK)** will *also* change **(CLICK)**
+            - We changed *one* of our `tasks` lists but *both* lists changed
+          </aside>
+        </section>
+
+        <section>
+          <h4 class="fragment" data-fragment-index=8>Changing <code>first</code> doesn't always change <code>second</code></h4>
+          <div style="display: grid; grid-auto-flow: column;">
+            <div>
+              <pre class="python"><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
+>>> <span class="fragment" data-fragment-index=1>first = [2, 3]
+>>> </span><span class="fragment" data-fragment-index=2>second = first
+>>> </span><span class="fragment" data-fragment-index=3>first.append(5)
+>>> </span><span class="fragment" data-fragment-index=4>second
+[2, 3, 5]</span>
+              </code></pre>
+            </div>
+            <div>
+              <pre class="python fragment" data-fragment-index=5><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
+>>> first = [2, 3]
+>>> second = first
+>>> <span class="fragment" data-fragment-index=6>first = [2, 3, 5]
+>>> </span><span class="fragment" data-fragment-index=7>second
+[2, 3]</span>
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes" data-markdown>
+            - If we make a `first` list **(first)** and assign `second` to `first` **(click)**
+            - When we change `first`, by appending to it **(CLICK)**
+            - `second` also changes **(CLICK)**
+            - But if instead... **(CLICK)**
+            - we had changed `first` by assigning to it **(CLICK)**
+            - `second` doesn't change **(CLICK)**
+            - **(CLICK)** changing first doesn't always change second
+          </aside>
+        </section>
+
+        <section>
+          <h2>What's happening here?</h2>
+          <p class="fragment">These are all caused by a mistaken mental model</p>
+          <aside class="notes" data-markdown>
+            - If you found yourself surprised by any of those bits of code
+            - Your mental model of Python's variables and objects may be at least *slightly* different from how Python actually works
+            - I'd like to share the mental model I recommend using when thinking about Python's variables and objects
+          </aside>
+        </section>
+
+      </section>
+      <section>
+        <!-- section: Python mental models -->
+        <!-- SECTION TIME: 3 minutes -->
 
         <section>
           <h2 class="fragment" data-fragment-index=1>Buckets</h2>
@@ -120,16 +243,15 @@
           </div>
           <h2 style="color: #d00;" class="fragment" data-fragment-index=10>This mental model breaks down</h2>
           <aside class="notes" data-markdown>
-            - First, let's try to mentally model variables as **(CLICK)** buckets that contain objects
-            - If we assign a variable to an empty list **(CLICK)**, that variable **contains** that list **(CLICK)**
-            - Then when we assign another variable to the first one, **(CLICK)** the list is **copied** into a new bucket **(CLICK)**
-            - Let's say we then append `9` to that second list **(CLICK)**, which would **(CLICK)** mutate the second list
-            - But the first list shouldn't change... **(CLICK)**
-            - ... Except it *does* **(CLICK)** change!
-            - This mental model **(CLICK)** doesn't work... at least not in Python
+            - If you think of variables as like **(CLICK)** buckets that contain objects
+            - Then when we assign a variable to an empty list **(CLICK)**, that variable would **contain** that list **(CLICK)**
+            - If we then assigned another variable to the first one, **(CLICK)** the list would be **copied** into a new bucket **(CLICK)**
+            - But if we then append `9` to our second list **(CLICK)**, which changes **(CLICK)** that list
+            - The first list shouldn't change... **(CLICK)**
+            - ... But it *does* **(CLICK)** change!
+            - In Python, this mental model **(CLICK)** doesn't work...
             - Variables in Python are *not* like **buckets that contain objects**
             - And assignment statements don't copy anything
-            - Let's try another model...
           </aside>
         </section>
 
@@ -188,18 +310,21 @@
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - In model, we'll think of variables as living in **(CLICK)** variable land and objects as living in **(CLICK)** object land
+            - In Python, variables **(CLICK)** and objects **(CLICK)** live in two different places
             - When we assign a variable **(CLICK)** we draw an arrow  **(CLICK)** from the variable to the object
-            - Then when we assign **(CLICK)** another variable to the first one, we draw another arrow **(CLICK)** from the second variable to the same object
-            - So if we **(CLICK)** modify the second list **(CLICK)**...
+            - Then when we assign **(CLICK)** another variable to the first one, we draw another arrow **(CLICK)** from the second variable to the *same exact* object
+            - So when we **(CLICK)** modify our second list **(CLICK)**...
             - The second list changes **(CLICK)** and so does the first **(CLICK)** because *they're the same list*
-            - I call this mental model "pointers" **(CLICK)** because it looks like variables *point* to objects
+            - This is the mental model I usually recommend for thinking about how Python's variables and objects work
+            - I call this the "pointers" mental model **(CLICK)** because it looks like variables *point* to objects
             - ...
-            - But, unlike in some programming languages...
+            - But "pointer" is also **(CLICK)** a technical term that has a specific meaning
+            - Python's pointers...
           </aside>
         </section>
 
         <section>
+          <h2 class="fragment" data-fragment-index=4>➡️</h2>
           <h3>
             &ldquo;But they're not like pointers in C&rdquo;
           </h3>
@@ -222,11 +347,11 @@
             </tbody>
           </table>
           <aside class="notes" data-markdown>
-            - There's no dereferencing pointers or pointer arithmetic
-            - Python's pointers aren't *nearly* as scary as C pointers
-            - according to the Python documentation Python's variables are **(CLICK)** "bindings"
-            - Though you may also here them called **(CLICK)** "references" or "object references"
-            - I usually use the word "pointer" **(CLICK)** because it helps visualize what's happening
+            - Are not like pointers in low-level languages like C and C++
+            - There's no dereferencing pointers or pointer arithmetic and they're not *nearly* as *scary* or as powerful as C pointers
+            - The Python documentation often refers to variables as **(CLICK)** "bindings"
+            - Though they're also sometimes called **(CLICK)** "references"
+            - I usually call them "pointers" **(CLICK)** because for me, that word makes me think of an **arrow** pointing **(CLICK)** from a variable an object
           </aside>
         </section>
 
@@ -239,30 +364,14 @@
           <h1>&ldquo;Change&rdquo;</h1>
           <aside class="notes" data-markdown>
             - Let's talk about the word "change"...
-            - In Python, this word can be a problem
           </aside>
         </section>
 
         <section>
-          <p class="fragment" data-fragment-index=2>&ldquo;when I <span class="fragment bold" data-fragment-index=7>change</span> <code>first</code>, it doesn't always <span class="fragment bold" data-fragment-index=7>change</span> <code>second</code>&rdquo;</p>
-          <pre class="python fragment" data-fragment-index=1 style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> first = [2, 1, 3, 4]
->>> second = first
->>> <span class="fragment" data-fragment-index=3>first.append(7)
->>> </span><span class="fragment" data-fragment-index=4>second
-[2, 1, 3, 4, 7]
->>> </span><span class="fragment" data-fragment-index=5>first = [100, 200, 300]
->>> </span><span class="fragment" data-fragment-index=6>second
-[2, 1, 3, 4, 7]
->>> </span>
-          </code></pre>
+          TODO show the two types of code (mutation and assignment) code from earlier
           <aside class="notes" data-markdown>
-            - Sometimes, Python learners will tell me **(CLICK)** I've assigned two variables (`first` and `second`) to the same object
-            - And **(CLICK)** when I change `first`, `second` doesn't *always* change
-            - When I "change first" this way **(CLICK)** second changes **(CLICK)**
-            - But "when I change first *this* way" **(CLICK)**... "second *doesn't* change" **(CLICK)**
-            - Why?
-            - The word "change" **(CLICK)** is the problem here.
+            - TODO earlier I said "if we change first by appending, second changes, but if we change first by assigning, second doesn't change"
+            - The word "change" **(CLICK)** is a problem here
             - There are *two different* types of "change" in Python
             - **Assignments** change variables and **mutations change objects**
           </aside>
@@ -466,6 +575,186 @@ value == another_value
             - **08 minutes and 30 seconds in**
           </aside>
         </section>
+
+      </section>
+      <section>
+        <!-- section: mutating assignments -->
+        <!-- SECTION TIME: 3 minutes -->
+
+        <section>
+          <h1 class="fragment" data-fragment-index=8>Assignments happen</h1>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>e = 2.7
+>>> </span><span class="fragment" data-fragment-index=2>from math import e
+>>> </span><span class="fragment" data-fragment-index=3>for e in range(3):
+...     print(e)
+...
+0
+1
+2
+>>> </span><span class="fragment" data-fragment-index=5>def e(): return 2.7
+...
+>>> </span><span class="fragment" data-fragment-index=6>class e: pass
+...
+>>> </span><span class="fragment" data-fragment-index=7>e
+&lt;class '__main__.e'></span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - So assignments change which object a variable points to
+            - And this **(CLICK)** is what an assignment looks like
+            - But it's not the *only* way an assignment might look
+            - Import statements **(CLICK)** also assign to a variable
+            - And each iteration of a `for` loop **(CLICK)** assigns to a variable
+            - And function definitions **(CLICK)** and class definitions **(CLICK)** also assign to variables
+            - We've just assigned to the variable `e` 5 times **(CLICK)**
+            - Any Python feature that updates what a name points to **(CLICK)** performs some sort of assignment
+          </aside>
+        </section>
+
+        <section>
+          <h2>Function arguments are also assignments</h2>
+            <pre class="python"><code data-trim data-noescape>
+<span class="fragment">>>> some_object.attribute = 4
+>>> </span><span class="fragment">numbers[0] = 8</span>
+            </code></pre>
+          <aside class="notes" data-markdown>
+            - Passing arguments to a function is also a form of assignment
+            - So when we called the `square_all` function with a list of numbers **(CLICK)**
+            - The local `numbers` variable within the `square_all` function was assigned to the list object that we passed in to that function
+            - When we then *mutated* that `numbers` list by updating value within it as we looped...
+            - We were mutating the original `numbers` list
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python fragment strike" data-fragment-index=4><code data-trim data-noescape>
+def square_all(numbers):
+    for i, n in enumerate(numbers):
+        numbers[i] = n ** 2  <span class="fragment" data-fragment-index=1 style="font-weight: bold;"># DON'T DO THIS</span>
+          </code></pre>
+          <pre class="python fragment" data-fragment-index=2><code data-trim data-noescape>
+def square_all(numbers):
+    squares = []
+    for n in numbers:
+        squares.append(n ** 2)
+    return squares
+          </code></pre>
+          <pre class="python fragment" data-fragment-index=3><code data-trim data-noescape>
+def square_all(numbers):
+    return [
+        n ** 2
+        for n in numbers
+    ]
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - This is the reason that, in Python, functions *rarely* mutate the objects that are passed into them **(CLICK)**
+            - Instead, it's very common to build up new lists out of old lists **(CLICK)**
+            - With a `for` loop
+            - Or **(CLICK)** a comprehension
+            - Or with the many other Python features that make new objects out of old objects
+            - Unless your function is specifically designed to modify an object in-place, **(CLICK)** return new objects instead modifying existing ones
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment">Assignments that mutate</h2>
+          <pre class="python"><code data-trim data-noescape>
+def square_all(numbers):
+    for i, n in enumerate(numbers):
+        <span class="fragment bold">numbers[i] = n ** 2</span>
+          </code></pre>
+          <pre class="python fragment"><code data-trim data-noescape>
+>>> some_list[0] = 8
+>>> <span class="fragment">some_object.attribute = 4</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - But wait... this assignment statement **mutates** the list...
+            - So is it an assignment or a mutation?
+            - Well... it's both. **(CLICK)**
+            - Assigning to a list index mutates the list
+            - And assigning to an attribute mutates the object that the attribute lives on
+            - In fact, if you *squint* hard enough, every assignment is *also* a mutation of some sort of namespace... it may not be a namespace that we can access through attribute lookups on an object... but all variables are stored somewhere
+          </aside>
+        </section>
+
+        <!--
+        <section>
+          <h2>Assignments can mutate</h2>
+          <ul>
+            <li class="fragment">Assignments change the object a reference refers to</li>
+            <li class="fragment">Objects can contain references to other object</li>
+            <li class="fragment">Assigning to an object attribute/index mutates the object</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - Assignments **(CLICK)** change which object a pointer is pointing to...
+            - But objects can contain references to other objects **(CLICK)**
+            - And when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
+            - So when we use an assignment statement to change where that attribute is pointing, **(CLICK)** that *mutates* the containing object
+          </aside>
+        </section>
+        -->
+
+        <!--
+        <section>
+          <h3 class="fragment" data-fragment-index=2>Augmented Assignments</h3>
+          <p class="fragment" data-fragment-index=1>
+          <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, etc.
+          </p>
+          <p class="fragment" data-fragment-index=3>Are these assignments?</p>
+          <p class="fragment" data-fragment-index=4>Are these mutations?</p>
+          <h1 class="fragment" data-fragment-index=5>YES</h1>
+          <aside class="notes" data-markdown>
+            - But what about `+=` and `-=`? **(CLICK)**
+            - These are often called **(CLICK)** augmented assignments...
+            - But do these **(CLICK)** perform an assignment?
+            - Or do they **(CLICK)** mutate an object?
+            - Well...  **(CLICK)**
+            - It depends.
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment" data-fragment-index=7>In-place addition</h2>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>a = [2, 1, 3]
+>>> </span><span class="fragment" data-fragment-index=2>b = a
+>>> </span><span class="fragment" data-fragment-index=3>b += [4, 7, 11]
+>>> </span><span class="fragment" data-fragment-index=4>b
+[2, 1, 3, 4, 7, 11]
+>>> <span class="fragment" data-fragment-index=5>a</span><span class="fragment" data-fragment-index=6>
+[2, 1, 3, 4, 7, 11]</span></code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we have two variables, `a` **(click)** and `b` **(click)** that both point to the same list
+            - If we use `+=` **(click)** to add more elements to `b` **(click)**
+            - ... what happens to `a`? **(click)**
+            - Did `a` change or is it still the same?
+            - When we look at the variable `a`, we'll see that it *changed* **(click)**
+            - Augmented assignments actually perform a *mutation*
+            - So using `+=` on a list doesn't make a new list... it *mutates* the existing list
+            - That's why `+=` is often called an in-place addition **(click)**
+            - In-place operations are *designed* to mutate
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>name = "North Bay Python"
+>>> </span><span class="fragment" data-fragment-index=2>name += " 2025"  <span class="fragment" data-fragment-index=4># name = name + "2025"</span>
+>>> </span><span class="fragment" data-fragment-index=3>name
+'North Bay Python 2025'</span></code></pre>
+          <aside class="notes" data-markdown>
+            - But wait... doesn't `+=` work on strings? **(click)**
+            - Strings is Python are immutable...
+            - Which means you can't *change* a string object
+            - But strings work with `+=`... **(click)**
+            - If `+=` is an *in-place* addition, how does it work on strings? **(click)**
+            - Well, augmented assignments *can* perform a mutation, but they don't *have* to... it's up to the object that they're operating on
+            - If an object doesn't specially handle `+=` then **(click)** Python falls back to using the `+` operator and a plain old assignment
+            - The distinction between assignments and mutations isn't always very clear... augmented assignments do perform an assignment, but they can also mutate.
+            - But this assignment or mutation fuzziness comes up in other ways too **(CLICK)**
+          </aside>
+        </section>
+        -->
 
       </section>
       <section>
@@ -792,124 +1081,60 @@ value == another_value
           </aside>
         </section>
 
-      </section>
-      <section>
-        <!-- section: mutating assignments -->
-        <!-- SECTION TIME: 3 minutes -->
-
         <section>
-          <h1 class="fragment" data-fragment-index=7>Assignments happen</h1>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>n = 3
->>> </span><span class="fragment" data-fragment-index=2>from math import pi
->>> </span><span class="fragment" data-fragment-index=3>for n in range(5):
-...     ...
-...
->>> </span><span class="fragment" data-fragment-index=4>n
-4
->>> </span><span class="fragment" data-fragment-index=5>def pi(): return 3.14159
-...
->>> </span><span class="fragment" data-fragment-index=6>class pi: pass
-...</span>
+          <h2>Remember Problem 2?</h2>
+          <pre class="python"><code data-trim data-noescape>
+>>> d = dict.fromkeys(['a', 'b', 'c'], [])
+>>> d
+{'a': [], 'b': [], 'c': []}
+>>> d['a'].append(1)
+>>> d
+{'a': [1], 'b': [1], 'c': [1]}
           </code></pre>
           <aside class="notes" data-markdown>
-            - So assignments change which object a variable points to
-            - And this **(CLICK)** is what an assignment looks like
-            - But this isn't the *only* way an assignment might look
-            - Import statements **(CLICK)** also perform an assignment
-            - And so does each iteration **(CLICK)** of a `for` loop **(CLICK)**
-            - And so do function definitions **(CLICK)** and class definitions **(CLICK)**
-            - Anything that updates what a name points to **(CLICK)** performs some sort of assignment
+            - Remember our dict.fromkeys problem?
+            - Now we understand: dict.fromkeys creates multiple keys that all point to the same list object
+            - When we append to one, we're mutating that object
+            - And since all keys point to the same object, they all show the change
           </aside>
         </section>
 
         <section>
-          <h3 class="fragment" data-fragment-index=2>Augmented Assignments</h3>
-          <p class="fragment" data-fragment-index=1>
-          <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, etc.
-          </p>
-          <p class="fragment" data-fragment-index=3>Are these assignments?</p>
-          <p class="fragment" data-fragment-index=4>Are these mutations?</p>
-          <h1 class="fragment" data-fragment-index=5>YES</h1>
+          <h2>Remember Problem 3?</h2>
+          <pre class="python"><code data-trim data-noescape>
+>>> matrix = [[0] * 3] * 3
+>>> matrix
+[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+>>> matrix[1][1] = 1
+>>> matrix
+[[0, 1, 0], [0, 1, 0], [0, 1, 0]]
+          </code></pre>
           <aside class="notes" data-markdown>
-            - But what about `+=` and `-=`? **(CLICK)**
-            - These are often called **(CLICK)** augmented assignments...
-            - But do these **(CLICK)** perform an assignment?
-            - Or do they **(CLICK)** mutate an object?
-            - Well...  **(CLICK)**
-            - It depends.
+            - And our list-of-lists problem?
+            - Multiplication doesn't copy - it creates multiple references to the same object
+            - So all three items in our outer list point to the same inner list
+            - When we modify one, we're modifying the object that all three point to
           </aside>
         </section>
 
         <section>
-          <h2 class="fragment" data-fragment-index=7>In-place addition</h2>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>a = [2, 1, 3]
->>> </span><span class="fragment" data-fragment-index=2>b = a
->>> </span><span class="fragment" data-fragment-index=3>b += [4, 7, 11]
->>> </span><span class="fragment" data-fragment-index=4>b
-[2, 1, 3, 4, 7, 11]
->>> <span class="fragment" data-fragment-index=5>a</span><span class="fragment" data-fragment-index=6>
-[2, 1, 3, 4, 7, 11]</span></code></pre>
+          <h2>Remember Problem 4?</h2>
+          <pre class="python"><code data-trim data-noescape>
+>>> class TodoList:
+...     def __init__(self, tasks=[]):
+...         self.tasks = tasks
+...
+>>> mon = TodoList()
+>>> tue = TodoList()
+>>> mon.tasks.append("Work on talk")
+>>> tue.tasks
+['Work on talk']
+          </code></pre>
           <aside class="notes" data-markdown>
-            - Let's say we have two variables, `a` **(click)** and `b` **(click)** that both point to the same list
-            - If we use `+=` **(click)** to add more elements to `b` **(click)**
-            - ... what happens to `a`? **(click)**
-            - Did `a` change or is it still the same?
-            - When we look at the variable `a`, we'll see that it *changed* **(click)**
-            - Augmented assignments actually perform a *mutation*
-            - So using `+=` on a list doesn't make a new list... it *mutates* the existing list
-            - That's why `+=` is often called an in-place addition **(click)**
-            - In-place operations are *designed* to mutate
-          </aside>
-        </section>
-
-        <section>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>name = "North Bay Python"
->>> </span><span class="fragment" data-fragment-index=2>name += " 2025"  <span class="fragment" data-fragment-index=4># name = name + "2025"</span>
->>> </span><span class="fragment" data-fragment-index=3>name
-'North Bay Python 2025'</span></code></pre>
-          <aside class="notes" data-markdown>
-            - But wait... doesn't `+=` work on strings? **(click)**
-            - Strings is Python are immutable...
-            - Which means you can't *change* a string object
-            - But strings work with `+=`... **(click)**
-            - If `+=` is an *in-place* addition, how does it work on strings? **(click)**
-            - Well, augmented assignments *can* perform a mutation, but they don't *have* to... it's up to the object that they're operating on
-            - If an object doesn't specially handle `+=` then **(click)** Python falls back to using the `+` operator and a plain old assignment
-            - The distinction between assignments and mutations isn't always very clear... augmented assignments do perform an assignment, but they can also mutate.
-            - But this assignment or mutation fuzziness comes up in other ways too **(CLICK)**
-          </aside>
-        </section>
-
-        <section>
-          <h2>Assignments that mutate</h2>
-            <pre class="python"><code data-trim data-noescape>
-<span class="fragment">>>> some_object.attribute = 4
->>> </span><span class="fragment">numbers[0] = 8</span>
-            </code></pre>
-          <aside class="notes" data-markdown>
-            - Assigning to an attribute *is* an assignment... **(CLICK)** but it mutates the object that the attribute lives on
-            - And assigning to a list index mutates the list **(CLICK)**
-            - These *are* assignment statements, but these *also* mutate an object... modifying where an *attribute* or an *index* points to mutates the object that the attribute or the index lives within.
-            - And if you squint hard enough, every assignment is actually also a mutation of some sort of namespace... it may not be a namespace that we can access through attribute lookups on an object... but all variables are stored somewhere
-          </aside>
-        </section>
-
-        <section>
-          <h2>Assignments can mutate</h2>
-          <ul>
-            <li class="fragment">Assignments change the object a reference refers to</li>
-            <li class="fragment">Objects can contain references to other object</li>
-            <li class="fragment">Assigning to an object attribute/index mutates the object</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - Assignments **(CLICK)** change which object a pointer is pointing to...
-            - But objects can contain references to other objects **(CLICK)**
-            - And when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
-            - So when we use an assignment statement to change where that attribute is pointing, **(CLICK)** that *mutates* the containing object
-            - **18 minutes and 30 seconds in**
+            - And our mutable default argument problem?
+            - Default arguments are created once when the function is defined
+            - So every instance that uses the default is pointing to the same list object
+            - The solution? Use `list(tasks)` to copy, or use `tasks=None` and create a new list inside the function
           </aside>
         </section>
 
@@ -934,23 +1159,33 @@ value == another_value
           </aside>
         </section>
 
+        <section>
+          <h2>One more puzzle</h2>
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> x.append(x)
+>>> x
+???
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - I want you to take a guess
+            - What will `x` look like after we run this code?
+            - Take a moment to think about it...
+            - ...
+          </aside>
+        </section>
+
         <section data-transition="none">
           <pre class="python" style="width: 45%;"><code data-trim data-noescape>
 >>> x = []
->>> <span class="fragment">x.append(x)
->>> </span><span class="fragment">x</span><span class="fragment">
-[[...]]</span><span style="opacity: 0;">
->>> x in x
-True
->>> x[0] is x
-True</span>
+>>> x.append(x)
+>>> x
+[[...]]
           </code></pre>
           <aside class="notes" data-markdown>
-            - If we take an empty list, called `x`
-            - And we call **(CLICK)** `x.append(x)`
-            - What would **(CLICK)** `x` be...
-            - This won't end up being a list containing an empty list...
-            - Instead, we'll get something that looks like **(CLICK)** a list that contains itself...
+            - We get a list that appears to contain itself
+            - The `...` is Python's way of showing "I've seen this before"
+            - This is possible because lists don't contain objects - they contain references
           </aside>
         </section>
 
@@ -1171,33 +1406,6 @@ False</span></code></pre>
             - In other words, immutability is a shallow concept...
             - We can't directly change a tuple, but we *can* change objects that tuples refer to... and since the objects a tuple contains affect the *value* of the tuple...
             - That means that tuples that contain mutable objects *can* have their values change
-          </aside>
-        </section>
-
-        <section data-transition="none">
-          <h2>Gotchas with Variables and Values</h2>
-          <aside class="notes" data-markdown>
-            - 
-          </aside>
-        </section>
-
-        <section data-transition="none">
-          <h2>Self-concatenation</h2>
-          <pre class="python"><code data-trim data-noescape>
->>> rows = [[0] * 3] * 3
->>> rows
-[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> rows[1][1] = 1
->>> rows
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - This fact that objects don't contain objects is the reason behind a number of Python oddities
-            - If we try to use self-concatenation to make a list-of-lists...
-            - And then we change the middle element of the middle list...
-            - We'll see that the middle element of *all* the lists changes
-            - Because self-concatenation doesn't copy anything... it just refers to the same object multiple times
-            - So using it with mutable objects doesn't work well
           </aside>
         </section>
 
