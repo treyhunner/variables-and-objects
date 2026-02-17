@@ -370,30 +370,33 @@
         <section>
           <div style="display: grid; grid-auto-flow: column;">
             <div>
+              <h3 class="fragment" data-fragment-index=7>mutation</h3>
               <pre class="python"><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
 >>> first = [2, 3]
 >>> second = first
->>> <span class="fragment">first.append(5)
->>> </span><span class="fragment">second
+>>> <span class="fragment" data-fragment-index=1>first.append(5)
+>>> </span><span class="fragment" data-fragment-index=2>second
 [2, 3, 5]</span>
               </code></pre>
             </div>
             <div>
+              <h3 class="fragment" data-fragment-index=6>assignment</h3>
               <pre class="python"><code data-trim data-noescape style="font-size: 22px; line-height: 26px;">
 >>> first = [2, 3]
 >>> second = first
->>> <span class="fragment">first = [2, 3, 5]
->>> </span><span class="fragment">second
+>>> <span class="fragment" data-fragment-index=3>first = [2, 3, 5]
+>>> </span><span class="fragment" data-fragment-index=4>second
 [2, 3]</span>
               </code></pre>
             </div>
           </div>
-          <h3 class="fragment">&ldquo;change&rdquo;</h3>
+          <h3 class="fragment" data-fragment-index=5>&ldquo;change&rdquo;</h3>
           <aside class="notes" data-markdown>
             - Earlier I said "if we change `first` **(CLICK)** by appending, second changes **(CLICK)**, but if we change `first` **(CLICK)** by assigning, second doesn't change" **(CLICK)**
             - The word "change" **(CLICK)** is a problem here
             - There are *two different* types of "change" in Python
-            - **Assignments** change variables and **mutations change objects**
+            - *Assignments* **(CLICK)** change variables and *mutations* **(CLICK)** change objects
+            - We can use our pointers mental model to help us differentiate these two types of "change" ...
           </aside>
         </section>
 
@@ -463,12 +466,13 @@
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - Let's use our pointers mental model to help us differentiate those two types of "change" ...
             - When we append to `first`, **(CLICK)** we're mutating the *object* **(CLICK)** that `first` points to
             - Since `second` **points to the same object**, accessing `second` **(CLICK)** will show the same *changed* object
             - But if we **(CLICK)** reassign first, that changes *which* object **(CLICK)** the variable `first` points to
             - ... But that *doesn't* change the `second` variable at all... **(CLICK)**
             - `second` still points to the same object as before
+            - Mutations change objects
+            - Assignments change *which* object a *variable* points to
           </aside>
         </section>
 
@@ -480,14 +484,16 @@
             <li class="fragment" data-fragment-index=4><strong>Assignments</strong> change a variable</li>
           </ul>
           <aside class="notes" data-markdown>
-            - So... **(click)** variables in Python do not *contain* objects, they *point* to them
-            - Because of this indirection between variables and objects, **(click)** there are 2 distinct types of "change"
-            - This is why the word "change" *can* be ambiguous: **(CLICK)** mutations change objects and **(CLICK)** assignments change **which object** a *variable* points to
+            - So... **(click)** variables in Python don't *contain* objects, they *point* to them
+            - Because of this indirection between variables and objects, **(click)** there are 2 distinct types of "change":
+            - **(CLICK)** mutations and **(CLICK)** assignments
+            - mutations change objects and assignments change variables
+            - So... the phrase...
           </aside>
         </section>
 
         <section>
-          <h3 class="fragment" data-fragment-index=1>&ldquo;We changed <code>x</code>&rdquo;</h3>
+          <h1>&ldquo;We changed <code>x</code>&rdquo;</h1>
           <div style="display: grid; grid-auto-flow: column;">
             <div class="fragment" data-fragment-index=2>
               <p>Changed the <strong>variable</strong>?</p>
@@ -495,6 +501,7 @@
 >>> x = [2, 3]
 >>> x = [2, 3, 5]
               </code></pre>
+              <h2 class="fragment" data-fragment-index=6>assignment</h2>
             </div>
             <div class="fragment" data-fragment-index=3>
               <p>Changed the <strong>object</strong>?</p>
@@ -502,12 +509,14 @@
 >>> x = [2, 3]
 >>> x.append(5)
               </code></pre>
+              <h2 class="fragment" data-fragment-index=7>mutation</h2>
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - So... the phrase "we changed `x`" **(CLICK)**
+            - "we changed `x`"
             - ... is a bit ambiguous
             - Do we mean that we changed the variable `x` **(CLICK)** or the object that `x` points to? **(CLICK)**
+            - Did we do an assignment **(CLICK)** or a mutation **(CLICK)**?
           </aside>
         </section>
 
@@ -824,9 +833,8 @@ def square_all(numbers):
           <h1 class="fragment" data-fragment-index=2>Objects</h1>
           <h2 class="fragment current-visible" data-fragment-index=1>Variables</h2>
           <aside class="notes" data-markdown>
-            - We have been talking mostly about **(CLICK)** variables and how they work
-            - We haven't really discussed how **(CLICK)** objects work
-            - Let's talk about how data structures work
+            - We've talked about **(CLICK)** variables, but we haven't talked much about **(CLICK)** objects
+            - So let's talk about data structures
           </aside>
         </section>
 
@@ -835,9 +843,10 @@ def square_all(numbers):
           <p class="fragment" data-fragment-index=2><small>*for some definitions of &ldquo;data&rdquo;</small></p>
           <h2 class="fragment" data-fragment-index=3>Data structures don't contain <em>objects</em></h2>
           <aside class="notes" data-markdown>
-            - In Python, data structures **(CLICK)** don't contain data
-            - Well... **(CLICK)** depending on what we mean by data
-            - What I really mean is **(CLICK)** that data structures don't contain *objects*
+            - In Python, data structures **(CLICK)** *don't* contain data
+            - ...
+            - depending on what we mean **(CLICK)** by data
+            - What I really mean is that **(CLICK)** data structures don't contain *objects*
           </aside>
         </section>
 
@@ -993,11 +1002,11 @@ def square_all(numbers):
           <aside class="notes" data-markdown>
             - Variables, can only *point* to objects
             - And objects can only *point* to other objects
-            - Objects cannot contain other objects
+            - Objects *cannot contain* other objects
             - Which is why... **(CLICK)** if we put our list inside another list...
             - The new list doesn't *contain* our list
             - The new list's first index just points to the original list object
-            - Lists can't contain lists, they can only contain *references* to lists
+            - A list-of-lists is a list that contain *references* to lists
           </aside>
         </section>
 
@@ -1066,8 +1075,8 @@ def square_all(numbers):
             </g>
           </svg>
           <aside class="notes" data-markdown>
-            - Remember our list-of-lists problem?
-            - Multiplying that inner list by 3 creates **(CLICK)** a list that points to `0` three times **(CLICK)**
+            - Let's revisit our list-of-lists problem, where we used self-concatenation to build up a 3-by-3 list-of-lists
+            - Multiplying the inner list by 3 creates **(CLICK)** a list that points to `0` three times **(CLICK)**
             - Multiplying the other list by 3 creates **(CLICK)** a list that points to the inner list three times
             - So we end up... **(CLICK)** with an outer list has 3 references pointing to **the same** inner list
             - Concatenating a list to itself with multiplication does *not* copy the objects inside that list...
@@ -1150,8 +1159,8 @@ def square_all(numbers):
           </svg>
           <aside class="notes" data-markdown>
             - We're modifying the one object that all three indices point to
-            - Index 1 in the inner list now points to a new `int` 1 instead of `int` 0
-            - But since all three outer indices point to the **same** inner list, **(CLICK)** all 3 "rows" reflect the change
+            - Index 1 in the inner list now points to the number 1 instead of the number 0
+            - But since all three outer indices point to the **same** inner list, **(CLICK)** all 3 "rows" show this change
             - Because all rows are actually the same list
             - TODO to fix this problem we could use a list comprehension
             - TODO a list comprehension would run this expression (bold it) once for each item, making 3 new lists
