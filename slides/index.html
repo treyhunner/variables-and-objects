@@ -1011,14 +1011,19 @@ def square_all(numbers):
         </section>
 
         <section data-transition="slide-in none-out">
+          <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=1>[0] * 3</span>] * 3</span><span class="fragment" data-fragment-index=2></span>
 >>> matrix
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 >>> <span class="fragment" data-fragment-index=5>matrix[1][1] = 1
 >>> </span><span style="visibility: hidden;">matrix
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span>
+[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span><span>
+
+
+</span>
           </code></pre>
+          <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="500" height="230" viewBox="0 0 340 200" class="fragment" data-fragment-index=4>
             <defs>
               <marker id="arr-matrix" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
@@ -1074,6 +1079,8 @@ def square_all(numbers):
               <line x1="74" y1="163" x2="90" y2="163" stroke="#000" marker-end="url(#arr-matrix)"/>
             </g>
           </svg>
+          </div>
+          </div>
           <aside class="notes" data-markdown>
             - Let's revisit our list-of-lists problem, where we used self-concatenation to build up a 3-by-3 list-of-lists
             - Multiplying the inner list by 3 creates **(CLICK)** a list that points to `0` three times **(CLICK)**
@@ -1085,14 +1092,19 @@ def square_all(numbers):
         </section>
 
         <section data-transition="none-in slide-out">
+          <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = [[0] * 3] * 3
 >>> matrix
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 >>> matrix[1][1] = 1
 >>> <span class="fragment">matrix
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span>
+[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span><span>
+
+
+</span>
           </code></pre>
+          <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="500" height="230" viewBox="0 0 340 200">
             <defs>
               <marker id="arr-matrix2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
@@ -1157,6 +1169,8 @@ def square_all(numbers):
               <line x1="74" y1="163" x2="90" y2="163" stroke="#000" marker-end="url(#arr-matrix2)"/>
             </g>
           </svg>
+          </div>
+          </div>
           <aside class="notes" data-markdown>
             - We're modifying the one object that all three indices point to
             - Index 1 in the inner list now points to the number 1 instead of the number 0
