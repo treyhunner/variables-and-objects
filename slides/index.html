@@ -1013,10 +1013,10 @@ def square_all(numbers):
         <section data-transition="slide-in none-out">
           <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
->>> matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=1>[0] * 3</span>] * 3</span><span class="fragment" data-fragment-index=2></span>
+>>> matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=1>[0] * 3</span>] * 3</span>
 >>> matrix
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> <span class="fragment" data-fragment-index=5>matrix[1][1] = 1
+>>> <span class="fragment" data-fragment-index=6>matrix[1][1] = 1
 >>> </span><span style="visibility: hidden;">matrix
 [[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span><span>
 
@@ -1024,14 +1024,14 @@ def square_all(numbers):
 </span>
           </code></pre>
           <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="500" height="230" viewBox="0 0 340 200" class="fragment" data-fragment-index=4>
+          <svg xmlns="http://www.w3.org/2000/svg" width="500" height="230" viewBox="0 0 340 200">
             <defs>
               <marker id="arr-matrix" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
                 <path d="M 0 0 L 8 3 L 0 6 Z" fill="#000"/>
               </marker>
             </defs>
             <!-- int 0 (top) -->
-            <g>
+            <g class="fragment" data-fragment-index=2>
               <path d="M 175 5 L 152 5 L 152 42 L 175 42" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 175 5 L 217 5 L 217 42 L 175 42" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 175 5 L 175 42" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1039,11 +1039,13 @@ def square_all(numbers):
               <text x="196" y="27" fill="#000" font-size="13px" text-anchor="middle">0</text>
             </g>
             <!-- arrows: inner indices → int 0 -->
-            <line x1="140" y1="78" x2="170" y2="46" stroke="#000" marker-end="url(#arr-matrix)"/>
-            <line x1="182" y1="78" x2="184" y2="46" stroke="#000" marker-end="url(#arr-matrix)"/>
-            <line x1="224" y1="78" x2="198" y2="46" stroke="#000" marker-end="url(#arr-matrix)"/>
+            <g class="fragment" data-fragment-index=2>
+              <line x1="140" y1="78" x2="170" y2="46" stroke="#000" marker-end="url(#arr-matrix)"/>
+              <line x1="182" y1="78" x2="184" y2="46" stroke="#000" marker-end="url(#arr-matrix)"/>
+              <line x1="224" y1="78" x2="198" y2="46" stroke="#000" marker-end="url(#arr-matrix)"/>
+            </g>
             <!-- inner list (middle) -->
-            <g>
+            <g class="fragment" data-fragment-index=2>
               <path d="M 118 68 L 95 68 L 95 108 L 118 108" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 118 68 L 265 68 L 265 108 L 118 108" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 118 68 L 118 108" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1056,11 +1058,13 @@ def square_all(numbers):
               <text x="224" y="91" fill="#00f" font-size="13px" text-anchor="middle">2</text>
             </g>
             <!-- arrows: outer indices → inner list -->
-            <line x1="140" y1="150" x2="155" y2="112" stroke="#000" marker-end="url(#arr-matrix)"/>
-            <line x1="182" y1="150" x2="182" y2="112" stroke="#000" marker-end="url(#arr-matrix)"/>
-            <line x1="224" y1="150" x2="210" y2="112" stroke="#000" marker-end="url(#arr-matrix)"/>
+            <g class="fragment" data-fragment-index=4>
+              <line x1="140" y1="150" x2="155" y2="112" stroke="#000" marker-end="url(#arr-matrix)"/>
+              <line x1="182" y1="150" x2="182" y2="112" stroke="#000" marker-end="url(#arr-matrix)"/>
+              <line x1="224" y1="150" x2="210" y2="112" stroke="#000" marker-end="url(#arr-matrix)"/>
+            </g>
             <!-- outer list (bottom) -->
-            <g>
+            <g class="fragment" data-fragment-index=4>
               <path d="M 118 140 L 95 140 L 95 180 L 118 180" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 118 140 L 265 140 L 265 180 L 118 180" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 118 140 L 118 180" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1073,7 +1077,7 @@ def square_all(numbers):
               <text x="224" y="163" fill="#00f" font-size="13px" text-anchor="middle">2</text>
             </g>
             <!-- matrix variable -->
-            <g>
+            <g class="fragment" data-fragment-index=5>
               <rect x="2" y="148" width="72" height="30" fill="#e1d5e7" stroke="#9673a6"/>
               <text x="38" y="167" fill="#000" font-size="13px" text-anchor="middle">matrix</text>
               <line x1="74" y1="163" x2="90" y2="163" stroke="#000" marker-end="url(#arr-matrix)"/>
@@ -1084,7 +1088,7 @@ def square_all(numbers):
           <aside class="notes" data-markdown>
             - Let's revisit our list-of-lists problem, where we used self-concatenation to build up a 3-by-3 list-of-lists
             - Multiplying the inner list by 3 creates **(CLICK)** a list that points to `0` three times **(CLICK)**
-            - Multiplying the other list by 3 creates **(CLICK)** a list that points to the inner list three times
+            - Multiplying the other list by 3 creates **(CLICK)** a list that points to the inner list three times **(CLICK)**
             - So we end up... **(CLICK)** with an outer list has 3 references pointing to **the same** inner list
             - Concatenating a list to itself with multiplication does *not* copy the objects inside that list...
             - So when we modify **(CLICK)** one of our "rows"...
