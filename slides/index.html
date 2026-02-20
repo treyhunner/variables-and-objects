@@ -1010,6 +1010,29 @@ def square_all(numbers):
           </aside>
         </section>
 
+        <section>
+          TODO
+          <aside class="notes" data-markdown>
+            - We sometimes use the words "containment" and "contains" in Python
+            - These words are convenient, but they can also create a false mental model
+            - Data structures in Python don't actually *contain* objects
+            - Data structures only contain *pointers* to objects
+            - Let's take a look at what's going on here by revisiting our earlier puzzles...
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="fragment">Containment</h1>
+          <h2 class="fragment">... is a lie</h2>
+          <aside class="notes" data-markdown>
+            - In Python, "containment" **(click)** is a slightly misleading term
+            - **(CLICK)**
+            - Data structures don't actually contain data
+            - Data structures contain references to data
+            - So let's revisit our earlier problems with this in mind...
+          </aside>
+        </section>
+
         <section data-transition="slide-in none-out">
           <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
@@ -1613,29 +1636,6 @@ def square_all(numbers):
             - Will *not* affect the tasks list **(CLICK)** of the other
             - Also, because the `list` constructor will loop over any iterable to make a new list, this class now accepts not just lists but sets, generators, or **(CLICK)** *any* iterable
             - This is why classes that are meant to *change* an iterable that's passed in, will often shallowly copy that iterable in their initializers
-          </aside>
-        </section>
-
-        <section>
-          TODO
-          <aside class="notes" data-markdown>
-            - We sometimes use the words "containment" and "contains" in Python
-            - These words are convenient, but they can also create a false mental model
-            - Data structures in Python don't actually *contain* objects
-            - Data structures only contain *pointers* to objects
-            - Let's take a look at what's going on here by revisiting our pointers mental models...
-          </aside>
-        </section>
-
-        <section>
-          <h1 class="fragment">Containment</h1>
-          <h2 class="fragment">... is a lie</h2>
-          <aside class="notes" data-markdown>
-            - In Python, "containment" **(click)** is a slightly misleading term
-            - **(CLICK)**
-            - Data structures don't actually contain data
-            - Data structures contain references to data
-            - But this...
           </aside>
         </section>
 
