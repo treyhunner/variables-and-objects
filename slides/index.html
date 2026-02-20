@@ -1265,8 +1265,61 @@ def square_all(numbers):
         </section>
 
         <section>
-          TODO dict.fromkeys problem
+          <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
+>>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(["purple", "blue", "green"], [])</span>
+>>> <span class="fragment" data-fragment-index=3>groups["purple"].append("duck")</span>
+>>> <span class="fragment" data-fragment-index=5>groups
+{'purple': ['duck'], 'blue': ['duck'], 'green': ['duck']}</span>
+          </code></pre>
+          <svg xmlns="http://www.w3.org/2000/svg" width="500" height="230" viewBox="0 0 400 210" class="fragment" data-fragment-index=2>
+            <defs>
+              <marker id="arr-dict" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <path d="M 0 0 L 8 3 L 0 6 Z" fill="#000"/>
+              </marker>
+            </defs>
+            <!-- list object (top-right) -->
+            <g>
+              <path d="M 298 5 L 275 5 L 275 45 L 298 45" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 298 5 L 380 5 L 380 45 L 298 45" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 298 5 L 298 45" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="286.5" y="28.5" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,286.5,25)">list</text>
+              <text x="339" y="29" fill="#00f" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=4>[]</text>
+              <text x="339" y="29" fill="#00f" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=4>["duck"]</text>
+            </g>
+            <!-- dict object (middle) -->
+            <g>
+              <path d="M 138 75 L 115 75 L 115 185 L 138 185" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 138 75 L 215 75 L 215 185 L 138 185" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 138 75 L 138 185" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="126.5" y="134" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,126.5,130)">dict</text>
+              <!-- key: "purple" -->
+              <rect x="148" y="85" width="55" height="20" fill="none" stroke="#000"/>
+              <text x="175" y="99" fill="#000" font-size="11px" text-anchor="middle">"purple"</text>
+              <!-- key: "blue" -->
+              <rect x="148" y="120" width="55" height="20" fill="none" stroke="#000"/>
+              <text x="175" y="134" fill="#000" font-size="11px" text-anchor="middle">"blue"</text>
+              <!-- key: "green" -->
+              <rect x="148" y="155" width="55" height="20" fill="none" stroke="#000"/>
+              <text x="175" y="169" fill="#000" font-size="11px" text-anchor="middle">"green"</text>
+            </g>
+            <!-- arrows: all three keys → same list (spread across top of list box) -->
+            <line x1="203" y1="95" x2="305" y2="47" stroke="#000" marker-end="url(#arr-dict)"/>
+            <line x1="203" y1="130" x2="328" y2="47" stroke="#000" marker-end="url(#arr-dict)"/>
+            <line x1="203" y1="165" x2="351" y2="47" stroke="#000" marker-end="url(#arr-dict)"/>
+            <!-- groups variable -->
+            <g>
+              <rect x="2" y="120" width="72" height="30" fill="#e1d5e7" stroke="#9673a6"/>
+              <text x="38" y="139" fill="#000" font-size="13px" text-anchor="middle">groups</text>
+              <line x1="74" y1="135" x2="110" y2="135" stroke="#000" marker-end="url(#arr-dict)"/>
+            </g>
+          </svg>
           <aside class="notes" data-markdown>
+            - Remember our `dict.fromkeys` problem?
+            - `dict.fromkeys` creates a dictionary **(CLICK)** with each key pointing to the same value
+            - Here's what that looks like **(CLICK)** -- all three keys point to the **same** list object
+            - So when we append to one of them **(CLICK)**...
+            - We're mutating **(CLICK)** the one list that all three keys share
+            - And that means **(CLICK)** all keys show the change, because they all point to the same object
           </aside>
         </section>
 
