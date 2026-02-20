@@ -1417,8 +1417,78 @@ def square_all(numbers):
         </section>
 
         <section>
-          TODO TodoList problem
+          <div style="display: grid; grid-template-columns: 55% 45%;">
+          <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
+>>> class TodoList:
+...     def __init__(self, tasks=[]):
+...         self.tasks = tasks
+...
+>>> <span class="fragment" data-fragment-index=1>mon = TodoList()
+>>> tue = TodoList()
+>>> </span><span class="fragment" data-fragment-index=3>mon.tasks.append("Work on talk")
+>>> </span><span class="fragment" data-fragment-index=5>tue.tasks
+['Work on talk']</span><span>
+</span>
+          </code></pre>
+          <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="260" viewBox="0 -20 340 168" class="fragment" data-fragment-index=2>
+            <defs>
+              <marker id="arr-todo" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <path d="M 0 0 L 8 3 L 0 6 Z" fill="#000"/>
+              </marker>
+            </defs>
+            <!-- shared list object (right) -->
+            <g>
+              <path d="M 195 37 L 175 37 L 175 72 L 195 72" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 195 37 L 335 37 L 335 72 L 195 72" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 195 37 L 195 72" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="185" y="58" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,185,54.5)">list</text>
+              <text x="260" y="59" fill="#000" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=4>[]</text>
+              <text x="260" y="59" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=4>[<tspan fill="#909" font-weight="bold">"Work on talk"</tspan>]</text>
+            </g>
+            <!-- mon's TodoList object (top) -->
+            <g>
+              <path d="M 82 0 L 55 0 L 55 59 L 82 59" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 0 L 148 0 L 148 59 L 82 59" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 0 L 82 59" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="67" y="31" fill="#000" text-anchor="middle" font-size="11px" transform="rotate(-90,68.5,27.5)">TodoList</text>
+              <rect x="90" y="17" width="40" height="20" fill="none" stroke="#9673a6"/>
+              <text x="110" y="31" fill="#000" font-size="11px" text-anchor="middle">tasks</text>
+            </g>
+            <!-- tue's TodoList object (bottom) -->
+            <g>
+              <path d="M 82 65 L 55 65 L 55 124 L 82 124" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 65 L 148 65 L 148 124 L 82 124" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 65 L 82 124" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="67" y="96" fill="#000" text-anchor="middle" font-size="11px" transform="rotate(-90,68.5,92.5)">TodoList</text>
+              <rect x="90" y="82" width="40" height="20" fill="none" stroke="#9673a6"/>
+              <text x="110" y="96" fill="#000" font-size="11px" text-anchor="middle">tasks</text>
+            </g>
+            <!-- arrows: both .tasks → same list -->
+            <line x1="130" y1="27" x2="171" y2="47" stroke="#000" marker-end="url(#arr-todo)"/>
+            <line x1="130" y1="92" x2="171" y2="63" stroke="#000" marker-end="url(#arr-todo)"/>
+            <!-- mon variable -->
+            <g>
+              <rect x="2" y="14" width="36" height="26" fill="#e1d5e7" stroke="#9673a6"/>
+              <text x="20" y="31" fill="#000" font-size="13px" text-anchor="middle">mon</text>
+              <line x1="38" y1="27" x2="51" y2="27" stroke="#000" marker-end="url(#arr-todo)"/>
+            </g>
+            <!-- tue variable -->
+            <g>
+              <rect x="2" y="79" width="36" height="26" fill="#e1d5e7" stroke="#9673a6"/>
+              <text x="20" y="96" fill="#000" font-size="13px" text-anchor="middle">tue</text>
+              <line x1="38" y1="92" x2="51" y2="92" stroke="#000" marker-end="url(#arr-todo)"/>
+            </g>
+          </svg>
+          </div>
+          </div>
           <aside class="notes" data-markdown>
+            - Remember our `TodoList` problem with the mutable default argument?
+            - When we create **(CLICK)** two instances without passing a `tasks` list...
+            - Here's what's happening **(CLICK)** -- both instances' `.tasks` attributes point to the **same** default list object
+            - So when we append to one **(CLICK)**...
+            - We're mutating **(CLICK)** the one list that both instances share
+            - And that means **(CLICK)** both instances show the change
           </aside>
         </section>
 
