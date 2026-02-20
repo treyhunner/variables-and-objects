@@ -1180,8 +1180,87 @@ def square_all(numbers):
             - Index 1 in the inner list now points to the number 1 instead of the number 0
             - But since all three outer indices point to the **same** inner list, **(CLICK)** all 3 "rows" show this change
             - Because all rows are actually the same list
-            - TODO to fix this problem we could use a list comprehension
-            - TODO a list comprehension would run this expression (bold it) once for each item, making 3 new lists
+          </aside>
+        </section>
+
+        <section>
+          <div style="display: grid; grid-template-columns: 60% 40%;">
+          <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
+>>> matrix = [<span class="fragment bold-current" data-fragment-index=0>[0] * 3</span> for _ in range(3)]
+>>> <span class="fragment" data-fragment-index=1>matrix[1][1] = 1
+>>> matrix
+[[0, 0, 0], [0, 1, 0], [0, 0, 0]]</span><span>
+
+
+
+
+</span>
+          </code></pre>
+          <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="400" height="230" viewBox="0 0 300 195">
+            <defs>
+              <marker id="arr-matrix3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <path d="M 0 0 L 8 3 L 0 6 Z" fill="#000"/>
+              </marker>
+            </defs>
+            <!-- outer list (with index boxes, upper-left) -->
+            <g>
+              <path d="M 43 5 L 20 5 L 20 40 L 43 40" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 43 5 L 170 5 L 170 40 L 43 40" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 43 5 L 43 40" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="31.5" y="26" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,31.5,22.5)">list</text>
+              <rect x="53" y="13" width="25" height="20" fill="none" stroke="#000"/>
+              <text x="65" y="27" fill="#00f" font-size="13px" text-anchor="middle">0</text>
+              <rect x="95" y="13" width="25" height="20" fill="none" stroke="#000"/>
+              <text x="107" y="27" fill="#00f" font-size="13px" text-anchor="middle">1</text>
+              <rect x="137" y="13" width="25" height="20" fill="none" stroke="#000"/>
+              <text x="149" y="27" fill="#00f" font-size="13px" text-anchor="middle">2</text>
+            </g>
+            <!-- inner list 0 (right, oversimplified) -->
+            <g>
+              <path d="M 200 55 L 180 55 L 180 90 L 200 90" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 200 55 L 290 55 L 290 90 L 200 90" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 200 55 L 200 90" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="190" y="76" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,190,72.5)">list</text>
+              <text x="245" y="77" fill="#000" font-size="13px" text-anchor="middle">[0, 0, 0]</text>
+            </g>
+            <!-- inner list 1 (right, oversimplified) -->
+            <g>
+              <path d="M 200 105 L 180 105 L 180 140 L 200 140" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 200 105 L 290 105 L 290 140 L 200 140" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 200 105 L 200 140" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="190" y="126" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,190,122.5)">list</text>
+              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=1>[0, 0, 0]</text>
+              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=1>[0, 1, 0]</text>
+            </g>
+            <!-- inner list 2 (right, oversimplified) -->
+            <g>
+              <path d="M 200 155 L 180 155 L 180 190 L 200 190" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 200 155 L 290 155 L 290 190 L 200 190" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 200 155 L 200 190" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="190" y="176" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,190,172.5)">list</text>
+              <text x="245" y="177" fill="#000" font-size="13px" text-anchor="middle">[0, 0, 0]</text>
+            </g>
+            <!-- arrows from outer indices to inner lists -->
+            <line x1="65" y1="33" x2="176" y2="168" stroke="#000" marker-end="url(#arr-matrix3)"/>
+            <line x1="107" y1="33" x2="176" y2="118" stroke="#000" marker-end="url(#arr-matrix3)"/>
+            <line x1="149" y1="33" x2="176" y2="68" stroke="#000" marker-end="url(#arr-matrix3)"/>
+            <!-- matrix variable -->
+            <g>
+              <rect x="2" y="58" width="72" height="30" fill="#e1d5e7" stroke="#9673a6"/>
+              <text x="38" y="77" fill="#000" font-size="13px" text-anchor="middle">matrix</text>
+              <line x1="38" y1="58" x2="30" y2="44" stroke="#000" marker-end="url(#arr-matrix3)"/>
+            </g>
+          </svg>
+          </div>
+          </div>
+          <aside class="notes" data-markdown>
+            - TODO fix up this slide
+            - To fix this, we can use a list comprehension
+            - A list comprehension evaluates **(CLICK)** this `[0] * 3` expression once per iteration, creating 3 **separate** list objects
+            - Using our oversimplified diagram here, we can see each outer index points to a **different** inner list
+            - So when we mutate one row **(CLICK)**, only that row changes
+            - Because each row is its own distinct list object
           </aside>
         </section>
 
