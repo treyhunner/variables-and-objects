@@ -1186,9 +1186,9 @@ def square_all(numbers):
         <section>
           <div style="display: grid; grid-template-columns: 60% 40%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
->>> matrix = [<span class="fragment bold-current" data-fragment-index=0>[0] * 3</span> for _ in range(3)]
->>> <span class="fragment" data-fragment-index=1>matrix[1][1] = 1
->>> matrix
+>>> matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=0>[0] * 3</span> for _ in <span class="fragment bold-current" data-fragment-index=1>range(3)</span>]</span>
+>>> <span class="fragment" data-fragment-index=5>matrix[1][1] = 1</span><span class="fragment" data-fragment-index=6>
+>>> </span><span class="fragment" data-fragment-index=7>matrix
 [[0, 0, 0], [0, 1, 0], [0, 0, 0]]</span><span>
 
 
@@ -1204,7 +1204,7 @@ def square_all(numbers):
               </marker>
             </defs>
             <!-- outer list (with index boxes, upper-left) -->
-            <g>
+            <g class="fragment" data-fragment-index=4>
               <path d="M 43 5 L 20 5 L 20 40 L 43 40" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 43 5 L 170 5 L 170 40 L 43 40" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 43 5 L 43 40" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1217,7 +1217,7 @@ def square_all(numbers):
               <text x="149" y="27" fill="#00f" font-size="13px" text-anchor="middle">2</text>
             </g>
             <!-- inner list 0 (right, oversimplified) -->
-            <g>
+            <g class="fragment" data-fragment-index=2>
               <path d="M 200 55 L 180 55 L 180 90 L 200 90" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 55 L 290 55 L 290 90 L 200 90" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 55 L 200 90" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1225,16 +1225,16 @@ def square_all(numbers):
               <text x="245" y="77" fill="#000" font-size="13px" text-anchor="middle">[0, 0, 0]</text>
             </g>
             <!-- inner list 1 (right, oversimplified) -->
-            <g>
+            <g class="fragment" data-fragment-index=2>
               <path d="M 200 105 L 180 105 L 180 140 L 200 140" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 105 L 290 105 L 290 140 L 200 140" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 105 L 200 140" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <text x="190" y="126" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,190,122.5)">list</text>
-              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=1>[0, 0, 0]</text>
-              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=1>[0, 1, 0]</text>
+              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=6>[0, 0, 0]</text>
+              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=6>[0, <tspan fill="#909" font-weight="bold">1</tspan>, 0]</text>
             </g>
             <!-- inner list 2 (right, oversimplified) -->
-            <g>
+            <g class="fragment" data-fragment-index=2>
               <path d="M 200 155 L 180 155 L 180 190 L 200 190" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 155 L 290 155 L 290 190 L 200 190" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 155 L 200 190" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1242,11 +1242,13 @@ def square_all(numbers):
               <text x="245" y="177" fill="#000" font-size="13px" text-anchor="middle">[0, 0, 0]</text>
             </g>
             <!-- arrows from outer indices to inner lists -->
-            <line x1="65" y1="33" x2="176" y2="168" stroke="#000" marker-end="url(#arr-matrix3)"/>
-            <line x1="107" y1="33" x2="176" y2="118" stroke="#000" marker-end="url(#arr-matrix3)"/>
-            <line x1="149" y1="33" x2="176" y2="68" stroke="#000" marker-end="url(#arr-matrix3)"/>
+            <g class="fragment" data-fragment-index=4>
+              <line x1="65" y1="33" x2="176" y2="168" stroke="#000" marker-end="url(#arr-matrix3)"/>
+              <line x1="107" y1="33" x2="176" y2="118" stroke="#000" marker-end="url(#arr-matrix3)"/>
+              <line x1="149" y1="33" x2="176" y2="68" stroke="#000" marker-end="url(#arr-matrix3)"/>
+            </g>
             <!-- matrix variable -->
-            <g>
+            <g class="fragment" data-fragment-index=4>
               <rect x="2" y="58" width="72" height="30" fill="#e1d5e7" stroke="#9673a6"/>
               <text x="38" y="77" fill="#000" font-size="13px" text-anchor="middle">matrix</text>
               <line x1="38" y1="58" x2="30" y2="44" stroke="#000" marker-end="url(#arr-matrix3)"/>
@@ -1266,9 +1268,9 @@ def square_all(numbers):
 
         <section>
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
->>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(["purple", "blue", "green"], [])</span>
->>> <span class="fragment" data-fragment-index=3>groups["purple"].append("duck")</span>
->>> <span class="fragment" data-fragment-index=5>groups
+>>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(["purple", "blue", "green"], [])
+>>> </span><span class="fragment" data-fragment-index=3>groups["purple"].append("duck")
+>>> </span><span class="fragment" data-fragment-index=5>groups
 {'purple': ['duck'], 'blue': ['duck'], 'green': ['duck']}</span>
           </code></pre>
           <svg xmlns="http://www.w3.org/2000/svg" width="500" height="230" viewBox="0 0 400 210" class="fragment" data-fragment-index=2>
