@@ -1268,7 +1268,8 @@ def square_all(numbers):
 
         <section>
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
->>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(["purple", "blue", "green"], [])
+>>> colors = ["purple", "blue", "green"]
+>>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(colors, [])
 >>> </span><span class="fragment" data-fragment-index=3>groups["purple"].append("duck")
 >>> </span><span class="fragment" data-fragment-index=5>groups
 {'purple': ['duck'], 'blue': ['duck'], 'green': ['duck']}</span>
@@ -1322,6 +1323,96 @@ def square_all(numbers):
             - So when we append to one of them **(CLICK)**...
             - We're mutating **(CLICK)** the one list that all three keys share
             - And that means **(CLICK)** all keys show the change, because they all point to the same object
+          </aside>
+        </section>
+
+        <section>
+          <div style="display: grid; grid-template-columns: 65% 35%;">
+          <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
+>>> colors = ["purple", "blue", "green"]
+>>> groups = <span class="fragment bold-current" data-fragment-index=3>{color: <span class="fragment bold-current" data-fragment-index=0>[]</span> <span class="fragment bold-current" data-fragment-index=1>for color in colors</span>}</span>
+>>> <span class="fragment" data-fragment-index=5>groups["purple"].append("duck")
+>>> </span><span class="fragment" data-fragment-index=7>groups
+{'purple': ['duck'], 'blue': [], 'green': []}</span><span>
+
+
+
+</span>
+          </code></pre>
+          <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="320" height="230" viewBox="0 0 270 185">
+            <defs>
+              <marker id="arr-dict2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <path d="M 0 0 L 8 3 L 0 6 Z" fill="#000"/>
+              </marker>
+            </defs>
+            <!-- 3 list objects (fragment 2) -->
+            <g class="fragment" data-fragment-index=2>
+              <!-- list for "purple" (oversimplified) -->
+              <g>
+                <path d="M 158 50 L 138 50 L 138 85 L 158 85" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 158 50 L 260 50 L 260 85 L 158 85" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 158 50 L 158 85" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <text x="148" y="71" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,148,67.5)">list</text>
+                <text x="209" y="72" fill="#000" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=6>[]</text>
+                <text x="209" y="72" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=6>[<tspan fill="#909" font-weight="bold">"duck"</tspan>]</text>
+              </g>
+              <!-- list for "blue" (oversimplified) -->
+              <g>
+                <path d="M 158 95 L 138 95 L 138 130 L 158 130" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 158 95 L 260 95 L 260 130 L 158 130" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 158 95 L 158 130" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <text x="148" y="116" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,148,112.5)">list</text>
+                <text x="209" y="117" fill="#000" font-size="13px" text-anchor="middle">[]</text>
+              </g>
+              <!-- list for "green" (oversimplified) -->
+              <g>
+                <path d="M 158 140 L 138 140 L 138 175 L 158 175" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 158 140 L 260 140 L 260 175 L 158 175" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 158 140 L 158 175" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <text x="148" y="161" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,148,157.5)">list</text>
+                <text x="209" y="162" fill="#000" font-size="13px" text-anchor="middle">[]</text>
+              </g>
+            </g>
+            <!-- dict, arrows, groups variable (fragment 4) -->
+            <g class="fragment" data-fragment-index=4>
+              <!-- dict object (left) -->
+              <g>
+                <path d="M 28 50 L 5 50 L 5 160 L 28 160" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 28 50 L 105 50 L 105 160 L 28 160" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <path d="M 28 50 L 28 160" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+                <text x="16.5" y="109" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,16.5,105)">dict</text>
+                <!-- key: "purple" -->
+                <rect x="38" y="60" width="55" height="20" fill="none" stroke="#000"/>
+                <text x="65" y="74" fill="#000" font-size="11px" text-anchor="middle">"purple"</text>
+                <!-- key: "blue" -->
+                <rect x="38" y="95" width="55" height="20" fill="none" stroke="#000"/>
+                <text x="65" y="109" fill="#000" font-size="11px" text-anchor="middle">"blue"</text>
+                <!-- key: "green" -->
+                <rect x="38" y="130" width="55" height="20" fill="none" stroke="#000"/>
+                <text x="65" y="144" fill="#000" font-size="11px" text-anchor="middle">"green"</text>
+              </g>
+              <!-- arrows from each key to its own list -->
+              <line x1="93" y1="70" x2="134" y2="67" stroke="#000" marker-end="url(#arr-dict2)"/>
+              <line x1="93" y1="105" x2="134" y2="109" stroke="#000" marker-end="url(#arr-dict2)"/>
+              <line x1="93" y1="140" x2="134" y2="153" stroke="#000" marker-end="url(#arr-dict2)"/>
+              <!-- groups variable -->
+              <g>
+                <rect x="2" y="5" width="72" height="26" fill="#e1d5e7" stroke="#9673a6"/>
+                <text x="38" y="22" fill="#000" font-size="13px" text-anchor="middle">groups</text>
+                <line x1="38" y1="31" x2="25" y2="46" stroke="#000" marker-end="url(#arr-dict2)"/>
+              </g>
+            </g>
+          </svg>
+          </div>
+          </div>
+          <aside class="notes" data-markdown>
+            - To fix the `dict.fromkeys` problem, we can use a dict comprehension
+            - This evaluates **(CLICK)** the `[]` expression **(CLICK)** once for each color in our list
+            - Creating **(CLICK)** 3 separate list objects
+            - **(CLICK)** The whole comprehension builds a dictionary **(CLICK)** where each key points to its own list
+            - So when we **(CLICK)** append to one of them **(CLICK)** only that key's list changes **(CLICK)**
+            - Because each value is its own distinct list object
           </aside>
         </section>
 
