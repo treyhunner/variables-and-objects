@@ -1427,11 +1427,13 @@ def square_all(numbers):
 >>> tue = TodoList()
 >>> </span><span class="fragment" data-fragment-index=3>mon.tasks.append("Work on talk")
 >>> </span><span class="fragment" data-fragment-index=5>tue.tasks
+['Work on talk']
+>>> </span><span class="fragment" data-fragment-index=6>TodoList.__init__.__defaults__[0]
 ['Work on talk']</span><span>
 </span>
           </code></pre>
           <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="260" viewBox="0 -20 340 168" class="fragment" data-fragment-index=2>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="280" style="margin-top: 20px;" viewBox="0 -20 340 168" class="fragment" data-fragment-index=2>
             <defs>
               <marker id="arr-todo" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
                 <path d="M 0 0 L 8 3 L 0 6 Z" fill="#000"/>
@@ -1489,6 +1491,128 @@ def square_all(numbers):
             - So when we append to one **(CLICK)**...
             - We're mutating **(CLICK)** the one list that both instances share
             - And that means **(CLICK)** both instances show the change
+            - In fact, **(CLICK)** we can look at the actual default value stored on the method itself
+            - That `[]` expression in our function definition was evaluated just *once* when the method was defined, and the resulting object was attached to the method
+            - Since both instances point to that same object, mutating it through one instance means the default value itself is now `['Work on talk']`
+          </aside>
+        </section>
+
+        <section>
+          <div style="display: grid; grid-template-columns: 55% 45%;">
+          <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
+>>> class TodoList:
+...     def __init__(self, tasks=[]):
+...         self.tasks = <span class="fragment bold-current" data-fragment-index=0>list(tasks)</span>
+...
+>>> <span class="fragment" data-fragment-index=1>mon = TodoList()
+>>> tue = TodoList()
+>>> </span><span class="fragment" data-fragment-index=4>mon.tasks.append("Work on talk")
+>>> </span><span class="fragment" data-fragment-index=6>tue.tasks
+[]</span><span>
+</span>
+          </code></pre>
+          <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="260" viewBox="0 -20 340 168" class="fragment" data-fragment-index=2>
+            <defs>
+              <marker id="arr-todo2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <path d="M 0 0 L 8 3 L 0 6 Z" fill="#000"/>
+              </marker>
+            </defs>
+            <!-- mon's list (top-right) -->
+            <g>
+              <path d="M 195 0 L 175 0 L 175 35 L 195 35" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 195 0 L 335 0 L 335 35 L 195 35" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 195 0 L 195 35" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="185" y="21" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,185,17.5)">list</text>
+              <text x="260" y="22" fill="#000" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=5>[]</text>
+              <text x="260" y="22" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=5>[<tspan fill="#909" font-weight="bold">"Work on talk"</tspan>]</text>
+            </g>
+            <!-- tue's list (bottom-right) -->
+            <g>
+              <path d="M 195 74 L 175 74 L 175 109 L 195 109" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 195 74 L 335 74 L 335 109 L 195 109" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 195 74 L 195 109" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="185" y="95" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,185,91.5)">list</text>
+              <text x="260" y="96" fill="#000" font-size="13px" text-anchor="middle">[]</text>
+            </g>
+            <!-- default list (middle-right, smaller, dimmed) -->
+            <g class="fragment" data-fragment-index=3>
+              <path d="M 195 37 L 175 37 L 175 72 L 195 72" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10" opacity="0.4"/>
+              <path d="M 195 37 L 275 37 L 275 72 L 195 72" fill="none" stroke="#82b366" stroke-miterlimit="10" opacity="0.4"/>
+              <path d="M 195 37 L 195 72" fill="none" stroke="#82b366" stroke-miterlimit="10" opacity="0.4"/>
+              <text x="185" y="58" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,185,54.5)" opacity="0.4">list</text>
+              <text x="232" y="59" fill="#000" font-size="13px" text-anchor="middle" opacity="0.4">[]</text>
+            </g>
+            <!-- mon's TodoList object (top) -->
+            <g>
+              <path d="M 82 0 L 55 0 L 55 59 L 82 59" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 0 L 148 0 L 148 59 L 82 59" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 0 L 82 59" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="67" y="31" fill="#000" text-anchor="middle" font-size="11px" transform="rotate(-90,68.5,27.5)">TodoList</text>
+              <rect x="90" y="17" width="40" height="20" fill="none" stroke="#9673a6"/>
+              <text x="110" y="31" fill="#000" font-size="11px" text-anchor="middle">tasks</text>
+            </g>
+            <!-- tue's TodoList object (bottom) -->
+            <g>
+              <path d="M 82 65 L 55 65 L 55 124 L 82 124" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 65 L 148 65 L 148 124 L 82 124" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <path d="M 82 65 L 82 124" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
+              <text x="67" y="96" fill="#000" text-anchor="middle" font-size="11px" transform="rotate(-90,68.5,92.5)">TodoList</text>
+              <rect x="90" y="82" width="40" height="20" fill="none" stroke="#9673a6"/>
+              <text x="110" y="96" fill="#000" font-size="11px" text-anchor="middle">tasks</text>
+            </g>
+            <!-- arrows: each .tasks → its own list -->
+            <line x1="130" y1="27" x2="171" y2="17" stroke="#000" marker-end="url(#arr-todo2)"/>
+            <line x1="130" y1="92" x2="171" y2="91" stroke="#000" marker-end="url(#arr-todo2)"/>
+            <!-- mon variable -->
+            <g>
+              <rect x="2" y="14" width="36" height="26" fill="#e1d5e7" stroke="#9673a6"/>
+              <text x="20" y="31" fill="#000" font-size="13px" text-anchor="middle">mon</text>
+              <line x1="38" y1="27" x2="51" y2="27" stroke="#000" marker-end="url(#arr-todo2)"/>
+            </g>
+            <!-- tue variable -->
+            <g>
+              <rect x="2" y="79" width="36" height="26" fill="#e1d5e7" stroke="#9673a6"/>
+              <text x="20" y="96" fill="#000" font-size="13px" text-anchor="middle">tue</text>
+              <line x1="38" y1="92" x2="51" y2="92" stroke="#000" marker-end="url(#arr-todo2)"/>
+            </g>
+          </svg>
+          </div>
+          </div>
+          <aside class="notes" data-markdown>
+            - To fix this, we could use **(CLICK)** the `list` constructor to copy the default list
+            - Now when we create **(CLICK)** two instances without passing a `tasks` list...
+            - Each instance **(CLICK)** gets its own separate copy of that default list
+            - The original default **(CLICK)** is still sitting on the method, untouched
+            - So when we append to one **(CLICK)**...
+            - We're only mutating **(CLICK)** that one instance's list
+            - And the other instance's list **(CLICK)** is unaffected, because each instance has its own distinct list object
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
+>>> class TodoList:
+...     def __init__(self, tasks=[]):
+...         self.tasks = list(tasks)
+...
+>>> <span class="fragment" data-fragment-index=0>default_todos = ["Reflect on last week"]
+>>> mon = TodoList(default_todos)
+>>> tue = TodoList(default_todos)
+>>> </span><span class="fragment" data-fragment-index=1>mon.tasks.append("Work on talk")
+>>> </span><span class="fragment" data-fragment-index=2>mon.tasks
+['Reflect on last week', 'Work on talk']
+>>> </span><span class="fragment" data-fragment-index=3>tue.tasks
+['Reflect on last week']
+>>> </span><span class="fragment" data-fragment-index=4>wed = TodoList({"Here is", "a set", "of tasks"})</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - This also has another benefit
+            - If we pass **(CLICK)** the *same* list into this class twice, each instance gets its own separate copy
+            - So mutating the tasks list **(CLICK)** of one instance **(CLICK)**
+            - Will *not* affect the tasks list **(CLICK)** of the other
+            - Also, because the `list` constructor will loop over any iterable to make a new list, this class now accepts not just lists but sets, generators, or **(CLICK)** *any* iterable
+            - This is why classes that are meant to *change* an iterable that's passed in, will often shallowly copy that iterable in their initializers
           </aside>
         </section>
 
@@ -1604,62 +1728,6 @@ def square_all(numbers):
           </aside>
         </section>
 
-        <section>
-          <h2>Remember Problem 2?</h2>
-          <pre class="python"><code data-trim data-noescape>
->>> d = dict.fromkeys(['a', 'b', 'c'], [])
->>> d
-{'a': [], 'b': [], 'c': []}
->>> d['a'].append(1)
->>> d
-{'a': [1], 'b': [1], 'c': [1]}
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - Remember our dict.fromkeys problem?
-            - Now we understand: dict.fromkeys creates multiple keys that all point to the same list object
-            - When we append to one, we're mutating that object
-            - And since all keys point to the same object, they all show the change
-          </aside>
-        </section>
-
-        <section>
-          <h2>Remember Problem 3?</h2>
-          <pre class="python"><code data-trim data-noescape>
->>> matrix = [[0] * 3] * 3
->>> matrix
-[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> matrix[1][1] = 1
->>> matrix
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - And our list-of-lists problem?
-            - Multiplication doesn't copy - it creates multiple references to the same object
-            - So all three items in our outer list point to the same inner list
-            - When we modify one, we're modifying the object that all three point to
-          </aside>
-        </section>
-
-        <section>
-          <h2>Remember Problem 4?</h2>
-          <pre class="python"><code data-trim data-noescape>
->>> class TodoList:
-...     def __init__(self, tasks=[]):
-...         self.tasks = tasks
-...
->>> mon = TodoList()
->>> tue = TodoList()
->>> mon.tasks.append("Work on talk")
->>> tue.tasks
-['Work on talk']
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - And our mutable default argument problem?
-            - Default arguments are created once when the function is defined
-            - So every instance that uses the default is pointing to the same list object
-            - The solution? Use `list(tasks)` to copy, or use `tasks=None` and create a new list inside the function
-          </aside>
-        </section>
 
       </section>
       <section>
