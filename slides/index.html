@@ -63,12 +63,14 @@
         <!-- SECTION TIME: 2 minutes -->
 
         <section>
-          <h1>Mental Models</h1>
+          <h1 class="fragment">Mental Models</h1>
           <h1 class="fragment">Gotchas</h1>
           <aside class="notes" data-markdown>
-            - TODO A mental model is ...
-            - When your mental model of Python differs from how Python actually works, you're likely to run into gotchas
-            - We're going to start with a few potential Python gotchas that will *hopefully* make sense by the end of this talk
+            - This talk is about **(CLICK)** mental models
+            - Specifically, the mental models we use when thinking about Python's variables and objects
+            - When our mental models don't match how Python actually *works*... **(CLICK)**
+            - We run into gotchas
+            - Let's begin with a few gotchas...
           </aside>
         </section>
 
@@ -1063,12 +1065,12 @@ def square_all(numbers):
         </section>
 
         <section>
-          <h1>Containment</h1>
-          <h2 class="fragment">... is a lie</h2>
-          <pre class="python fragment" style="width: 15%; text-align: center;"><code data-trim data-noescape style="font-size: 30px; line-height: 36px;">
+          <h1 class="fragment fade-out" data-fragment-index=2>Containment</h1>
+          <h2 class="fragment fade-out" data-fragment-index=2><span class="fragment" data-fragment-index=0>... is a lie</span></h2>
+          <pre class="python fragment" data-fragment-index=1 style="width: 15%; text-align: center;"><code data-trim data-noescape style="font-size: 30px; line-height: 36px;">
 x in y
           </code></pre>
-          <h3 class="fragment">&ldquo;y contains x&rdquo;</h3>
+          <h3 class="fragment" data-fragment-index=2>&ldquo;y contains x&rdquo;</h3>
           <aside class="notes" data-markdown>
             - Containment is...
             - **(CLICK)**
@@ -1076,8 +1078,7 @@ x in y
             - Because objects cannot contain other objects... they can only contain *references* to objects
             - So when we ask whether one object contains another... **(CLICK)**
             - We're asking whether one object contains a **reference** to an object that **is equal** to another object
-            - But, instead of saying all that, we just say "y contains x"
-            - TODO make the containment and "... is a lie" part disappear as we reveal "x contains x"
+            - But, instead of saying all that, **(CLICK)** we just say "y contains x"
           </aside>
         </section>
 
