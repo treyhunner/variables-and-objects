@@ -49,6 +49,7 @@
           </div>
           <p>trey @ Python Morsels .com</p>
           <aside class="notes" data-markdown>
+            - TODO add some emphasis to this slide (italics and bolding in speaker notes)
             - And I help folks **level-up** their Python skills
             - I do that through Python Morsels, which involves deepening your skills by solving interesting practical Python exercises
             - and I also hold team trainings on both introductory and advanced Python topics, as well as related technologies like Pytest and Django
@@ -106,34 +107,32 @@
 >>> </span><span class="fragment">groups
 {'purple': [], 'blue': [], 'green': []}
 >>> </span><span class="fragment">groups["purple"].append("duck")
->>> </span><span class="fragment">groups["purple"]
-['duck']
 >>> </span><span class="fragment">groups
 {'purple': ['duck'], 'blue': ['duck'], 'green': ['duck']}</span>
           </code></pre>
           <aside class="notes" data-markdown>
             - Let's say we have a list of colors **(CLICK)** that we'd like to be keys in a dictionary **(CLICK)**
-            - So we use the dictionary `fromkeys` class method **(CLICK)** to create a dictionary of lists **(CLICK)**
-            - If we add the string `duck` to one of these lists **(CLICK)**
-            - That list will now have **(CLICK)** one item in it
-            - But... **(CLICK)** so will every other list in this dictionary
+            - So we use the dictionary `fromkeys` class method **(CLICK)** to create a dictionary of lists
+            - If we add the string `duck` **(CLICK)** to one of these lists
+            - Every list **(CLICK)** in this dictionary changed
             - We tried to change *one* list but all of them changed
           </aside>
         </section>
 
         <section>
           <pre class="python"><code data-trim data-noescape>
->>> <span class="fragment">matrix = [[0] * 3] * 3
->>> </span><span class="fragment">matrix
+>>> <span class="fragment" data-fragment-index=1>matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=2>[0] * 3</span>] * 3</span>
+>>> </span><span class="fragment" data-fragment-index=4>matrix
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> </span><span class="fragment">matrix[1][1] = 1
->>> </span><span class="fragment">matrix
+>>> </span><span class="fragment" data-fragment-index=5>matrix[1][1] = 1
+>>> </span><span class="fragment" data-fragment-index=6>matrix
 [[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span>
           </code></pre>
           <aside class="notes" data-markdown>
             - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
-            - We multiple a list with a `0` by 3 and put that in a list that we also multiply 3 and we end up **(CLICK)** with a list of 3 lists each containing 3 0's
-            - If we assign the number 1 **(CLICK)** to index 1 of the of the list that's at index 1, we'll change the middle element of the middle list
+            - We multiply **(CLICK)** a list with a `0` by 3 and put that in a list **(CLICK)** that we also multiply by 3
+            - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
+            - If we assign the number 1 **(CLICK)** to index 1 of the list that's at index 1, we'll change the middle element of the middle list
             - Well... **(CLICK)** sort of
             - We actually end up changing all 3 of those inner lists
           </aside>
@@ -143,7 +142,7 @@
           <pre class="python"><code data-trim data-noescape>
 >>> <span class="fragment">class TodoList:
 ...     def __init__(self, tasks=[]):
-...         self.tasks = tasks
+...         <span class="fragment bold-current">self.tasks = tasks</span>
 ...
 >>> </span><span class="fragment">mon = TodoList()
 >>> tue = TodoList()
@@ -152,12 +151,12 @@
 ['Work on talk']</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - Let's say we make `TodoList` class with an initializer method that accepts an optional `tasks` list **(CLICK)**
-            - The given `tasks` list is stored as a `tasks` attribute on each new `TodoList` object
+            - Let's say we make a `TodoList` class **(CLICK)** with an initializer method that accepts an optional `tasks` list
+            - The given `tasks` list is **(CLICK)** stored as a `tasks` attribute on each new `TodoList` object
             - If we create two new `TodoList` objects **(CLICK)**
             - And we append a new task to the `tasks` attribute **(CLICK)** of the first object
             - The second object's `tasks` attribute **(CLICK)** will *also* change **(CLICK)**
-            - We changed *one* of our `tasks` lists but *both* lists changed
+            - We changed one of our `TodoList` objects, but both of them changed
           </aside>
         </section>
 
@@ -184,7 +183,7 @@
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - If we make a `first` list **(first)** and assign `second` to `first` **(click)**
+            - If we make a `first` list **(CLICK)** and assign `second` to `first` **(CLICK)**
             - When we change `first`, by appending to it **(CLICK)**
             - `second` also changes **(CLICK)**
             - But if instead... **(CLICK)**
@@ -208,7 +207,7 @@
           <aside class="notes" data-markdown>
             - My goal in this talk is to clarify
             - Why these 5 bits of code **(CLICK)** are "gotchas"
-            - We'll do this, by considering the **mental models** that we use for variables and objects in Python
+            - We'll do this by considering the **mental models** that we use for variables and objects in Python
           </aside>
         </section>
 
@@ -361,7 +360,7 @@
             - There's no dereferencing pointers or pointer arithmetic and they're not *nearly* as *scary* or as powerful as C pointers
             - The Python documentation often refers to variables as **(CLICK)** "bindings"
             - Though they're also sometimes called **(CLICK)** "references"
-            - I usually call them "pointers" **(CLICK)** because for me, that word makes me think of an **arrow** pointing **(CLICK)** from a variable an object
+            - I usually call them "pointers" **(CLICK)** because for me, that word makes me think of an **arrow** pointing **(CLICK)** from a variable to an object
           </aside>
         </section>
 
@@ -497,7 +496,8 @@
             - So... **(click)** variables in Python don't *contain* objects, they *point* to them
             - Because of this indirection between variables and objects, **(click)** there are 2 distinct types of "change":
             - **(CLICK)** mutations and **(CLICK)** assignments
-            - mutations change objects and assignments change variables
+            - Mutations change objects and assignments change variables
+            - TODO (I think this should probably be noted later in the talk when we're showing list with a number and note how it wouldn't get us in to trouble to think of a list of numbers an containing numbers really) Note that strings, numbers, and tuples are *immutable*: they can't be mutated, only reassigned
             - So... the phrase...
           </aside>
         </section>
@@ -543,6 +543,7 @@
           </ol>
           <aside class="notes" data-markdown>
             - And that explains **(CLICK)** our first gotcha
+            - TODO (reword this...) When two variables point to the same object, mutating through one affects the other
           </aside>
         </section>
 
@@ -565,7 +566,7 @@ True</span></code></pre>
             - **(CLICK)** "are they the same?"
             - We have the **(CLICK)** double equals operator (`==`) for **(CLICK)** *equality*
             - And we have the **(CLICK)** `is` operator for **(CLICK)** *identity*
-            - You can think of equality and identity as asking about model numbers and serial numbers.
+            - You can think of equality and identity as asking about model numbers and serial numbers
           </aside>
         </section>
 
@@ -576,13 +577,12 @@ True</span></code></pre>
               <div style="position: relative; display: inline-block; max-width: 100%; vertical-align: middle;">
                 <img
                   src="washing machine tag.jpg"
-                  class="fragment no-style"
+                  class="no-style"
                   style="display: block; width: 600px; max-width: 100%; height: auto;"
-                  data-fragment-index=1
                 >
                 <div
                   class="fragment"
-                  data-fragment-index=2
+                  data-fragment-index=1
                   style="
                     position: absolute;
                     background-color: rgba(0, 255, 0, 0.3);
@@ -597,7 +597,7 @@ True</span></code></pre>
                 </div>
                 <div
                   class="fragment"
-                  data-fragment-index=3
+                  data-fragment-index=2
                   style="
                     position: absolute;
                     background-color: rgba(0, 0, 255, 0.3);
@@ -611,12 +611,11 @@ True</span></code></pre>
                 >
                 </div>
               </div>
-              <p class="fragment" data-fragment-index=5 style="margin-bottom: 0;"><strong style="color: #7771a1;">Identity</strong>: the exact same object</p>
-              <p class="fragment" data-fragment-index=4 style="margin-bottom: 0;"><strong style="color: #72ae61;">Equality</strong>: an equivalent object</p>
+              <p class="fragment" data-fragment-index=4 style="margin-bottom: 0;"><strong style="color: #7771a1;">Identity</strong>: the exact same object</p>
+              <p class="fragment" data-fragment-index=3 style="margin-bottom: 0;"><strong style="color: #72ae61;">Equality</strong>: an equivalent object</p>
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - Equality and identity are like **(CLICK)** model numbers and serial numbers
             - Model numbers **(CLICK)** help you find equivalent devices
             - Serial numbers **(CLICK)** uniquely identify a specific device
             - Equality **(CLICK)** asks whether two objects represent the same thing
@@ -635,8 +634,8 @@ True</span></code></pre>
           <aside class="notes" data-markdown>
             - If we have two variables, `first`, and `second`, and we ask whether they **(CLICK)** are *equal*, we're asking whether they have the same value... this asks **(CLICK)** the *objects* whether they represent the same thing
             - If we ask whether these variables **(CLICK)** are *identical* we're asking whether **(CLICK)** they both point to the same object
-            - unlike equality, identity doesn't ask any question of the object itself.
-            - So **(CLICK)** equality compares the values of objects, while **(CLICK)** identity compares references to those objects to see whether they're the same reference
+            - Unlike equality, identity doesn't ask any question of the object itself
+            - So **(CLICK)** equality compares the values of objects, while **(CLICK)** identity compares references to those objects to see whether they point to the same object
           </aside>
         </section>
 
@@ -652,7 +651,6 @@ value == another_value
             - The `is` operator is *very* rarely used outside of comparisons to **(CLICK)** `None`
             - When we ask "are they the same?" we usually **(CLICK)** want the double-equals operator.
             - **(CLICK)** Checking equality is much more common than checking identity
-            - **08 minutes and 30 seconds in**
           </aside>
         </section>
 
@@ -745,7 +743,7 @@ def square_all(numbers):
             - With a `for` loop
             - Or **(CLICK)** a comprehension
             - Or with the many other Python features that make new objects out of old objects
-            - Unless your function is specifically designed to modify an object in-place, **(CLICK)** return new objects instead modifying existing ones
+            - Unless your function is specifically designed to modify an object in-place, **(CLICK)** return new objects instead of modifying existing ones
           </aside>
         </section>
 
@@ -767,7 +765,7 @@ def square_all(numbers):
             - Well... it's both. **(CLICK)**
             - Assigning to **(CLICK)** a list index mutates the list
             - And assigning to **(CLICK)** an attribute mutates the object that the attribute lives on
-            - In fact, if you *squint* hard enough, every assignment is *also* a mutation of some sort of namespace... it may not be a namespace that we can access through attribute lookups on an object... but all variables are stored somewhere
+            - In fact, if you *squint* hard enough, every assignment is *also* a mutation of some sort of namespace... it may not be a namespace that we can access through attribute lookups on an object... but all variables are stored somewhere in Python
           </aside>
         </section>
 
@@ -862,6 +860,7 @@ def square_all(numbers):
     self.tasks = tasks</code></li>
           </ol>
           <aside class="notes" data-markdown>
+            - Function arguments are just variables and no objects are copied when a function is called
             - That's **(CLICK)** two down, three to go
           </aside>
         </section>
@@ -962,8 +961,7 @@ def square_all(numbers):
             - Both `first` and `second` point to the same list, and that list contains the number `9`
             - But that list doesn't *actually* contain the number 9
             - This diagram should technically look more like this... **(CLICK)**
-            - Because the list doesn't *contain* the number `9`...
-            - It only contains a *reference* to the number `9`
+            - The list *can't* contain the number `9`: it can only contain a *reference* to the number `9`
           </aside>
         </section>
 
@@ -1256,6 +1254,7 @@ x in y
             - Index 1 in the inner list now points to the number 1 instead of the number 0
             - But since all three outer indices point to the **same** inner list, **(CLICK)** all 3 "rows" show this change
             - Because all rows are actually the same list
+            - To fix this, we can use a list comprehension...
           </aside>
         </section>
 
@@ -1333,11 +1332,10 @@ x in y
           </div>
           </div>
           <aside class="notes" data-markdown>
-            - TODO fix up this slide
-            - To fix this, we can use a list comprehension
-            - A list comprehension evaluates **(CLICK)** this `[0] * 3` expression once per iteration, creating 3 **separate** list objects
-            - Using our oversimplified diagram here, we can see each outer index points to a **different** inner list
-            - So when we mutate one row **(CLICK)**, only that row changes
+            - A list comprehension evaluates **(CLICK)** this `[0] * 3` expression **(CLICK)** once per iteration **(CLICK)**
+            - Creating **(CLICK)** 3 **separate** list objects
+            - **(CLICK)** Using our oversimplified diagram here, we can see each outer index points to a **different** inner list
+            - So when we mutate **(CLICK)** one row, **(CLICK)** only that row **(CLICK)** changes
             - Because each row is its own distinct list object
           </aside>
         </section>
@@ -1395,10 +1393,11 @@ x in y
           <aside class="notes" data-markdown>
             - Remember our `dict.fromkeys` problem?
             - `dict.fromkeys` creates a dictionary **(CLICK)** with each key pointing to the same value
-            - Here's what that looks like **(CLICK)** -- all three keys point to the **same** list object
+            - Here's what that looks like: **(CLICK)** all three keys point to the **same** list object
             - So when we append to one of them **(CLICK)**...
             - We're mutating **(CLICK)** the one list that all three keys share
             - And that means **(CLICK)** all keys show the change, because they all point to the same object
+            - To fix this, we could use a dictionary comprehension...
           </aside>
         </section>
 
@@ -1483,11 +1482,10 @@ x in y
           </div>
           </div>
           <aside class="notes" data-markdown>
-            - To fix the `dict.fromkeys` problem, we can use a dict comprehension
-            - This evaluates **(CLICK)** the `[]` expression **(CLICK)** once for each color in our list
+            - This evaluates **(CLICK)** the empty list literal **(CLICK)** once for each color in our list
             - Creating **(CLICK)** 3 separate list objects
             - **(CLICK)** The whole comprehension builds a dictionary **(CLICK)** where each key points to its own list
-            - So when we **(CLICK)** append to one of them **(CLICK)** only that key's list changes **(CLICK)**
+            - So when we **(CLICK)** append to one of them, **(CLICK)** only that key's list changes **(CLICK)**
             - Because each value is its own distinct list object
           </aside>
         </section>
@@ -1496,7 +1494,7 @@ x in y
           <div style="display: grid; grid-template-columns: 55% 45%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> class TodoList:
-...     def __init__(self, tasks=[]):
+...     def __init__(self, tasks=<span class="fragment bold-current" data-fragment-index=7>[]</span>):
 ...         self.tasks = tasks
 ...
 >>> <span class="fragment" data-fragment-index=1>mon = TodoList()
@@ -1563,13 +1561,14 @@ x in y
           <aside class="notes" data-markdown>
             - Remember our `TodoList` problem with the mutable default argument?
             - When we create **(CLICK)** two instances without passing a `tasks` list...
-            - Here's what's happening **(CLICK)** -- both instances' `.tasks` attributes point to the **same** default list object
+            - What happens is that **(CLICK)** both instances' `.tasks` attributes point to the **same** default list object
             - So when we append to one **(CLICK)**...
             - We're mutating **(CLICK)** the one list that both instances share
             - And that means **(CLICK)** both instances show the change
-            - In fact, **(CLICK)** we can look at the actual default value stored on the method itself
-            - That `[]` expression in our function definition was evaluated just *once* when the method was defined, and the resulting object was attached to the method
-            - Since both instances point to that same object, mutating it through one instance means the default value itself is now `['Work on talk']`
+            - In fact, **(CLICK)** we can look at the actual default value stored on the method itself and see that it changed as well
+            - That **(CLICK)** empty list expression in our function definition was evaluated just *once*, when the method was defined, and the resulting object was attached to the method
+            - So mutating it through one instance changes the default value itself
+            - To fix this, we could use the `list` constructor to copy the default list...
           </aside>
         </section>
 
@@ -1656,13 +1655,14 @@ x in y
           </div>
           </div>
           <aside class="notes" data-markdown>
-            - To fix this, we could use **(CLICK)** the `list` constructor to copy the default list
+            - If we use **(CLICK)** the `list` constructor to copy the default list
             - Now when we create **(CLICK)** two instances without passing a `tasks` list...
             - Each instance **(CLICK)** gets its own separate copy of that default list
             - The original default **(CLICK)** is still sitting on the method, untouched
             - So when we append to one **(CLICK)**...
             - We're only mutating **(CLICK)** that one instance's list
             - And the other instance's list **(CLICK)** is unaffected, because each instance has its own distinct list object
+            - This also has another benefit...
           </aside>
         </section>
 
@@ -1683,12 +1683,11 @@ x in y
 >>> </span><span class="fragment" data-fragment-index=4>wed = TodoList({"Here is", "a set", "of tasks"})</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - This also has another benefit
             - If we pass **(CLICK)** the *same* list into this class twice, each instance gets its own separate copy
             - So mutating the tasks list **(CLICK)** of one instance **(CLICK)**
             - Will *not* affect the tasks list **(CLICK)** of the other
             - Also, because the `list` constructor will loop over any iterable to make a new list, this class now accepts not just lists but sets, generators, or **(CLICK)** *any* iterable
-            - This is why classes that are meant to *change* an iterable that's passed in, will often shallowly copy that iterable in their initializers
+            - This is why classes that are meant to *change* an iterable that's passed in will often shallowly copy that iterable in their initializers
           </aside>
         </section>
 
@@ -1705,6 +1704,8 @@ x in y
           </ol>
           <aside class="notes" data-markdown>
             - That explains our **(CLICK)** last **(CLICK)** three **(CLICK)** gotchas
+            - All three were due to the fact that objects in Python don't contain other objects: they can only contain references to other objects
+            - So if we end up with multiple references to the same mutable object, we might get ourselves in trouble
           </aside>
         </section>
 
@@ -1850,6 +1851,7 @@ x in y
           </aside>
         </section>
 
+        <!--
         <section data-background-image="ouroboros-background.png" data-transition="none">
           <pre class="python" style="width: 45%;"><code data-trim data-noescape>
 >>> x = []
@@ -1872,6 +1874,7 @@ True</span>
             - So there's nothing stopping a list from contain a reference to itself
           </aside>
         </section>
+        -->
 
       </section>
       <section>
@@ -1885,13 +1888,12 @@ True</span>
           <li class="fragment" data-fragment-index=3>Hashability and its relation to immutability</li>
           <li class="fragment" data-fragment-index=4>CPython optimizations that affect identity</li>
           <li class="fragment" data-fragment-index=5>Direct value storage of array, data frames, etc.</li>
-          <li class="fragment" data-fragment-index=6>Mutable default argument gotchas</li>
-          <li class="fragment" data-fragment-index=7>Tuples containing mutable objects</li>
-          <li class="fragment" data-fragment-index=7>Why it all works this way</li>
+          <li class="fragment" data-fragment-index=6>Tuples containing mutable objects</li>
+          <li class="fragment" data-fragment-index=6>Why it all works this way</li>
           </ul>
-          <h2 style="margin-top: 0.2em;" class="fragment" data-fragment-index=8><a href="https://trey.io/pycascades26">https://trey.io/pycascades26</a></h2>
-          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=9><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a> - Brandon Rhodes</p>
-          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=9><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a> - Ned Batchelder</p>
+          <h2 style="margin-top: 0.2em;" class="fragment" data-fragment-index=7><a href="https://trey.io/pycascades26">https://trey.io/pycascades26</a></h2>
+          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=8><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a> - Brandon Rhodes</p>
+          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=8><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a> - Ned Batchelder</p>
 
           <aside class="notes" data-markdown>
             - There are *many* odd corners of this topic that we didn't cover today.
@@ -1900,7 +1902,6 @@ True</span>
             - **(CLICK)** Hashability
             - **(CLICK)** Optimizations around numbers, strings, and tuples
             - **(CLICK)** Arrays and direct value storage
-            - **(CLICK)** Mutable default arguments
             - **(CLICK)** And the fact that tuples can contain mutable objects
             - ...
             - **(CLICK)** This URL, which is on the bottom of each slide in this talk, includes links to resources on some of these topics as well as **(CLICK)** 2 great talks by other Python community members
