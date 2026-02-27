@@ -49,11 +49,10 @@
           </div>
           <p>trey @ Python Morsels .com</p>
           <aside class="notes" data-markdown>
-            - TODO add some emphasis to this slide (italics and bolding in speaker notes)
             - And I help folks **level-up** their Python skills
-            - I do that through Python Morsels, which involves deepening your skills by solving interesting practical Python exercises
-            - and I also hold team trainings on both introductory and advanced Python topics, as well as related technologies like Pytest and Django
-            - If you would like my help leveling up your or your team's Python skills, contact me
+            - I do that through **Python Morsels**, which involves deepening your skills through hands-on Python practice
+            - and I also hold **team trainings** on both introductory and advanced Python topics
+            - If *you* would like my help leveling up *your* Python skills or your *team's* Python skills, contact me
             - ...
           </aside>
         </section>
@@ -360,7 +359,7 @@
             - There's no dereferencing pointers or pointer arithmetic and they're not *nearly* as *scary* or as powerful as C pointers
             - The Python documentation often refers to variables as **(CLICK)** "bindings"
             - Though they're also sometimes called **(CLICK)** "references"
-            - I usually call them "pointers" **(CLICK)** because for me, that word makes me think of an **arrow** pointing **(CLICK)** from a variable to an object
+            - I usually call them "pointers" **(CLICK)** because for me, that word makes me think of an **arrow** pointing **(CLICK)** from a variable to an object, and I find that visual helpful
           </aside>
         </section>
 
@@ -497,7 +496,6 @@
             - Because of this indirection between variables and objects, **(click)** there are 2 distinct types of "change":
             - **(CLICK)** mutations and **(CLICK)** assignments
             - Mutations change objects and assignments change variables
-            - TODO (I think this should probably be noted later in the talk when we're showing list with a number and note how it wouldn't get us in to trouble to think of a list of numbers an containing numbers really) Note that strings, numbers, and tuples are *immutable*: they can't be mutated, only reassigned
             - So... the phrase...
           </aside>
         </section>
@@ -543,7 +541,7 @@
           </ol>
           <aside class="notes" data-markdown>
             - And that explains **(CLICK)** our first gotcha
-            - TODO (reword this...) When two variables point to the same object, mutating through one affects the other
+            - When we point two variables at the same mutable object, changing it through one variable means it changes for both
           </aside>
         </section>
 
@@ -618,8 +616,8 @@ True</span></code></pre>
           <aside class="notes" data-markdown>
             - Model numbers **(CLICK)** help you find equivalent devices
             - Serial numbers **(CLICK)** uniquely identify a specific device
-            - Equality **(CLICK)** asks whether two objects represent the same thing
-            - Identity **(CLICK)** asks whether they are the exact same object
+            - Equality **(CLICK)** asks whether two objects represent the same thing: that's like a model number
+            - Identity **(CLICK)** asks whether they are the exact same object: that's like a serial number
           </aside>
         </section>
 
@@ -632,10 +630,10 @@ True
 >>> </span><span class="fragment" data-fragment-index=3>first is second  <strong class="fragment" data-fragment-index=4># Do these variables point to the same object?</strong>
 True</span></code></pre>
           <aside class="notes" data-markdown>
-            - If we have two variables, `first`, and `second`, and we ask whether they **(CLICK)** are *equal*, we're asking whether they have the same value... this asks **(CLICK)** the *objects* whether they represent the same thing
-            - If we ask whether these variables **(CLICK)** are *identical* we're asking whether **(CLICK)** they both point to the same object
-            - Unlike equality, identity doesn't ask any question of the object itself
-            - So **(CLICK)** equality compares the values of objects, while **(CLICK)** identity compares references to those objects to see whether they point to the same object
+            - If we have two variables, `first`, and `second`, and we ask whether they **(CLICK)** are *equal*, we're asking whether they have the same value... this asks **(CLICK)** the *objects* whether they represent the same thing, like a model number
+            - If we ask whether these variables **(CLICK)** are *identical* we're asking whether **(CLICK)** they both point to the same object, like a serial number
+            - Unlike equality, identity doesn't ask any question of the object itself: it just asks whether two references point to the same object
+            - So **(CLICK)** equality compares the *values* of objects, while **(CLICK)** identity compares *references* to see whether they point to the same object
           </aside>
         </section>
 
@@ -1042,7 +1040,7 @@ def square_all(numbers):
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - Variables, can only *point* to objects
+            - Variables can only *point* to objects
             - And objects can only *point* to other objects
             - Objects *cannot contain* other objects
             - Which is why... **(CLICK)** if we put our list inside another list...
@@ -1254,14 +1252,15 @@ x in y
             - Index 1 in the inner list now points to the number 1 instead of the number 0
             - But since all three outer indices point to the **same** inner list, **(CLICK)** all 3 "rows" show this change
             - Because all rows are actually the same list
-            - To fix this, we can use a list comprehension...
+            - So: don't use self-concatenation to build up a list of mutable objects
+            - But how could we fix this? We could use a list comprehension...
           </aside>
         </section>
 
         <section>
           <div style="display: grid; grid-template-columns: 60% 40%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
->>> matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=0>[0] * 3</span> for _ in <span class="fragment bold-current" data-fragment-index=1>range(3)</span>]</span>
+>>> matrix = <span class="fragment bold-current" data-fragment-index=2>[<span class="fragment bold-current" data-fragment-index=0>[0] * 3</span> for _ in <span class="fragment bold-current" data-fragment-index=1>range(3)</span>]</span>
 >>> <span class="fragment" data-fragment-index=5>matrix[1][1] = 1</span><span class="fragment" data-fragment-index=6>
 >>> </span><span class="fragment" data-fragment-index=7>matrix
 [[0, 0, 0], [0, 1, 0], [0, 0, 0]]</span><span>
@@ -1292,7 +1291,7 @@ x in y
               <text x="149" y="27" fill="#00f" font-size="13px" text-anchor="middle">2</text>
             </g>
             <!-- inner list 0 (right, oversimplified) -->
-            <g class="fragment" data-fragment-index=2>
+            <g class="fragment" data-fragment-index=3>
               <path d="M 200 55 L 180 55 L 180 90 L 200 90" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 55 L 290 55 L 290 90 L 200 90" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 55 L 200 90" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1300,7 +1299,7 @@ x in y
               <text x="245" y="77" fill="#000" font-size="13px" text-anchor="middle">[0, 0, 0]</text>
             </g>
             <!-- inner list 1 (right, oversimplified) -->
-            <g class="fragment" data-fragment-index=2>
+            <g class="fragment" data-fragment-index=3>
               <path d="M 200 105 L 180 105 L 180 140 L 200 140" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 105 L 290 105 L 290 140 L 200 140" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 105 L 200 140" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1309,7 +1308,7 @@ x in y
               <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=6>[0, <tspan fill="#909" font-weight="bold">1</tspan>, 0]</text>
             </g>
             <!-- inner list 2 (right, oversimplified) -->
-            <g class="fragment" data-fragment-index=2>
+            <g class="fragment" data-fragment-index=3>
               <path d="M 200 155 L 180 155 L 180 190 L 200 190" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 155 L 290 155 L 290 190 L 200 190" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 200 155 L 200 190" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
@@ -1335,8 +1334,8 @@ x in y
             - A list comprehension evaluates **(CLICK)** this `[0] * 3` expression **(CLICK)** once per iteration **(CLICK)**
             - Creating **(CLICK)** 3 **separate** list objects
             - **(CLICK)** Using our oversimplified diagram here, we can see each outer index points to a **different** inner list
-            - So when we mutate **(CLICK)** one row, **(CLICK)** only that row **(CLICK)** changes
-            - Because each row is its own distinct list object
+            - So when we **(CLICK)** mutate one row... **(CLICK)** only that row **(CLICK)** changes
+            - Because each row is its own distinct list object, changing one doesn't change the others
           </aside>
         </section>
 
@@ -1397,6 +1396,7 @@ x in y
             - So when we append to one of them **(CLICK)**...
             - We're mutating **(CLICK)** the one list that all three keys share
             - And that means **(CLICK)** all keys show the change, because they all point to the same object
+            - So: don't pass a mutable object as the default value to `fromkeys`
             - To fix this, we could use a dictionary comprehension...
           </aside>
         </section>
@@ -1655,8 +1655,8 @@ x in y
           </div>
           </div>
           <aside class="notes" data-markdown>
-            - If we use **(CLICK)** the `list` constructor to copy the default list
-            - Now when we create **(CLICK)** two instances without passing a `tasks` list...
+            - **(CLICK)** By using `list(tasks)`, we copy the list each time
+            - When we create **(CLICK)** two instances without passing a `tasks` list...
             - Each instance **(CLICK)** gets its own separate copy of that default list
             - The original default **(CLICK)** is still sitting on the method, untouched
             - So when we append to one **(CLICK)**...
@@ -1804,23 +1804,7 @@ x in y
       <section>
         <!-- section: conclusion -->
 
-        <section>
-          <h2>It's pointers all the way down 🐢</h2>
-          <ul>
-          <li class="fragment">Variables store object references</li>
-          <li class="fragment">Objects store object references</li>
-          <li class="fragment">Immutable containers can change</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - In Python, variables don't contain objects... they only *point* to objects
-            - Put another way, **(CLICK)** Variables store *references* to objects
-            - Also, objects **(CLICK)** can store references to other objects
-            - But objects *can't contain* objects
-            - And **(CLICK)** immutable objects that contain references to *mutable* objects are only *kind of* immutable
-            - So given what we've learned about how variables and objects work in Python...
-          </aside>
-        </section>
-
+        <!--
         <section>
           <h2>One more puzzle</h2>
           <pre class="python" style="width: 45%;"><code data-trim data-noescape>
@@ -1851,7 +1835,6 @@ x in y
           </aside>
         </section>
 
-        <!--
         <section data-background-image="ouroboros-background.png" data-transition="none">
           <pre class="python" style="width: 45%;"><code data-trim data-noescape>
 >>> x = []
@@ -1876,27 +1859,131 @@ True</span>
         </section>
         -->
 
+        <section>
+          <h1>Recap</h1>
+          <aside class="notes" data-markdown>
+            - A quick recap of what we've learned...
+          </aside>
+        </section>
+
+        <section>
+          <div style="display: inline-block; text-align: left; font-size: 0.8em; width: 75%; margin-top: -1.5em;">
+            <h1 style="text-align: center;">Variables</h1>
+            <ul>
+              <li class="fragment">Variables don't contain objects</li>
+              <li class="fragment">Variables contain <em>pointers</em> to objects</li>
+              <li class="fragment">Assignments <em>point</em> a variable to an object</li>
+              <li class="fragment">Assignments <strong>do not make a copy</strong></li>
+            </ul>
+            <h2 class="fragment" style="text-align: center; margin-top: 0.25em;">So...</h2>
+            <ul>
+              <li class="fragment"><code>second = first</code> is a problem for <em>mutable</em> objects</li>
+              <li class="fragment">But that's fine for immutable objects like strings</li>
+            </ul>
+          </div>
+          <aside class="notes" data-markdown>
+            - **(CLICK)** Variables don't contain objects
+            - **(CLICK)** They contain *pointers* to objects
+            - **(CLICK)** And assignments *point* a variable to an object
+            - **(CLICK)** An assignment **does not** copy an object
+            - **(CLICK)** So...
+            - **(CLICK)** Pointing 2 variables to the same object is a problem if that object is *mutable*
+            - **(CLICK)** But for numbers, strings, and other *immutable* objects pointing 2 variables to the same value is fine because you can't change the value anyway
+            - ...
+            - Also...
+          </aside>
+        </section>
+
+        <section>
+          <div style="display: inline-block; text-align: left; font-size: 0.8em; width: 75%; margin-top: -1.5em;">
+            <h1 style="text-align: center;">Functions</h1>
+            <ul>
+              <li class="fragment">Function arguments are just like every other variable</li>
+              <li class="fragment">Function calls assign an object to each function parameter</li>
+              <li class="fragment">Function calls <strong>do not copy</strong> any objects</li>
+            </ul>
+            <h2 class="fragment" style="text-align: center; margin-top: 0.25em;">So...</h2>
+            <ul>
+              <li class="fragment">Functions <strong>should not mutate</strong> passed-in objects, unless the caller expects it</li>
+              <li class="fragment">Functions often implicitly copy passed-in objects using comprehensions, slicing, <code>list(...)</code>, etc.</li>
+            </ul>
+          </div>
+          <aside class="notes" data-markdown>
+            - Function arguments **(CLICK)** are just like every other variable
+            - **(CLICK)** So when you call a function, each argument passed-in is just another assignment
+            - Which means... **(CLICK)** function calls **don't copy** objects
+            - **(CLICK)** So...
+            - **(CLICK)** Functions shouldn't mutate the objects that are passed into them, unless that's their expected behavior
+            - **(CLICK)** Instead, it's common for a function to copy passed-in objects, either implicitly or explicitly
+            - And...
+          </aside>
+        </section>
+
+        <section>
+          <div style="display: inline-block; text-align: left; font-size: 0.8em; width: 75%; margin-top: -1.5em;">
+            <h1 style="text-align: center;">Objects</h1>
+            <ul>
+              <li class="fragment">Objects can't contain other objects</li>
+              <li class="fragment">Objects can only contain <em>pointers</em> to other objects</li>
+            </ul>
+            <h2 class="fragment" style="text-align: center; margin-top: 0.25em;">So...</h2>
+            <ul>
+              <li class="fragment">Avoid storing multiple references to the same mutable object</li>
+              <li class="fragment">Using <code>dict.fromkeys</code> with a <strong>mutable</strong> default value will cause problems</li>
+              <li class="fragment">Be mindful of whether your initializer methods store references to a passed-in object or copy those objects</li>
+            </ul>
+          </div>
+          <aside class="notes" data-markdown>
+            - Objects **(CLICK)** can't contain other objects
+            - **(CLICK)** They can only contain *pointers* to other objects
+            - **(CLICK)** So...
+            - **(CLICK)** If you store multiple references to the same mutable object, you might get yourself into trouble
+            - **(CLICK)** So be careful when using utilities like `dict.fromkeys` that store references to a given object instead of copying it
+            - **(CLICK)** And when you're writing class initializer methods, be mindful of whether you're storing a reference to a passed-in object or making a copy of it
+          </aside>
+        </section>
+
+
       </section>
       <section>
         <!-- section: why -->
         <!-- SECTION TIME: 2 minutes -->
 
         <section>
-          <h1 style="margin-top: -0.2em;" class="fragment" data-fragment-index=1>We didn't discuss</h1>
+          <h2>It's pointers all the way down 🐢</h2>
+          <ul>
+          <li class="fragment">Variables store object references</li>
+          <li class="fragment">Objects store object references</li>
+          <li class="fragment">Variables/objects do not "contain" objects</li>
+          <li class="fragment">Function arguments are variables</li>
+          <li class="fragment">Attributes act just like variables</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - In summary
+            - Variables **(CLICK)** store *references* to objects
+            - And objects **(CLICK)** can store references to other objects
+            - But objects **(CLICK)** *can't contain* objects
+            - And neither can variables
+            - Also function arguments are just variables
+            - And... so are attributes
+            - But... there are *many* odd corners of this topic that we didn't cover today.
+          </aside>
+        </section>
+
+        <section>
+          <h1 style="margin-top: -0.2em;">We didn't discuss</h1>
           <ul>
           <li class="fragment" data-fragment-index=2>Variable scope in Python</li>
           <li class="fragment" data-fragment-index=3>Hashability and its relation to immutability</li>
           <li class="fragment" data-fragment-index=4>CPython optimizations that affect identity</li>
           <li class="fragment" data-fragment-index=5>Direct value storage of array, data frames, etc.</li>
           <li class="fragment" data-fragment-index=6>Tuples containing mutable objects</li>
-          <li class="fragment" data-fragment-index=6>Why it all works this way</li>
           </ul>
           <h2 style="margin-top: 0.2em;" class="fragment" data-fragment-index=7><a href="https://trey.io/pycascades26">https://trey.io/pycascades26</a></h2>
           <p style="font-size: 0.9em;" class="fragment" data-fragment-index=8><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a> - Brandon Rhodes</p>
           <p style="font-size: 0.9em;" class="fragment" data-fragment-index=8><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a> - Ned Batchelder</p>
 
           <aside class="notes" data-markdown>
-            - There are *many* odd corners of this topic that we didn't cover today.
             - For example, **(CLICK)** we didn't discuss...
             - **(CLICK)** Variable scope within Python
             - **(CLICK)** Hashability
