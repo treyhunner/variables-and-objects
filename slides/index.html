@@ -34,26 +34,32 @@
           <small><a href="https://treyhunner.com/" rel="author">Trey Hunner</a></small>
           </h3>
           <aside class="notes" data-markdown>
+            - TODO do an emphasis pass on ALL speaker notes: add *italics* for words to stress and **bold** for key terms
             - ...
-            - A *very* brief introduction before I get started
             - My name is Trey
           </aside>
         </section>
 
+        <!-- About me slide -->
         <section>
-          <div class="aboutme-card">
-            <a href="http://pythonmorsels.com"><img src="morsels-logo.svg" class="no-style aboutme-logos" alt="Python Morsels"></a>
+          <p class="fragment" data-fragment-index=3 style="margin-bottom: 1em;"><a href="https://trey.io/news" style="color: #663399; font-weight: bold;">trey.io/news</a> — a weekly Python tip</p>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 0.75em; margin-bottom: 0.5em;">
+            <img src="avatar.jpg" class="no-style" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover;">
+            <span style="font-size: 1.4em; font-weight: bold;">Trey Hunner</span>
           </div>
-          <div class="aboutme-card">
+          <div class="aboutme-card fragment" data-fragment-index=1>
             <a href="http://truthful.technology"><img src="truthful-technology-logo.svg" class="no-style aboutme-logos" alt="Truthful Technology"></a>
           </div>
-          <p>trey @ Python Morsels .com</p>
+          <div class="aboutme-card fragment" data-fragment-index=2>
+            <a href="http://pythonmorsels.com"><img src="morsels-logo.svg" class="no-style aboutme-logos" alt="Python Morsels"></a>
+          </div>
           <aside class="notes" data-markdown>
             - And I help folks **level-up** their Python skills
-            - I do that through **Python Morsels**, which involves deepening your skills through hands-on Python practice
-            - and I also hold **team trainings** on both introductory and advanced Python topics
-            - If *you* would like my help leveling up *your* Python skills or your *team's* Python skills, contact me
+            - I do that through **(CLICK)** **team trainings** on both introductory and advanced Python topics
+            - And through **(CLICK)** **Python Morsels**, which involves deepening your skills through hands-on Python practice
+            - I also share **(CLICK)** a Python tip every Wednesday morning through my newsletter
             - ...
+            - This talk is about...
           </aside>
         </section>
 
@@ -63,103 +69,20 @@
         <!-- SECTION TIME: 2 minutes -->
 
         <section>
-          <h1 class="fragment">Mental Models</h1>
-          <h1 class="fragment">Gotchas</h1>
+          <h1 class="fragment" data-fragment-index=1>Variables &amp; Objects</h1>
+          <h1 style="color: darkblue;">Mental Models</h1>
+          <h1 style="color: darkred;" class="fragment" data-fragment-index=2>Gotchas</h1>
           <aside class="notes" data-markdown>
-            - This talk is about **(CLICK)** mental models
-            - Specifically, the mental models we use when thinking about Python's variables and objects
+            - **mental models**
+            - Specifically, the mental models we use when thinking about **(CLICK)** Python's *variables* and *objects*
             - When our mental models don't match how Python actually *works*... **(CLICK)**
             - We run into gotchas
-            - Let's begin with a few gotchas...
+            - We're going to start by looking at 5 gotchas...
           </aside>
         </section>
 
         <section>
-          <pre class="python"><code data-trim data-noescape>
->>> def square_all(numbers):
-...     for i, n in enumerate(numbers):
-...         numbers[i] = n ** 2
-...     return numbers
-...
->>> <span class="fragment">numbers = [2, 1, 3, 4, 7]
->>> </span><span class="fragment">square_all(numbers)
-</span><span class="fragment">[4, 1, 9, 16, 49]
->>> </span><span class="fragment">numbers
-</span><span class="fragment">[4, 1, 9, 16, 49]</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - Let's say we write a function to square all numbers in a list
-            - If we make a list of numbers **(CLICK)**
-            - And we call the `square_all` function with this list **(CLICK)**
-            - It will return **(CLICK)** the squares of all the given numbers
-            - That's what we expect...
-            - But... the original list **(CLICK)**
-            - Was *also* **(CLICK)** modified.
-            - Which might upset a caller of this function
-          </aside>
-        </section>
-
-        <section>
-          <pre class="python"><code data-trim data-noescape>
->>> <span class="fragment">colors = ["purple", "blue", "green"]
->>> </span><span class="fragment">groups = dict.fromkeys(colors, [])
->>> </span><span class="fragment">groups
-{'purple': [], 'blue': [], 'green': []}
->>> </span><span class="fragment">groups["purple"].append("duck")
->>> </span><span class="fragment">groups
-{'purple': ['duck'], 'blue': ['duck'], 'green': ['duck']}</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - Let's say we have a list of colors **(CLICK)** that we'd like to be keys in a dictionary **(CLICK)**
-            - So we use the dictionary `fromkeys` class method **(CLICK)** to create a dictionary of lists
-            - If we add the string `duck` **(CLICK)** to one of these lists
-            - Every list **(CLICK)** in this dictionary changed
-            - We tried to change *one* list but all of them changed
-          </aside>
-        </section>
-
-        <section>
-          <pre class="python"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=2>[0] * 3</span>] * 3</span>
->>> </span><span class="fragment" data-fragment-index=4>matrix
-[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> </span><span class="fragment" data-fragment-index=5>matrix[1][1] = 1
->>> </span><span class="fragment" data-fragment-index=6>matrix
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
-            - We multiply **(CLICK)** a list with a `0` by 3 and put that in a list **(CLICK)** that we also multiply by 3
-            - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
-            - If we assign the number 1 **(CLICK)** to index 1 of the list that's at index 1, we'll change the middle element of the middle list
-            - Well... **(CLICK)** sort of
-            - We actually end up changing all 3 of those inner lists
-          </aside>
-        </section>
-
-        <section>
-          <pre class="python"><code data-trim data-noescape>
->>> <span class="fragment">class TodoList:
-...     def __init__(self, tasks=[]):
-...         <span class="fragment bold-current">self.tasks = tasks</span>
-...
->>> </span><span class="fragment">mon = TodoList()
->>> tue = TodoList()
->>> </span><span class="fragment">mon.tasks.append("Work on talk")
->>> </span><span class="fragment">tue.tasks</span><span class="fragment">
-['Work on talk']</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - Let's say we make a `TodoList` class **(CLICK)** with an initializer method that accepts an optional `tasks` list
-            - The given `tasks` list is **(CLICK)** stored as a `tasks` attribute on each new `TodoList` object
-            - If we create two new `TodoList` objects **(CLICK)**
-            - And we append a new task to the `tasks` attribute **(CLICK)** of the first object
-            - The second object's `tasks` attribute **(CLICK)** will *also* change **(CLICK)**
-            - We changed one of our `TodoList` objects, but both of them changed
-          </aside>
-        </section>
-
-        <section>
+          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">1</div>
           <h4 class="fragment" data-fragment-index=8>Changing <code>first</code> doesn't always change <code>second</code></h4>
           <div style="display: grid; grid-auto-flow: column;">
             <div>
@@ -189,6 +112,100 @@
             - we had changed `first` by assigning to it **(CLICK)**
             - `second` doesn't change **(CLICK)**
             - **(CLICK)** changing first doesn't always change second
+            - That's gotcha number one
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">2</div>
+          <pre class="python"><code data-trim data-noescape>
+>>> def square_all(numbers):
+...     for i, n in enumerate(numbers):
+...         numbers[i] = n ** 2
+...     return numbers
+...
+>>> <span class="fragment">numbers = [2, 1, 3, 4, 7]
+>>> </span><span class="fragment">square_all(numbers)
+</span><span class="fragment">[4, 1, 9, 16, 49]
+>>> </span><span class="fragment">numbers
+</span><span class="fragment">[4, 1, 9, 16, 49]</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we write a function to square all numbers in a list
+            - If we make a list of numbers **(CLICK)**
+            - And we call the `square_all` function with this list **(CLICK)**
+            - It will return **(CLICK)** the squares of all the given numbers
+            - That's what we expect...
+            - But... the original list **(CLICK)**
+            - Was *also* **(CLICK)** modified.
+            - Which might upset a caller of this function
+            - That's gotcha number two
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">3</div>
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment">colors = ["purple", "blue", "green"]
+>>> </span><span class="fragment">groups = dict.fromkeys(colors, [])
+>>> </span><span class="fragment">groups
+{'purple': [], 'blue': [], 'green': []}
+>>> </span><span class="fragment">groups["purple"].append("duck")
+>>> </span><span class="fragment">groups
+{'purple': ['duck'], 'blue': ['duck'], 'green': ['duck']}</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we have a list of colors **(CLICK)** that we'd like to be keys in a dictionary **(CLICK)**
+            - So we use the dictionary `fromkeys` class method **(CLICK)** to create a dictionary of lists
+            - If we add the string `duck` **(CLICK)** to one of these lists
+            - Every list **(CLICK)** in this dictionary changed
+            - We tried to change *one* list but all of them changed
+            - That's gotcha number three
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">4</div>
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=2>[0] * 3</span>] * 3</span>
+>>> </span><span class="fragment" data-fragment-index=4>matrix
+[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+>>> </span><span class="fragment" data-fragment-index=5>matrix[1][1] = 1
+>>> </span><span class="fragment" data-fragment-index=6>matrix
+[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
+            - We multiply **(CLICK)** a list with a `0` by 3 and put that in a list **(CLICK)** that we also multiply by 3
+            - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
+            - If we assign the number 1 **(CLICK)** to index 1 of the list that's at index 1, we'll change the middle element of the middle list
+            - Well... **(CLICK)** sort of
+            - We actually end up changing all 3 of those inner lists
+            - That's gotcha number four
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">5</div>
+          <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment">class TodoList:
+...     def __init__(self, tasks=[]):
+...         <span class="fragment bold-current">self.tasks = tasks</span>
+...
+>>> </span><span class="fragment">mon = TodoList()
+>>> tue = TodoList()
+>>> </span><span class="fragment">mon.tasks.append("Work on talk")
+>>> </span><span class="fragment">tue.tasks</span><span class="fragment">
+['Work on talk']</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we make a `TodoList` class **(CLICK)** with an initializer method that accepts an optional `tasks` list
+            - The given `tasks` list is **(CLICK)** stored as a `tasks` attribute on each new `TodoList` object
+            - If we create two new `TodoList` objects **(CLICK)**
+            - And we append a new task to the `tasks` attribute **(CLICK)** of the first object
+            - The second object's `tasks` attribute **(CLICK)** will *also* change **(CLICK)**
+            - We changed the tasks for Monday, and the tasks for Tuesday changed
+            - That's gotcha number five
           </aside>
         </section>
 
@@ -359,7 +376,7 @@
             - There's no dereferencing pointers or pointer arithmetic and they're not *nearly* as *scary* or as powerful as C pointers
             - The Python documentation often refers to variables as **(CLICK)** "bindings"
             - Though they're also sometimes called **(CLICK)** "references"
-            - I usually call them "pointers" **(CLICK)** because for me, that word makes me think of an **arrow** pointing **(CLICK)** from a variable to an object, and I find that visual helpful
+            - I usually prefer **(CLICK)** "pointer" -- that word makes me think of **(CLICK)** an arrow pointing from a variable to an object
           </aside>
         </section>
 
@@ -475,9 +492,9 @@
           </div>
           <aside class="notes" data-markdown>
             - When we append to `first`, **(CLICK)** we're mutating the *object* **(CLICK)** that `first` points to
-            - Since `second` **points to the same object**, accessing `second` **(CLICK)** will show the same *changed* object
-            - But if we **(CLICK)** reassign first, that changes *which* object **(CLICK)** the variable `first` points to
-            - ... But that *doesn't* change the `second` variable at all... **(CLICK)**
+            - Since `second` **points to the same object**, accessing `second` **(CLICK)** will show the *same* **changed** object
+            - But when we **(CLICK)** *reassign* `first`, we're changing *which* object **(CLICK)** the `first` variable points to
+            - But that *doesn't* change the `second` variable at all **(CLICK)**
             - `second` still points to the same object as before
             - Mutations change objects
             - Assignments change *which* object a *variable* points to
@@ -540,8 +557,8 @@
     self.tasks = tasks</code></li>
           </ol>
           <aside class="notes" data-markdown>
-            - And that explains **(CLICK)** our first gotcha
-            - When we point two variables at the same mutable object, changing it through one variable means it changes for both
+            - And that explains **(CLICK)** our `second = first` gotcha
+            - When we point two variables at the same *mutable* object, **changing the object through one variable** changes it for *both*
           </aside>
         </section>
 
@@ -614,10 +631,10 @@ True</span></code></pre>
             </div>
           </div>
           <aside class="notes" data-markdown>
-            - Model numbers **(CLICK)** help you find equivalent devices
-            - Serial numbers **(CLICK)** uniquely identify a specific device
-            - Equality **(CLICK)** asks whether two objects represent the same thing: that's like a model number
-            - Identity **(CLICK)** asks whether they are the exact same object: that's like a serial number
+            - Model numbers **(CLICK)** help you find *equivalent* objects
+            - Serial numbers **(CLICK)** *uniquely* identify a specific objects
+            - *Equality* **(CLICK)** asks whether two objects represent the *same thing*: that's like a model number
+            - *Identity* **(CLICK)** asks whether they are the *exact same* object: that's like a serial number
           </aside>
         </section>
 
@@ -859,7 +876,7 @@ def square_all(numbers):
           </ol>
           <aside class="notes" data-markdown>
             - Function arguments are just variables and no objects are copied when a function is called
-            - That's **(CLICK)** two down, three to go
+            - So that explains **(CLICK)** our `square_all` gotcha -- two down, three to go
           </aside>
         </section>
 
@@ -1160,7 +1177,7 @@ x in y
           <aside class="notes" data-markdown>
             - Let's revisit our list-of-lists problem, where we used self-concatenation to build up a 3-by-3 list-of-lists
             - Multiplying the inner list by 3 creates **(CLICK)** a list that points to `0` three times **(CLICK)**
-            - Multiplying the other list by 3 creates **(CLICK)** a list that points to the inner list three times **(CLICK)**
+            - Multiplying the outer list by 3 creates **(CLICK)** a list that points to the inner list three times **(CLICK)**
             - So we end up... **(CLICK)** with an outer list has 3 references pointing to **the same** inner list
             - Concatenating a list to itself with multiplication does *not* copy the objects inside that list...
             - So when we modify **(CLICK)** one of our "rows"...
@@ -1340,6 +1357,23 @@ x in y
         </section>
 
         <section>
+          <h1>Gotchas</h1>
+          <ol style="font-size: 0.7em; list-style: none; counter-reset: item; padding-left: 0;">
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
+    numbers[i] = n ** 2</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
+    self.tasks = tasks</code></li>
+          </ol>
+          <aside class="notes" data-markdown>
+            - So that explains **(CLICK)** our list-of-lists gotcha
+            - Now let's look at our `dict.fromkeys` gotcha
+          </aside>
+        </section>
+
+        <section>
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> colors = ["purple", "blue", "green"]
 >>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(colors, [])
@@ -1487,6 +1521,23 @@ x in y
             - **(CLICK)** The whole comprehension builds a dictionary **(CLICK)** where each key points to its own list
             - So when we **(CLICK)** append to one of them, **(CLICK)** only that key's list changes **(CLICK)**
             - Because each value is its own distinct list object
+          </aside>
+        </section>
+
+        <section>
+          <h1>Gotchas</h1>
+          <ol style="font-size: 0.7em; list-style: none; counter-reset: item; padding-left: 0;">
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
+    numbers[i] = n ** 2</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
+    self.tasks = tasks</code></li>
+          </ol>
+          <aside class="notes" data-markdown>
+            - And that explains **(CLICK)** our `dict.fromkeys` gotcha
+            - Now let's look at our last gotcha
           </aside>
         </section>
 
@@ -1697,14 +1748,14 @@ x in y
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
     numbers[i] = n ** 2</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red" data-fragment-index=2><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red" data-fragment-index=1><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red" data-fragment-index=3><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
     self.tasks = tasks</code></li>
           </ol>
           <aside class="notes" data-markdown>
-            - That explains our **(CLICK)** last **(CLICK)** three **(CLICK)** gotchas
-            - All three were due to the fact that objects in Python don't contain other objects: they can only contain references to other objects
+            - And that explains **(CLICK)** our last gotcha
+            - All three of these last gotchas were due to the fact that objects in Python don't contain other objects: they can only contain references to other objects
             - So if we end up with multiple references to the same mutable object, we might get ourselves in trouble
           </aside>
         </section>
@@ -1964,8 +2015,8 @@ True</span>
             - And objects **(CLICK)** can store references to other objects
             - But objects **(CLICK)** *can't contain* objects
             - And neither can variables
-            - Also function arguments are just variables
-            - And... so are attributes
+            - Also **(CLICK)** function arguments are just variables
+            - **(CLICK)** And... so are attributes
             - But... there are *many* odd corners of this topic that we didn't cover today.
           </aside>
         </section>
@@ -1973,18 +2024,18 @@ True</span>
         <section>
           <h1 style="margin-top: -0.2em;">We didn't discuss</h1>
           <ul>
-          <li class="fragment" data-fragment-index=2>Variable scope in Python</li>
-          <li class="fragment" data-fragment-index=3>Hashability and its relation to immutability</li>
-          <li class="fragment" data-fragment-index=4>CPython optimizations that affect identity</li>
-          <li class="fragment" data-fragment-index=5>Direct value storage of array, data frames, etc.</li>
-          <li class="fragment" data-fragment-index=6>Tuples containing mutable objects</li>
+          <li class="fragment" data-fragment-index=1>Variable scope in Python</li>
+          <li class="fragment" data-fragment-index=2>Hashability and its relation to immutability</li>
+          <li class="fragment" data-fragment-index=3>CPython optimizations that affect identity</li>
+          <li class="fragment" data-fragment-index=4>Direct value storage of array, data frames, etc.</li>
+          <li class="fragment" data-fragment-index=5>Tuples containing mutable objects</li>
           </ul>
-          <h2 style="margin-top: 0.2em;" class="fragment" data-fragment-index=7><a href="https://trey.io/pycascades26">https://trey.io/pycascades26</a></h2>
-          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=8><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a> - Brandon Rhodes</p>
-          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=8><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a> - Ned Batchelder</p>
+          <h2 style="margin-top: 0.2em;" class="fragment" data-fragment-index=6><a href="https://trey.io/pycascades26">https://trey.io/pycascades26</a></h2>
+          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=7><a href="https://pyvideo.org/pyohio-2011/pyohio-2011-names-objects-and-plummeting-from.html">Names, Objects, and Plummeting From The Cliff</a> - Brandon Rhodes</p>
+          <p style="font-size: 0.9em;" class="fragment" data-fragment-index=7><a href="https://nedbatchelder.com/text/names1.html">Facts and Myths about Names and Values</a> - Ned Batchelder</p>
 
           <aside class="notes" data-markdown>
-            - For example, **(CLICK)** we didn't discuss...
+            - For example, we didn't discuss...
             - **(CLICK)** Variable scope within Python
             - **(CLICK)** Hashability
             - **(CLICK)** Optimizations around numbers, strings, and tuples
@@ -2005,7 +2056,7 @@ True</span>
           <p class="fragment" data-fragment-index=4 style="margin-left: 1em;">"reference assignments" and "copying assignments" <span class="fragment" data-fragment-index=5>😬</span></p>
           <aside class="notes" data-markdown>
             - *Why* does Python work this way?
-            - Wouldn't it be easier if variables and data structures contained objects and assignments copied the objects we were assigning to
+            - Wouldn't it be easier if variables and data structures contained objects and assignments copied objects?
             - Well... **(CLICK)**
             - Imagine if every assignment made a copy of an object **(CLICK)**
             - Copying objects all the time takes time and it takes memory
@@ -2031,7 +2082,7 @@ True</span>
         </section>
 
       </section>
-      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
+      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide" data-state="no-title-footer">
         <h2 style="margin-top: 0.5em;">Resources &nbsp; <a href="https://trey.io/pycascades26">https://trey.io/pycascades26</a></h2>
         <h3 style="margin-top: 1.5em;">
           Thank you<br>
