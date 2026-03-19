@@ -178,7 +178,7 @@
             - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
             - We multiply **(CLICK)** a list with a `0` by 3 and put that in a list **(CLICK)** that we also multiply by 3
             - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
-            - If we assign the number 1 **(CLICK)** to index 1 of the list that's at index 1, we'll change the middle element of the middle list
+            - If we **(CLICK)** assign `1` to `matrix[1][1]`, we'll change the middle element of the middle list
             - Well... **(CLICK)** sort of
             - We actually end up changing all 3 of those inner lists
             - That's gotcha number four
@@ -376,7 +376,7 @@
             - There's no dereferencing pointers or pointer arithmetic and they're not *nearly* as *scary* or as powerful as C pointers
             - The Python documentation often refers to variables as **(CLICK)** "bindings"
             - Though they're also sometimes called **(CLICK)** "references"
-            - I usually prefer **(CLICK)** "pointer" -- that word makes me think of **(CLICK)** an arrow pointing from a variable to an object
+            - I usually prefer **(CLICK)** "pointer" -- that word makes me think of **(CLICK)** an arrow pointing from a variable to an object, and I find that visual helpful
           </aside>
         </section>
 
@@ -418,7 +418,7 @@
           <h3 class="fragment" data-fragment-index=5>&ldquo;change&rdquo;</h3>
           <aside class="notes" data-markdown>
             - Earlier I said "if we change `first` **(CLICK)** by appending, second changes **(CLICK)**, but if we change `first` **(CLICK)** by assigning, second doesn't change" **(CLICK)**
-            - The word "change" **(CLICK)** is a problem here
+            - The word "change" **(CLICK)** is *the* problem here
             - There are *two different* types of "change" in Python
             - *Assignments* **(CLICK)** change variables and *mutations* **(CLICK)** change objects
             - We can use our pointers mental model to help us differentiate these two types of "change" ...
@@ -632,7 +632,7 @@ True</span></code></pre>
           </div>
           <aside class="notes" data-markdown>
             - Model numbers **(CLICK)** help you find *equivalent* objects
-            - Serial numbers **(CLICK)** *uniquely* identify a specific objects
+            - Serial numbers **(CLICK)** *uniquely* identify a specific object
             - *Equality* **(CLICK)** asks whether two objects represent the *same thing*: that's like a model number
             - *Identity* **(CLICK)** asks whether they are the *exact same* object: that's like a serial number
           </aside>
@@ -647,10 +647,10 @@ True
 >>> </span><span class="fragment" data-fragment-index=3>first is second  <strong class="fragment" data-fragment-index=4># Do these variables point to the same object?</strong>
 True</span></code></pre>
           <aside class="notes" data-markdown>
-            - If we have two variables, `first`, and `second`, and we ask whether they **(CLICK)** are *equal*, we're asking whether they have the same value... this asks **(CLICK)** the *objects* whether they represent the same thing, like a model number
-            - If we ask whether these variables **(CLICK)** are *identical* we're asking whether **(CLICK)** they both point to the same object, like a serial number
-            - Unlike equality, identity doesn't ask any question of the object itself: it just asks whether two references point to the same object
-            - So **(CLICK)** equality compares the *values* of objects, while **(CLICK)** identity compares *references* to see whether they point to the same object
+            - If we ask whether `first` and `second` **(CLICK)** are *equal*, we're asking **(CLICK)** the objects whether they represent the same thing
+            - If we ask whether they **(CLICK)** are *identical*, we're asking **(CLICK)** whether they point to the same object
+            - Unlike equality, identity doesn't ask the object anything: it just checks whether two references point to the same place
+            - So **(CLICK)** equality compares *values*, while **(CLICK)** identity compares *references*
           </aside>
         </section>
 
@@ -664,8 +664,9 @@ value == another_value
           </code></pre>
           <aside class="notes" data-markdown>
             - The `is` operator is *very* rarely used outside of comparisons to **(CLICK)** `None`
-            - When we ask "are they the same?" we usually **(CLICK)** want the double-equals operator.
+            - When we ask "are they the same?" we usually **(CLICK)** want the double-equals operator
             - **(CLICK)** Checking equality is much more common than checking identity
+            - But identity *can* be handy for debugging -- if you suspect that two variables point to the same object, the `is` operator will tell you
           </aside>
         </section>
 
@@ -754,11 +755,12 @@ def square_all(numbers):
           </code></pre>
           <aside class="notes" data-markdown>
             - This is the reason that, in Python, functions *rarely* mutate the objects that are passed into them **(CLICK)**
-            - Instead, it's very common to build up new lists out of old lists **(CLICK)**
+            - Some functions, like the list `append` method, are *designed* to mutate
+            - But in *general*, it's very common to build up new lists out of old lists **(CLICK)**
             - With a `for` loop
             - Or **(CLICK)** a comprehension
             - Or with the many other Python features that make new objects out of old objects
-            - Unless your function is specifically designed to modify an object in-place, **(CLICK)** return new objects instead of modifying existing ones
+            - **(CLICK)** Most of the time, your functions should return new objects *instead* of modifying existing ones
           </aside>
         </section>
 
@@ -1071,8 +1073,8 @@ def square_all(numbers):
           <h2>&ldquo;a list of lists&rdquo;</h2>
           <h2 class="fragment">&ldquo;a list of references to lists&rdquo;</h2>
           <aside class="notes" data-markdown>
-            - A list-of-lists are actually short-hand
-            - ... for **(CLICK)** "a list that contain *references* to lists"
+            - ..."a list-of-lists"... are actually shorthand
+            - ...for **(CLICK)** "a list that *contains* references to lists"
             - And the word...
           </aside>
         </section>
@@ -1178,7 +1180,7 @@ x in y
             - Let's revisit our list-of-lists problem, where we used self-concatenation to build up a 3-by-3 list-of-lists
             - Multiplying the inner list by 3 creates **(CLICK)** a list that points to `0` three times **(CLICK)**
             - Multiplying the outer list by 3 creates **(CLICK)** a list that points to the inner list three times **(CLICK)**
-            - So we end up... **(CLICK)** with an outer list has 3 references pointing to **the same** inner list
+            - So we end up... **(CLICK)** with an outer list that has 3 references pointing to **the same** inner list
             - Concatenating a list to itself with multiplication does *not* copy the objects inside that list...
             - So when we modify **(CLICK)** one of our "rows"...
           </aside>
@@ -1368,7 +1370,7 @@ x in y
     self.tasks = tasks</code></li>
           </ol>
           <aside class="notes" data-markdown>
-            - So that explains **(CLICK)** our list-of-lists gotcha
+            - So that explains **(CLICK)** our list-of-lists gotcha -- three down, two to go
             - Now let's look at our `dict.fromkeys` gotcha
           </aside>
         </section>
@@ -1537,7 +1539,7 @@ x in y
           </ol>
           <aside class="notes" data-markdown>
             - And that explains **(CLICK)** our `dict.fromkeys` gotcha
-            - Now let's look at our last gotcha
+            - Now let's look at our *last remaining* gotcha
           </aside>
         </section>
 
