@@ -791,85 +791,6 @@ def square_all(numbers):
           </aside>
         </section>
 
-        <!--
-        <section>
-          <h2>Assignments can mutate</h2>
-          <ul>
-            <li class="fragment">Assignments change the object a reference refers to</li>
-            <li class="fragment">Objects can contain references to other object</li>
-            <li class="fragment">Assigning to an object attribute/index mutates the object</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - Assignments **(CLICK)** change which object a pointer is pointing to...
-            - But objects can contain references to other objects **(CLICK)**
-            - And when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
-            - So when we use an assignment statement to change where that attribute is pointing, **(CLICK)** that *mutates* the containing object
-          </aside>
-        </section>
-        -->
-
-        <!--
-        <section>
-          <h3 class="fragment" data-fragment-index=2>Augmented Assignments</h3>
-          <p class="fragment" data-fragment-index=1>
-          <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, etc.
-          </p>
-          <p class="fragment" data-fragment-index=3>Are these assignments?</p>
-          <p class="fragment" data-fragment-index=4>Are these mutations?</p>
-          <h1 class="fragment" data-fragment-index=5>YES</h1>
-          <aside class="notes" data-markdown>
-            - But what about `+=` and `-=`? **(CLICK)**
-            - These are often called **(CLICK)** augmented assignments...
-            - But do these **(CLICK)** perform an assignment?
-            - Or do they **(CLICK)** mutate an object?
-            - Well...  **(CLICK)**
-            - It depends.
-          </aside>
-        </section>
-
-        <section>
-          <h2 class="fragment" data-fragment-index=7>In-place addition</h2>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>a = [2, 1, 3]
->>> </span><span class="fragment" data-fragment-index=2>b = a
->>> </span><span class="fragment" data-fragment-index=3>b += [4, 7, 11]
->>> </span><span class="fragment" data-fragment-index=4>b
-[2, 1, 3, 4, 7, 11]
->>> <span class="fragment" data-fragment-index=5>a</span><span class="fragment" data-fragment-index=6>
-[2, 1, 3, 4, 7, 11]</span></code></pre>
-          <aside class="notes" data-markdown>
-            - Let's say we have two variables, `a` **(click)** and `b` **(click)** that both point to the same list
-            - If we use `+=` **(click)** to add more elements to `b` **(click)**
-            - ... what happens to `a`? **(click)**
-            - Did `a` change or is it still the same?
-            - When we look at the variable `a`, we'll see that it *changed* **(click)**
-            - Augmented assignments actually perform a *mutation*
-            - So using `+=` on a list doesn't make a new list... it *mutates* the existing list
-            - That's why `+=` is often called an in-place addition **(click)**
-            - In-place operations are *designed* to mutate
-          </aside>
-        </section>
-
-        <section>
-          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>name = "North Bay Python"
->>> </span><span class="fragment" data-fragment-index=2>name += " 2025"  <span class="fragment" data-fragment-index=4># name = name + "2025"</span>
->>> </span><span class="fragment" data-fragment-index=3>name
-'North Bay Python 2025'</span></code></pre>
-          <aside class="notes" data-markdown>
-            - But wait... doesn't `+=` work on strings? **(click)**
-            - Strings is Python are immutable...
-            - Which means you can't *change* a string object
-            - But strings work with `+=`... **(click)**
-            - If `+=` is an *in-place* addition, how does it work on strings? **(click)**
-            - Well, augmented assignments *can* perform a mutation, but they don't *have* to... it's up to the object that they're operating on
-            - If an object doesn't specially handle `+=` then **(click)** Python falls back to using the `+` operator and a plain old assignment
-            - The distinction between assignments and mutations isn't always very clear... augmented assignments do perform an assignment, but they can also mutate.
-            - But this assignment or mutation fuzziness comes up in other ways too **(CLICK)**
-          </aside>
-        </section>
-        -->
-
         <section>
           <h1>Gotchas</h1>
           <ol style="font-size: 0.7em; list-style: none; counter-reset: item; padding-left: 0;">
@@ -1774,155 +1695,9 @@ x in y
           </aside>
         </section>
 
-        <!--
-        <section data-transition="slide-in none-out">
-          <pre class="python"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=2>class TodoList:
-...     def __init__(self, tasks):
-...         self.tasks = tasks
-...
-...     def add_task(self, task):
-...         self.tasks.append(task)
-...
->>> </span><span class="fragment" data-fragment-index=3>default_todos = ["Reflect on last week"]
->>> </span><span class="fragment fade-out" data-fragment-index=10><span class="fragment" data-fragment-index=4>mon = TodoList(default_todos)
->>> </span><span class="fragment" data-fragment-index=5>tue = TodoList(default_todos)
->>> </span><span class="fragment" data-fragment-index=6>mon.add_task("Work on talk")
->>> </span><span class="fragment" data-fragment-index=7>mon.tasks
-['Reflect on last week', 'Work on talk']
->>> </span><span class="fragment" data-fragment-index=8>tue.tasks</span><span class="fragment" data-fragment-index=9>
-['Reflect on last week', 'Work on talk']</span></span>
-<br>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - ...isn't just about data structures... this is about pretty much *every object in Python* **(CLICK)**
-            - Let's say we make *our own* objects using a class
-            - This class accepts a list and stores that list as an attribute on our class instances
-            - Calling the `add_task` method on an instance of this `TodoList` class will add a new task to the end of the `tasks` attribute for that class instance
-            - ...
-            - If we pass **(CLICK)** the same list **(CLICK)** into this class twice... **(CLICK)**
-            - We'll end up with two class instances that have the same attribute
-            - But what if we mutate the `tasks` list **(CLICK)** for one of those two objects? **(CLICK)**
-            - Will that affect **(CLICK)** the *other* object?
-            - ...
-            - It will! **(CLICK)**
-            - Attributes, like variables, don't *contain* objects... they *point* to objects
-            - This might seem like a *really* big issue... **(CLICK)**
-            - But this problem has a pretty common solution
-          </aside>
-        </section>
-
-        <section data-transition="none-in none-out">
-          <pre class="python"><code data-trim data-noescape>
->>> <span>class TodoList:
-...     def __init__(self, tasks):
-...        #self.tasks = tasks
-...         self.tasks = <span class="fragment bold-current">list(tasks)</span>  # shallowly copy the list
-...     def add_task(self, task):
-...         self.tasks.append(task)
-...
->>> default_todos = ["Reflect on last week"]
->>> </span><span class="fragment">mon = TodoList(default_todos)
->>> tue = TodoList(default_todos)
->>> </span><span class="fragment">mon.add_task("Work on talk")
->>> </span><span class="fragment">mon.tasks
-['Reflect on last week', 'Work on talk']
->>> </span><span class="fragment">tue.tasks
-['Reflect on last week']
->>> </span><span class="fragment">wed = TodoList({"Here is", "a set", "of tasks"})</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - In this class, we could use **(CLICK)** the `list` constructor to copy the passed-in list
-            - Now when we make **(CLICK)** two instances of our class by passing in the *same* list twice...
-            - Modifying the `tasks` list **(CLICK)** of one instance **(CLICK)**
-            - Will *not* affect the `tasks` list **(CLICK)** of the other
-            - Also, this class now also accepts not just lists, but sets, generators, or *any* iterable
-            - ... because the `list` constructor **(CLICK)** will loop over any iterable you give to it to make a new list that contains *all the items* from the given iterable
-            - So for many classes that are meant to change the data that's passed-in to them, that data is often copied when a new instance is initialized
-          </aside>
-        </section>
-
-        <section>
-          <h2>Objects don't contain objects</h2>
-          <ul>
-            <li class="fragment">Variables point to objects</li>
-            <li class="fragment">Objects can contain pointers to objects</li>
-            <li class="fragment">A list-of-lists is a list of pointers to lists</li>
-            <li class="fragment">
-              <strong><code>x in y</code></strong> loops over <strong><code>y</code></strong> checking equality with <strong><code>x</code></strong>
-            </li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - Variables don't contain objects... **(CLICK)** they only contain pointers to objects
-            - But objects also don't contain objects...
-            - Whether we're talking about indexes or attributes, **(CLICK)** objects only contain pointers to objects
-            - So when we say we've made a list-of-lists
-            - We actually mean **(CLICK)** that we've made a list where each item acts as pointer to another list
-            - And in fact, **(CLICK)** when ask whether our list contains a specific object using Python's `in` operator...
-            - We're actually asking whether our list contains a reference to an equivalent object
-            - **15 minutes**
-          </aside>
-        </section>
-        -->
-
       </section>
       <section>
         <!-- section: conclusion -->
-
-        <!--
-        <section>
-          <h2>One more puzzle</h2>
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> x.append(x)
->>> x
-???
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - I want you to take a guess
-            - What will `x` look like after we run this code?
-            - Take a moment to think about it...
-            - ...
-          </aside>
-        </section>
-
-        <section data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> x.append(x)
->>> x
-[[...]]
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - We get a list that appears to contain itself
-            - The `...` is Python's way of showing "I've seen this before"
-            - This is possible because lists don't contain objects - they contain references
-          </aside>
-        </section>
-
-        <section data-background-image="ouroboros-background.png" data-transition="none">
-          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
->>> x = []
->>> x.append(x)
->>> x
-[[...]]
-<span class="fragment" data-fragment-index=1>>>> x[0] is x
-True</span>
-<span class="fragment" data-fragment-index=2>>>> x in x
-True</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - Because that's apparently possible in Python
-            - A list can contain itself.. sort of
-            - ...as we know, data structures don't *contain* objects, they contain references to objects
-            - So this list contains a **reference** to itself **(CLICK)**
-            - We have just made an infinitely recursive data structure **(CLICK)**
-            - This is possible because objects in Python don't contain other objects
-            - Both variables and objects can only contain *references* to objects
-            - So there's nothing stopping a list from contain a reference to itself
-          </aside>
-        </section>
-        -->
 
         <section>
           <h1>Recap</h1>
@@ -2165,6 +1940,81 @@ True</span>
           </aside>
         </section>
 
+        <section>
+          <h2>Assignments can mutate</h2>
+          <ul>
+            <li class="fragment">Assignments change the object a reference refers to</li>
+            <li class="fragment">Objects can contain references to other object</li>
+            <li class="fragment">Assigning to an object attribute/index mutates the object</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - Assignments **(CLICK)** change which object a pointer is pointing to...
+            - But objects can contain references to other objects **(CLICK)**
+            - And when our assignment target is an index, a key, or an attribute, that pointer lives *within* an object
+            - So when we use an assignment statement to change where that attribute is pointing, **(CLICK)** that *mutates* the containing object
+          </aside>
+        </section>
+
+        <section>
+          <h3 class="fragment" data-fragment-index=2>Augmented Assignments</h3>
+          <p class="fragment" data-fragment-index=1>
+          <strong><code>+=</code></strong>, <strong><code>-=</code></strong>, <strong><code>*=</code></strong>, etc.
+          </p>
+          <p class="fragment" data-fragment-index=3>Are these assignments?</p>
+          <p class="fragment" data-fragment-index=4>Are these mutations?</p>
+          <h1 class="fragment" data-fragment-index=5>YES</h1>
+          <aside class="notes" data-markdown>
+            - But what about `+=` and `-=`? **(CLICK)**
+            - These are often called **(CLICK)** augmented assignments...
+            - But do these **(CLICK)** perform an assignment?
+            - Or do they **(CLICK)** mutate an object?
+            - Well...  **(CLICK)**
+            - It depends.
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="fragment" data-fragment-index=7>In-place addition</h2>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>a = [2, 1, 3]
+>>> </span><span class="fragment" data-fragment-index=2>b = a
+>>> </span><span class="fragment" data-fragment-index=3>b += [4, 7, 11]
+>>> </span><span class="fragment" data-fragment-index=4>b
+[2, 1, 3, 4, 7, 11]
+>>> <span class="fragment" data-fragment-index=5>a</span><span class="fragment" data-fragment-index=6>
+[2, 1, 3, 4, 7, 11]</span></code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we have two variables, `a` **(click)** and `b` **(click)** that both point to the same list
+            - If we use `+=` **(click)** to add more elements to `b` **(click)**
+            - ... what happens to `a`? **(click)**
+            - Did `a` change or is it still the same?
+            - When we look at the variable `a`, we'll see that it *changed* **(click)**
+            - Augmented assignments actually perform a *mutation*
+            - So using `+=` on a list doesn't make a new list... it *mutates* the existing list
+            - That's why `+=` is often called an in-place addition **(click)**
+            - In-place operations are *designed* to mutate
+          </aside>
+        </section>
+
+        <section>
+          <pre class="python" style="width: 60%; margin: 1em auto;"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>name = "North Bay Python"
+>>> </span><span class="fragment" data-fragment-index=2>name += " 2025"  <span class="fragment" data-fragment-index=4># name = name + "2025"</span>
+>>> </span><span class="fragment" data-fragment-index=3>name
+'North Bay Python 2025'</span></code></pre>
+          <aside class="notes" data-markdown>
+            - But wait... doesn't `+=` work on strings? **(click)**
+            - Strings is Python are immutable...
+            - Which means you can't *change* a string object
+            - But strings work with `+=`... **(click)**
+            - If `+=` is an *in-place* addition, how does it work on strings? **(click)**
+            - Well, augmented assignments *can* perform a mutation, but they don't *have* to... it's up to the object that they're operating on
+            - If an object doesn't specially handle `+=` then **(click)** Python falls back to using the `+` operator and a plain old assignment
+            - The distinction between assignments and mutations isn't always very clear... augmented assignments do perform an assignment, but they can also mutate.
+            - But this assignment or mutation fuzziness comes up in other ways too **(CLICK)**
+          </aside>
+        </section>
+
         <!-- section: mutable tuples -->
         <!-- SECTION TIME: 2 minutes -->
         <section>
@@ -2369,6 +2219,59 @@ TypeError: 'tuple' object does not support item assignment
             - This sticky note mental model works *well* for explaining how **variables** in Python work...
             - But it doesn't work well for explaining how **objects** work
             - Let's take a look at how our pointers mental model handles this...
+          </aside>
+        </section>
+
+        <section>
+          <h2>One more puzzle</h2>
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> x.append(x)
+>>> x
+???
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - I want you to take a guess
+            - What will `x` look like after we run this code?
+            - Take a moment to think about it...
+            - ...
+          </aside>
+        </section>
+
+        <section data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> x.append(x)
+>>> x
+[[...]]
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - We get a list that appears to contain itself
+            - The `...` is Python's way of showing "I've seen this before"
+            - This is possible because lists don't contain objects - they contain references
+          </aside>
+        </section>
+
+        <section data-background-image="ouroboros-background.png" data-transition="none">
+          <pre class="python" style="width: 45%;"><code data-trim data-noescape>
+>>> x = []
+>>> x.append(x)
+>>> x
+[[...]]
+<span class="fragment" data-fragment-index=1>>>> x[0] is x
+True</span>
+<span class="fragment" data-fragment-index=2>>>> x in x
+True</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Because that's apparently possible in Python
+            - A list can contain itself.. sort of
+            - ...as we know, data structures don't *contain* objects, they contain references to objects
+            - So this list contains a **reference** to itself **(CLICK)**
+            - We have just made an infinitely recursive data structure **(CLICK)**
+            - This is possible because objects in Python don't contain other objects
+            - Both variables and objects can only contain *references* to objects
+            - So there's nothing stopping a list from contain a reference to itself
           </aside>
         </section>
 
