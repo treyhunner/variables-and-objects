@@ -146,6 +146,28 @@
         <section>
           <div class="gotcha-number">3</div>
           <pre class="python"><code data-trim data-noescape>
+>>> <span class="fragment" data-fragment-index=1>matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=2>[0] * 3</span>] * 3</span>
+>>> </span><span class="fragment" data-fragment-index=4>matrix
+[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+>>> </span><span class="fragment" data-fragment-index=5>matrix[1][1] = 9
+>>> </span><span class="fragment" data-fragment-index=6>matrix
+[[0, 9, 0], [0, 9, 0], [0, 9, 0]]</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
+            - TODO: reword this -- I keep getting hung up on "put that in a list that we also multiply by 3"
+            - We multiply **(CLICK)** a list with a `0` by 3 and put that in a list **(CLICK)** that we also multiply by 3
+            - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
+            - If we **(CLICK)** assign `9` to `matrix[1][1]`, we'll change the middle element of the middle list
+            - Well... **(CLICK)** sort of
+            - We actually end up changing all 3 of those inner lists
+            - That's gotcha number three
+          </aside>
+        </section>
+
+        <section>
+          <div class="gotcha-number">4</div>
+          <pre class="python"><code data-trim data-noescape>
 >>> <span class="fragment">colors = ["purple", "blue", "green"]
 >>> </span><span class="fragment">groups = dict.fromkeys(colors, [])
 >>> </span><span class="fragment">groups
@@ -158,29 +180,8 @@
             - Let's say we have a list of colors **(CLICK)** that we'd like to be keys in a dictionary **(CLICK)**
             - So we use the dictionary `fromkeys` class method **(CLICK)** to create a dictionary of lists
             - If we add the string `duck` **(CLICK)** to one of these lists
-            - Every list **(CLICK)** in this dictionary changed
+            - Every list **(CLICK)** in this dictionary changes
             - We tried to change *one* list but all of them changed
-            - That's gotcha number three
-          </aside>
-        </section>
-
-        <section>
-          <div class="gotcha-number">4</div>
-          <pre class="python"><code data-trim data-noescape>
->>> <span class="fragment" data-fragment-index=1>matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=2>[0] * 3</span>] * 3</span>
->>> </span><span class="fragment" data-fragment-index=4>matrix
-[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> </span><span class="fragment" data-fragment-index=5>matrix[1][1] = 1
->>> </span><span class="fragment" data-fragment-index=6>matrix
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
-            - We multiply **(CLICK)** a list with a `0` by 3 and put that in a list **(CLICK)** that we also multiply by 3
-            - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
-            - If we **(CLICK)** assign `1` to `matrix[1][1]`, we'll change the middle element of the middle list
-            - Well... **(CLICK)** sort of
-            - We actually end up changing all 3 of those inner lists
             - That's gotcha number four
           </aside>
         </section>
@@ -215,8 +216,8 @@
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.5em; line-height: 1;">1.</strong> <code>second = first</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.5em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
     numbers[i] = n ** 2</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.5em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.5em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.5em; line-height: 1;">3.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.5em; line-height: 1;">4.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.5em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
     self.tasks = tasks</code></li>
           </ol>
@@ -552,8 +553,8 @@
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
     numbers[i] = n ** 2</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
     self.tasks = tasks</code></li>
           </ol>
@@ -874,8 +875,8 @@ def square_all(numbers):
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
     numbers[i] = n ** 2</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
     self.tasks = tasks</code></li>
           </ol>
@@ -1105,15 +1106,15 @@ x in y
         <!-- section: revisiting problems -->
 
         <section data-transition="slide-in none-out">
-          <div class="gotcha-number">4</div>
+          <div class="gotcha-number">3</div>
           <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=1>[0] * 3</span>] * 3</span>
 >>> matrix
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> <span class="fragment" data-fragment-index=6>matrix[1][1] = 1
+>>> <span class="fragment" data-fragment-index=6>matrix[1][1] = 9
 >>> </span><span style="visibility: hidden;">matrix
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span><span>
+[[0, 9, 0], [0, 9, 0], [0, 9, 0]]</span><span>
 
 
 </span>
@@ -1191,15 +1192,15 @@ x in y
         </section>
 
         <section data-transition="none-in slide-out">
-          <div class="gotcha-number">4</div>
+          <div class="gotcha-number">3</div>
           <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = [[0] * 3] * 3
 >>> matrix
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> matrix[1][1] = 1
+>>> matrix[1][1] = 9
 >>> <span class="fragment">matrix
-[[0, 1, 0], [0, 1, 0], [0, 1, 0]]</span><span>
+[[0, 9, 0], [0, 9, 0], [0, 9, 0]]</span><span>
 
 
 </span>
@@ -1219,18 +1220,18 @@ x in y
               <text x="163.5" y="27" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,163.5,23.5)">int</text>
               <text x="196" y="27" fill="#000" font-size="13px" text-anchor="middle">0</text>
             </g>
-            <!-- int 1 (top-right) -->
+            <!-- int 9 (top-right) -->
             <g>
               <path d="M 275 5 L 252 5 L 252 42 L 275 42" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 275 5 L 317 5 L 317 42 L 275 42" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <path d="M 275 5 L 275 42" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <text x="263.5" y="27" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,263.5,23.5)">int</text>
-              <text x="296" y="27" fill="#000" font-size="13px" text-anchor="middle">1</text>
+              <text x="296" y="27" fill="#000" font-size="13px" text-anchor="middle">9</text>
             </g>
             <!-- arrows: inner indices → int 0 (indices 0 and 2 still point to 0) -->
             <line x1="140" y1="78" x2="170" y2="46" stroke="#000" marker-end="url(#arr-matrix2)"/>
             <line x1="224" y1="78" x2="198" y2="46" stroke="#000" marker-end="url(#arr-matrix2)"/>
-            <!-- arrow: inner index 1 → int 1 -->
+            <!-- arrow: inner index 1 → int 9 -->
             <line x1="182" y1="78" x2="268" y2="46" stroke="#000" marker-end="url(#arr-matrix2)"/>
             <!-- inner list (middle) -->
             <g>
@@ -1273,7 +1274,7 @@ x in y
           </div>
           <aside class="notes" data-markdown>
             - We're modifying the one object that all three indices point to
-            - Index 1 in the inner list now points to the number 1 instead of the number 0
+            - Index 1 in the inner list now points to the number 9 instead of the number 0
             - But since all three outer indices point to the **same** inner list, **(CLICK)** all 3 "rows" show this change
             - Because all rows are actually the same list
             - So: don't use self-concatenation to build up a list of mutable objects
@@ -1282,13 +1283,13 @@ x in y
         </section>
 
         <section>
-          <div class="gotcha-number">4</div>
+          <div class="gotcha-number">3</div>
           <div style="display: grid; grid-template-columns: 60% 40%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = <span class="fragment bold-current" data-fragment-index=2>[<span class="fragment bold-current" data-fragment-index=0>[0] * 3</span> for _ in <span class="fragment bold-current" data-fragment-index=1>range(3)</span>]</span>
->>> <span class="fragment" data-fragment-index=5>matrix[1][1] = 1</span><span class="fragment" data-fragment-index=6>
+>>> <span class="fragment" data-fragment-index=5>matrix[1][1] = 9</span><span class="fragment" data-fragment-index=6>
 >>> </span><span class="fragment" data-fragment-index=7>matrix
-[[0, 0, 0], [0, 1, 0], [0, 0, 0]]</span><span>
+[[0, 0, 0], [0, 9, 0], [0, 0, 0]]</span><span>
 
 
 
@@ -1330,7 +1331,7 @@ x in y
               <path d="M 200 105 L 200 140" fill="none" stroke="#82b366" stroke-miterlimit="10"/>
               <text x="190" y="126" fill="#000" text-anchor="middle" font-size="13px" transform="rotate(-90,190,122.5)">list</text>
               <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment fade-out" data-fragment-index=6>[0, 0, 0]</text>
-              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=6>[0, <tspan fill="#909" font-weight="bold">1</tspan>, 0]</text>
+              <text x="245" y="127" fill="#000" font-size="13px" text-anchor="middle" class="fragment" data-fragment-index=6>[0, <tspan fill="#909" font-weight="bold">9</tspan>, 0]</text>
             </g>
             <!-- inner list 2 (right, oversimplified) -->
             <g class="fragment" data-fragment-index=3>
@@ -1370,8 +1371,8 @@ x in y
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
     numbers[i] = n ** 2</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
     self.tasks = tasks</code></li>
           </ol>
@@ -1382,7 +1383,7 @@ x in y
         </section>
 
         <section>
-          <div class="gotcha-number">3</div>
+          <div class="gotcha-number">4</div>
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> colors = ["purple", "blue", "green"]
 >>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(colors, [])
@@ -1433,7 +1434,6 @@ x in y
             </g>
           </svg>
           <aside class="notes" data-markdown>
-            - Remember our `dict.fromkeys` problem?
             - `dict.fromkeys` creates a dictionary **(CLICK)** with each key pointing to the same value
             - Here's what that looks like: **(CLICK)** all three keys point to the **same** list object
             - So when we append to one of them **(CLICK)**...
@@ -1445,7 +1445,7 @@ x in y
         </section>
 
         <section>
-          <div class="gotcha-number">3</div>
+          <div class="gotcha-number">4</div>
           <div style="display: grid; grid-template-columns: 65% 35%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> colors = ["purple", "blue", "green"]
@@ -1529,7 +1529,7 @@ x in y
             - This evaluates **(CLICK)** the empty list literal **(CLICK)** once for each color in our list
             - Creating **(CLICK)** 3 separate list objects
             - **(CLICK)** The whole comprehension builds a dictionary **(CLICK)** where each key points to its own list
-            - So when we **(CLICK)** append to one of them, **(CLICK)** only that key's list changes **(CLICK)**
+            - So when we **(CLICK)** append to one of them, **(CLICK)** only that one list changes **(CLICK)**
             - Because each value is its own distinct list object
           </aside>
         </section>
@@ -1540,8 +1540,8 @@ x in y
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
     numbers[i] = n ** 2</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
     self.tasks = tasks</code></li>
           </ol>
@@ -1723,8 +1723,8 @@ x in y
             - Each instance **(CLICK)** gets its own separate copy of that default list
             - The original default **(CLICK)** is still sitting on the method, untouched
             - So when we append to one **(CLICK)**...
-            - We're only mutating **(CLICK)** that one instance's list
-            - And the other instance's list **(CLICK)** is unaffected, because each instance has its own distinct list object
+            - We're only mutating **(CLICK)** that one object's list
+            - And the other object's list **(CLICK)** is unaffected, because each object has its own distinct list
             - This also has another benefit...
           </aside>
         </section>
@@ -1761,8 +1761,8 @@ x in y
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">1.</strong> <code>second = first</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">2.</strong> <code style="white-space: pre;">for i, n in enumerate(numbers):
     numbers[i] = n ** 2</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
-            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">3.</strong> <code>matrix = [[0] * 3] * 3</code></li>
+            <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline; color: red;"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">4.</strong> <code>groups = dict.fromkeys(colors, [])</code></li>
             <li style="margin-bottom: 1.0em; counter-increment: item; display: flex; align-items: baseline;" class="fragment highlight-red"><strong style="font-size: 1.5em; margin-right: 0.3em; line-height: 1;">5.</strong> <code style="white-space: pre;">def __init__(self, tasks=[]):
     self.tasks = tasks</code></li>
           </ol>
