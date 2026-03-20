@@ -351,6 +351,21 @@ section.has-dark-background a:hover {
 }
 
 
+.reveal .slides section .gotcha-number {
+  display: none;
+}
+.reveal .slides > .gotcha-number-overlay {
+  position: absolute;
+  top: 10px;
+  right: -20px;
+  font-size: 130px;
+  font-weight: bold;
+  color: rgba(102, 51, 153, 0.3);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 100;
+}
+
 /* Workaround */
 /* https://github.com/hakimel/reveal.js/issues/1265 */
 section {

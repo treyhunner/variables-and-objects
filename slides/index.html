@@ -82,7 +82,7 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">1</div>
+          <div class="gotcha-number">1</div>
           <h4 class="fragment" data-fragment-index=8>Changing <code>first</code> doesn't always change <code>second</code></h4>
           <div style="display: grid; grid-auto-flow: column;">
             <div>
@@ -117,7 +117,7 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">2</div>
+          <div class="gotcha-number">2</div>
           <pre class="python"><code data-trim data-noescape>
 >>> def square_all(numbers):
 ...     for i, n in enumerate(numbers):
@@ -144,7 +144,7 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">3</div>
+          <div class="gotcha-number">3</div>
           <pre class="python"><code data-trim data-noescape>
 >>> <span class="fragment">colors = ["purple", "blue", "green"]
 >>> </span><span class="fragment">groups = dict.fromkeys(colors, [])
@@ -165,7 +165,7 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">4</div>
+          <div class="gotcha-number">4</div>
           <pre class="python"><code data-trim data-noescape>
 >>> <span class="fragment" data-fragment-index=1>matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=2>[0] * 3</span>] * 3</span>
 >>> </span><span class="fragment" data-fragment-index=4>matrix
@@ -186,7 +186,7 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: -160px; right: -80px; font-size: 130px; font-weight: bold; color: rgba(102, 51, 153, 0.25); line-height: 1; pointer-events: none;">5</div>
+          <div class="gotcha-number">5</div>
           <pre class="python"><code data-trim data-noescape>
 >>> <span class="fragment">class TodoList:
 ...     def __init__(self, tasks=[]):
@@ -393,6 +393,7 @@
         </section>
 
         <section>
+          <div class="gotcha-number">1</div>
           <div style="display: grid; grid-auto-flow: column;">
             <div>
               <h3 class="fragment" data-fragment-index=7>mutation</h3>
@@ -706,6 +707,7 @@ value == another_value
         </section>
 
         <section>
+          <div class="gotcha-number">2</div>
           <h3 class="fragment" data-fragment-index=7>Function arguments are also assignments</h3>
           <pre class="python"><code data-trim data-noescape>
 def square_all(<span class="fragment bold-current" data-fragment-index=3>numbers</span>):
@@ -733,6 +735,7 @@ def square_all(<span class="fragment bold-current" data-fragment-index=3>numbers
         </section>
 
         <section>
+          <div class="gotcha-number">2</div>
           <pre class="python fragment strike" data-fragment-index=4><code data-trim data-noescape>
 def square_all(numbers):
     for i, n in enumerate(numbers):
@@ -1102,6 +1105,7 @@ x in y
         <!-- section: revisiting problems -->
 
         <section data-transition="slide-in none-out">
+          <div class="gotcha-number">4</div>
           <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = <span class="fragment bold-current" data-fragment-index=3>[<span class="fragment bold-current" data-fragment-index=1>[0] * 3</span>] * 3</span>
@@ -1187,6 +1191,7 @@ x in y
         </section>
 
         <section data-transition="none-in slide-out">
+          <div class="gotcha-number">4</div>
           <div style="display: grid; grid-template-columns: 50% 50%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = [[0] * 3] * 3
@@ -1277,6 +1282,7 @@ x in y
         </section>
 
         <section>
+          <div class="gotcha-number">4</div>
           <div style="display: grid; grid-template-columns: 60% 40%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> matrix = <span class="fragment bold-current" data-fragment-index=2>[<span class="fragment bold-current" data-fragment-index=0>[0] * 3</span> for _ in <span class="fragment bold-current" data-fragment-index=1>range(3)</span>]</span>
@@ -1376,6 +1382,7 @@ x in y
         </section>
 
         <section>
+          <div class="gotcha-number">3</div>
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> colors = ["purple", "blue", "green"]
 >>> <span class="fragment" data-fragment-index=1>groups = dict.fromkeys(colors, [])
@@ -1438,6 +1445,7 @@ x in y
         </section>
 
         <section>
+          <div class="gotcha-number">3</div>
           <div style="display: grid; grid-template-columns: 65% 35%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> colors = ["purple", "blue", "green"]
@@ -1544,6 +1552,7 @@ x in y
         </section>
 
         <section>
+          <div class="gotcha-number">5</div>
           <div style="display: grid; grid-template-columns: 55% 45%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> class TodoList:
@@ -1626,6 +1635,7 @@ x in y
         </section>
 
         <section>
+          <div class="gotcha-number">5</div>
           <div style="display: grid; grid-template-columns: 55% 45%;">
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> class TodoList:
@@ -1720,6 +1730,7 @@ x in y
         </section>
 
         <section>
+          <div class="gotcha-number">5</div>
           <pre class="python"><code data-trim data-noescape style="font-size: 20px; line-height: 24px;">
 >>> class TodoList:
 ...     def __init__(self, tasks=[]):
@@ -2387,6 +2398,31 @@ TypeError: 'tuple' object does not support item assignment
       if (window.self !== window.top) {
         document.body.className += " notes";
       }
+
+      // Gotcha number overlay: positioned on .slides for consistent placement
+      (function() {
+        var overlay = document.createElement('div');
+        overlay.className = 'gotcha-number-overlay';
+        overlay.style.display = 'none';
+        document.querySelector('.reveal .slides').appendChild(overlay);
+
+        function updateOverlay(slide) {
+          var num = slide.querySelector('.gotcha-number');
+          if (num) {
+            overlay.textContent = num.textContent;
+            overlay.style.display = 'block';
+          } else {
+            overlay.style.display = 'none';
+          }
+        }
+
+        Reveal.addEventListener('ready', function(event) {
+          updateOverlay(event.currentSlide);
+        });
+        Reveal.addEventListener('slidechanged', function(event) {
+          updateOverlay(event.currentSlide);
+        });
+      })();
     </script>
   </body>
 </html>
