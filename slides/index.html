@@ -155,8 +155,8 @@
           </code></pre>
           <aside class="notes" data-markdown>
             - Let's say we use nested self-concatenation to make a list-of-lists **(CLICK)**
-            - TODO: reword this -- I keep getting hung up on "put that in a list that we also multiply by 3"
-            - We multiply **(CLICK)** a list with a `0` by 3 and put that in a list **(CLICK)** that we also multiply by 3
+            - We multiply **(CLICK)** a list containing `0` by 3
+            - Then we wrap that **(CLICK)** in another list and multiply that by 3.
             - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
             - If we **(CLICK)** assign `9` to `matrix[1][1]`, we'll change the middle element of the middle list
             - Well... **(CLICK)** sort of
@@ -786,7 +786,8 @@ def square_all(numbers):
             - Well... it's both. **(CLICK)**
             - Assigning to **(CLICK)** a list index mutates the list
             - And assigning to **(CLICK)** an attribute mutates the object that the attribute lives on
-            - In fact, if you *squint* hard enough, every assignment is *also* a mutation of some sort of namespace... it may not be a namespace that we can access through attribute lookups on an object... but all variables are stored somewhere in Python
+            - TODO should we show += mutation here also?
+            - So *some* assignments *do* mutate an object
           </aside>
         </section>
 
