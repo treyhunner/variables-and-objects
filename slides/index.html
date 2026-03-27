@@ -34,7 +34,6 @@
           <small><a href="https://treyhunner.com/" rel="author">Trey Hunner</a></small>
           </h3>
           <aside class="notes" data-markdown>
-            - TODO do an emphasis pass on ALL speaker notes: add *italics* for words to stress and **bold** for key terms
             - ...
             - My name is Trey
           </aside>
@@ -106,12 +105,12 @@
           </div>
           <aside class="notes" data-markdown>
             - If we make a `first` list **(CLICK)** and assign `second` to `first` **(CLICK)**
-            - When we change `first`, by appending to it **(CLICK)**
-            - `second` also changes **(CLICK)**
+            - When we change `first`, by **appending** to it **(CLICK)**
+            - `second` *also* changes **(CLICK)**
             - But if instead... **(CLICK)**
-            - we had changed `first` by assigning to it **(CLICK)**
-            - `second` doesn't change **(CLICK)**
-            - **(CLICK)** changing first doesn't always change second
+            - we had changed `first` by **assigning** to it **(CLICK)**
+            - `second` *doesn't* change **(CLICK)**
+            - **(CLICK)** changing `first` **doesn't always** change `second`
             - That's gotcha number one
           </aside>
         </section>
@@ -133,12 +132,12 @@
           <aside class="notes" data-markdown>
             - Let's say we write a function to square all numbers in a list
             - If we make a list of numbers **(CLICK)**
-            - And we call the `square_all` function with this list **(CLICK)**
-            - It will return **(CLICK)** the squares of all the given numbers
-            - That's what we expect...
+            - And we call our `square_all` function *with* this list **(CLICK)**
+            - It will return **(CLICK)** the **squares** of all the given numbers
+            - That's what we **expect**...
             - But... the original list **(CLICK)**
             - Was *also* **(CLICK)** modified.
-            - Which might upset a caller of this function
+            - Which *might* upset a *caller* of this function
             - That's gotcha number two
           </aside>
         </section>
@@ -158,9 +157,9 @@
             - We multiply **(CLICK)** a list containing `0` by 3
             - Then we wrap that **(CLICK)** in another list and multiply that by 3.
             - And we end up **(CLICK)** with a list of 3 lists each containing 3 zeros
-            - If we **(CLICK)** assign `9` to `matrix[1][1]`, we'll change the middle element of the middle list
+            - If we **(CLICK)** assign `9` to `matrix[1][1]`, we'll change the **middle element** of the **middle list**
             - Well... **(CLICK)** sort of
-            - We actually end up changing all 3 of those inner lists
+            - We actually end up changing **all 3** of those inner lists
             - That's gotcha number three
           </aside>
         </section>
@@ -180,8 +179,8 @@
             - Let's say we have a list of colors **(CLICK)** that we'd like to be keys in a dictionary **(CLICK)**
             - So we use the dictionary `fromkeys` class method **(CLICK)** to create a dictionary of lists
             - If we add the string `duck` **(CLICK)** to one of these lists
-            - Every list **(CLICK)** in this dictionary changes
-            - We tried to change *one* list but all of them changed
+            - *Every* list **(CLICK)** in this dictionary changes
+            - We tried to change *one* list but *all* of them changed
             - That's gotcha number four
           </aside>
         </section>
@@ -696,14 +695,14 @@ value == another_value
 &lt;class '__main__.e'></span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - So assignments change which object a variable points to
-            - And this **(CLICK)** is what an assignment looks like
+            - So assignments change **which object** a variable points to
+            - And *this* **(CLICK)** is what an assignment *looks like*
             - But it's not the *only* way an assignment might look
-            - Import statements **(CLICK)** also assign to a variable
-            - And each iteration of a `for` loop **(CLICK)** assigns to a variable
-            - And function definitions **(CLICK)** and class definitions **(CLICK)** also assign to variables
-            - We've just assigned to the variable `e` 5 times **(CLICK)**
-            - Any Python feature that updates what a name points to **(CLICK)** performs some sort of assignment
+            - **Import** statements **(CLICK)** also assign to a variable
+            - And **each iteration** of a `for` loop **(CLICK)** assigns to a variable
+            - And **function** definitions **(CLICK)** and **class** definitions **(CLICK)** also assign to variables
+            - We've just assigned to the variable `e` **5** times **(CLICK)**
+            - Any Python feature that **updates what a name points** to **(CLICK)** performs some sort of assignment
           </aside>
         </section>
 
@@ -724,7 +723,7 @@ def square_all(<span class="fragment bold-current" data-fragment-index=3>numbers
 [4, 1, 9, 16, 49]</span>
           </code></pre>
           <aside class="notes" data-markdown>
-            - Passing arguments to a function is also a form of assignment
+            - Passing arguments to a function is *also* a form of assignment
             - So when we called the `square_all` function with a list of numbers **(CLICK)**
             - The local `numbers` variable **(CLICK)** within the `square_all` function was assigned to the list object **(CLICK)** that we passed in to that function
             - When we then **(CLICK)** *mutated* that `numbers` list by updating each of its indexes as we looped...
@@ -786,7 +785,6 @@ def square_all(numbers):
             - Well... it's both. **(CLICK)**
             - Assigning to **(CLICK)** a list index mutates the list
             - And assigning to **(CLICK)** an attribute mutates the object that the attribute lives on
-            - TODO should we show += mutation here also?
             - So *some* assignments *do* mutate an object
           </aside>
         </section>
@@ -902,9 +900,9 @@ def square_all(numbers):
             - this.
             - Because we **(CLICK)** assigned two variables to the same value
             - Both `first` and `second` point to the same list, and that list contains the number `9`
-            - But that list doesn't *actually* contain the number 9
-            - This diagram should technically look more like this... **(CLICK)**
-            - The list *can't* contain the number `9`: it can only contain a *reference* to the number `9`
+            - But that list **doesn't actually** *contain* the number 9
+            - This diagram should **technically** look more like *this*... **(CLICK)**
+            - A list *can't* contain the number `9`: it can only contain a *reference* to the number `9`
           </aside>
         </section>
 
@@ -1015,10 +1013,11 @@ x in y
           <aside class="notes" data-markdown>
             - Containment is...
             - **(CLICK)**
+            - ...
             - slightly misleading
-            - Because objects cannot contain other objects... they can only contain *references* to objects
-            - So when we ask whether one object contains another... **(CLICK)**
-            - We're asking whether one object contains a **reference** to an object that **is equal** to another object
+            - Because objects *cannot contain* other objects... they can only contain *references* to objects
+            - So when we ask whether one object *contains* another... **(CLICK)**
+            - We're actually asking whether one object contains a **reference** to an object that **is equal** to another object
             - But, instead of saying all that, **(CLICK)** we just say "y contains x"
           </aside>
         </section>
